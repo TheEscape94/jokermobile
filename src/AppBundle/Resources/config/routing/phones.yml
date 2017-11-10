@@ -1,0 +1,29 @@
+admin_telefoni_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Phones:index" }
+    methods:  GET
+
+admin_telefoni_view:
+    path:     /
+    defaults: { _controller: "AppBundle:Phones:view" }
+    methods:  GET
+
+admin_telefoni_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Phones:show" }
+    methods:  GET
+
+admin_telefoni_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Phones:new" }
+    methods:  [GET, POST]
+
+admin_telefoni_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Phones:edit" }
+    methods:  [GET, POST]
+
+admin_telefoni_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Phones:delete" }
+    methods:  DELETE

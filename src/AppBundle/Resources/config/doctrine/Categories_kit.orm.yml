@@ -1,0 +1,23 @@
+AppBundle\Entity\Categories_kit:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\Categories_kitRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        upName:
+            type: integer
+            column: up_name
+        name:
+            type: string
+            length: '65'
+        createdAt:
+            type: datetime
+            column: created_at
+        enabled:
+            type: boolean
+    lifecycleCallbacks: {  }

@@ -1,0 +1,6 @@
+app_admin_brendovi:
+    resource: "@AppBundle/Resources/config/routing/brands.yml"
+    prefix:   /admin/brendovi
+
+
+

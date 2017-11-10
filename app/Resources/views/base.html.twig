@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block head %}{% endblock %}
+    <!-- Title -->
+    <title>JokerMobile {% block title %}{% endblock %}</title>
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,900,700italic,500italic' rel='stylesheet' type='text/css'>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/perfect-scrollbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/fontello.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/settings.css') }}" type="text/css" media="screen">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/animation.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/owl.theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/chosen.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/flexslider.css') }}" type="text/css" media="screen" >
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/style.css') }}">
+</head>
+<body>
+
+<!-- Container -->
+<div class="container">
+    <!-- Header -->
+    {{ render(controller(
+        'AppBundle:Parts:header'
+    )) }}
+    <!-- /Header -->
+
+    {% block body %}{% endblock %}
+
+    <!-- Footer -->
+    <footer id="footer" class="row">
+
+        <!-- Upper Footer -->
+        <div class="col-lg-12 col-md-12 col-sm-12">
+
+            <div id="upper-footer">
+
+                <div class="row">
+
+                    <!-- Newsletter -->
+                    <div class="col-lg-7 col-md-7 col-sm-7">
+                        <form id="newsletter" action="php/newsletter.php">
+                            <h4>Prijavite se da bi dobijali novosti sa JokerMobile.com</h4>
+                            <input type="text" name="newsletter-email" placeholder="Vaša email adresa">
+                            <input type="submit" name="newsletter-submit" value="Pošalji">
+                        </form>
+                    </div>
+                    <!-- /Newsletter -->
+
+
+                    <!-- Social Media -->
+                    <div class="col-lg-5 col-md-5 col-sm-5 social-media">
+                        <h4>Zapratite nas i na:</h4>
+                        <ul>
+                            <li class="social-googleplus tooltip-hover" data-toggle="tooltip" data-placement="top" title="Google+"><a href="#"></a></li>
+                            <li class="social-facebook tooltip-hover" data-toggle="tooltip" data-placement="top" title="Facebook"><a href="#"></a></li>
+                            <li class="social-pinterest tooltip-hover" data-toggle="tooltip" data-placement="top" title="Pinterest"><a href="#"></a></li>
+                            <li class="social-twitter tooltip-hover" data-toggle="tooltip" data-placement="top" title="Twitter"><a href="#"></a></li>
+                            <li class="social-youtube tooltip-hover" data-toggle="tooltip" data-placement="top" title="Youtube"><a href="#"></a></li>
+                        </ul>
+                    </div>
+                    <!-- /Social Media -->
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /Upper Footer -->
+
+
+
+        <!-- Main Footer -->
+        <div class="col-lg-12 col-md-12 col-sm-12">
+
+            <div id="main-footer">
+
+                <div class="row">
+
+                    <!-- The Service -->
+                    <div class="col-lg-3 col-md-3 col-sm-6">
+                        <h4>Usluge</h4>
+                        <ul>
+                            <li><a href="/telefoni"><i class="icons icon-right-dir"></i> Prodaja</a></li>
+                            <li><a href="/otkup"><i class="icons icon-right-dir"></i> Otkup</a></li>
+                            <li><a href="/zamenaiotkup"><i class="icons icon-right-dir"></i> Zamena</a></li>
+                            <li><a href="/brendovi"><i class="icons icon-right-dir"></i> Brendovi</a></li>
+                            <li><a href="/oprema"><i class="icons icon-right-dir"></i> Oprema</a></li>
+                            <li><a href="/blog"><i class="icons icon-right-dir"></i> Blog</a></li>
+                        </ul>
+                    </div>
+                    <!-- /The Service -->
+
+
+                    <!-- Like us on Facebook -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 facebook-iframe">
+                        <h4>Pratite nas na Facebook-u</h4>
+                        <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2FFacebookDevelopers&amp;width=270&amp;height=250&amp;colorscheme=light&amp;header=false&amp;show_faces=true&amp;stream=false&amp;show_border=false" style="border:none; overflow:hidden; width:100%; height:290px;"></iframe>
+                    </div>
+                    <!-- /Like us on Facebook -->
+
+
+                    <!-- Information -->
+                    <div class="col-lg-3 col-md-3 col-sm-6">
+                        <h4>Informacije</h4>
+                        <ul>
+                            <li><a href="/onama"><i class="icons icon-right-dir"></i> O nama</a></li>
+                            <li><a href="/kakokupiti"><i class="icons icon-right-dir"></i> Kako kupiti kod nas?</a></li>
+                            <li><a href="/isporukaiplacanje"><i class="icons icon-right-dir"></i> Isporuka i plaćanje</a></li>
+                            <li><a href="/zamenaiotkup"><i class="icons icon-right-dir"></i> Zamena i otkup</a></li>
+                            <li><a href="/pravilaiuslovi"><i class="icons icon-right-dir"></i> Pravila i uslovi</a></li>
+                            <li><a href="/faq"><i class="icons icon-right-dir"></i> FAQ</a></li>
+                        </ul>
+                    </div>
+                    <!-- /Information -->
+
+
+                    <!-- Contact Us -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 contact-footer-info">
+                        <h4>Kontakt</h4>
+                        <ul>
+                            <li><i class="icons icon-location"></i> Novi Sad,<br> Srbija</li>
+                            <li><i class="icons icon-phone"></i> +381 64 40-40-950</li>
+                            <li><i class="icons icon-phone"></i> +381 64 40-40-970</li>
+                            <li><i class="icons icon-mail-alt"></i><a href="mailto:mail@company.com"> office@jokermobile.com</a></li>
+                            <li><i class="icons icon-skype"></i> JokerMobile</li>
+                        </ul>
+                    </div>
+                    <!-- /Contact Us -->
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /Main Footer -->
+        <!-- Lower Footer -->
+        <div class="col-lg-12 col-md-12 col-sm-12">
+
+            <div id="lower-footer">
+
+                <div class="row">
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <p class="copyright">Sva prava zadržana &copy; 2017. <a href="/">JokerMobile.com</a></p>
+                        <p class="copyright">Powered by <a href="milosaperlic.com">M.A.</a></p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /Lower Footer -->
+
+    </footer>
+    <!-- Footer -->
+
+
+    <div id="back-to-top">
+        <i class="icon-up-dir"></i>
+    </div>
+
+</div>
+<!-- Container -->
+<button type="button" class="btn btn-info btn-lg danger" style="display: none;" data-toggle="modal" data-target="#danger-modal"></button>
+<div id="danger-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-danger">Upozorenje!</h4>
+            </div>
+            <div class="modal-body">
+                <p id="danger-msg"></p>
+            </div>
+            <div class="modal-footer">
+                <p class="text-center">JokerMobile.com</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="server-loading">
+    <div class="card-loading">
+        <h1>Vaš zahtev se obradjuje...</h1>
+        <hr/>
+        <img src="{{ asset('bundles/app/img/loading-complete.gif') }}" alt="loading" />
+        <hr/>
+        <h3>JokerMobil.com</h3>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script src="{{ asset('bundles/app/js/modernizr.min.js') }}"></script>
+<script src="{{ asset('bundles/app/js/jquery-1.11.0.min.js') }}"></script>
+<script src="{{ asset('bundles/app/js/jquery-ui.min.js') }}" type="text/javascript"></script>
+
+<!-- Scroll Bar -->
+<script src="{{ asset('bundles/app/js/perfect-scrollbar.min.js') }}"></script>
+
+<!-- FancyBox -->
+<script src="{{ asset('bundles/app/js/jquery.fancybox.pack.js') }}"></script>
+
+<!-- jQuery REVOLUTION Slider  -->
+<script type="text/javascript" src="{{ asset('bundles/app/js/jquery.themepunch.plugins.min.js') }}"></script>
+
+<script type="text/javascript" src="{{ asset('bundles/app/js/jquery.themepunch.revolution.min.js') }}"></script>
+
+<!-- FlexSlider -->
+<script defer src="{{ asset('bundles/app/js/flexslider.min.js') }}"></script>
+
+<!-- IOS Slider -->
+<script src="{{ asset('bundles/app/js/jquery.iosslider.min.js') }}"></script>
+
+<!-- noUi Slider -->
+<script src="{{ asset('bundles/app/js/jquery.nouislider.min.js') }}"></script>
+
+<!-- Owl Carousel -->
+<script src="{{ asset('bundles/app/js/owl.carousel.min.js') }}"></script>
+
+<!-- Cloud Zoom -->
+<script src="{{ asset('bundles/app/js/zoomsl-3.0.min.js') }}"></script>
+
+<!-- SelectJS -->
+<script src="{{ asset('bundles/app/js/chosen.jquery.min.js') }}" type="text/javascript"></script>
+
+<!-- Main JS -->
+<script src="{{ asset('bundles/app/js/main-script.js') }}"></script>
+
+<script defer src="{{ asset('bundles/app/js/tinynav.min.js') }}"></script>
+
+<script defer src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bundles/app/js/custom.js') }}"></script>
+<script src="{{ asset('bundles/app/js/ajaxreq.js') }}"></script>
+{% block javascripts %}
+{% endblock %}
+</body>
+
+</html>

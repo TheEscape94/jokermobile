@@ -1,0 +1,90 @@
+{% extends 'containers/fulltable.html.twig' %}
+{% block title %}Zahtevi za zamenu <small>brzi pregled</small>{% endblock %}
+{% block body %}
+    <thead>
+        <thead>
+            <tr>
+                <th style="width: 30px"></th>
+                <th>Zamena za</th>
+                <th>Ponudjeno</th>
+                <th>Stanje</th>
+                <th>Mreza</th>
+                <th>Oprema</th>
+                <th>Stiglo</th>
+                <th><i class="fa fa-user"></i></th>
+                <th>Akcija</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for replacement in replacements %}
+            <tr {% if replacement.isRead == 0 %}style="background-color: #faebcc;"{% endif %}>
+                <td> {% if replacement.isRead == 0 %}<span class="badge">NOVO</span> {% endif %}</td>
+                <td>
+                    {{ replacement.choosedPhone }}
+                </td>
+                <td>{{ replacement.phone }}</td>
+                <td>
+                    {% if replacement.isNew == 0 %}
+                        Nov
+                    {% else %}
+                        Polovan {{ replacement.stateNum }} / 10
+                    {% endif %}
+                </td>
+                <td>
+                    {% if replacement.network == 0 %}
+                        SimFri
+                    {% elseif replacement.network == 1 %}
+                        MTS
+                    {% elseif replacement.network == 2 %}
+                        Telenor
+                    {% elseif replacement.network == 3 %}
+                        Vip
+                    {% elseif replacement.network == 4 %}
+                        Ostalo
+                    {% endif %}
+                </td>
+                <td>
+                    {% if replacement.kit == 0 %}
+                        Sve (punjač, slušalice, kutija)
+                    {% elseif replacement.kit == 1 %}
+                        Punjač i slušalice
+                    {% elseif replacement.kit == 2 %}
+                        Punjač
+                    {% endif %}
+                </td>
+                <td>{% if replacement.createdAt %}{{ replacement.createdAt|date('d.m. h:m') }}{% endif %}</td>
+                <td>
+                    <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal{{ replacement.id }}"><i class="fa fa-user"></i></button>
+                    <!-- Modal -->
+                    <div id="myModal{{ replacement.id }}" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Kontakt podaci</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><strong>Ime:</strong> {{ replacement.name }}</li>
+                                        <li class="list-group-item"><strong>Telefon:</strong> {{ replacement.phoneNum }}</li>
+                                        <li class="list-group-item"><strong>Email:</strong> {{ replacement.email }}</li>
+                                        <li class="list-group-item"><strong>Adresa:</strong> {{ replacement.adress}}, {{ replacement.city }}, {{ replacement.postNum }}</li>
+                                    </ul>
+                                </div>
+                                <div class="modal-footer">
+                                    <p>Stiglo: {% if replacement.createdAt %}{{ replacement.createdAt|date('d.m. h:m') }}{% endif %}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <a class="btn btn-warning btn-xs" href="{{ path('zamena_show', { 'id': replacement.id }) }}"><i class="fa fa-eye"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+{% endblock %}

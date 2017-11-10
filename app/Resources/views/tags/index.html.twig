@@ -1,0 +1,24 @@
+{% extends 'containers/halftable.html.twig' %}
+{% block title %}Tagovi{% endblock %}
+{% block body %}
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Naziv</th>
+                <th>Kreirano</th>
+                <th>Akcija</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tag in tags %}
+            <tr>
+                <td>{{ tag.id }}</td>
+                <td>{{ tag.name }}</td>
+                <td>{% if tag.createdAt %}{{ tag.createdAt|date('d.m.Y') }}{% endif %}</td>
+                <td>
+                    <a class="btn btn-info btn-xs" href="{{ path('admin_tagovi_edit', { 'id': tag.id }) }}">Izmena</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+{% endblock %}

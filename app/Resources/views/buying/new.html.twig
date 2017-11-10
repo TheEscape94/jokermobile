@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+{% block title %} | Otkup {% endblock %}
+{% block body %}
+<div class="row content">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="breadcrumbs">
+            <p><a href="/">Početna</a> <i class="icons icon-right-dir"></i> Otkup</p>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="carousel-heading no-margin">
+                    <h4>Otkup</h4>
+                </div>
+                    <div class="page-content">
+                        <p class="required-fields">Polja sa * su obavezna</p>
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                    <div class="clearfix"></div>
+                    <br/>
+                    <hr/>
+                    <center>
+                        <p style="font-size: 14px; font-weight: 500;">Ako nastavite dalje, podrazumevamo da ste pročitali i da se slažete sa <a class="text-info" href="/zamenaiotkup" target="_blank"><strong>pravilima i uslovima</strong></a> zamene i otkupa.</p>
+                        <button class="btn btn-success btn-large sending-load" type="submit">Pošalji zahtev</button>
+                    </center>
+                        {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Main Content -->
+    {{ render(controller(
+    'AppBundle:Parts:sidebar'
+    )) }}
+
+    {% if app.session.flashBag.has('success_offer_buy') %}
+        <!-- Modal -->
+        <div id="buyingModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><i class="fa fa-check-circle text-success"></i> Hvala na ponudi!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <br/>
+                        <p class="alert-success text-center" style="padding: 15px 10px">
+                            Pogledaćemo Vašu ponudu u najkraćem mogućem roku i zatim ćemo Vas kontaktirati.<br/><br/>
+                            <strong>Hvala na poverenju.</strong>
+                        </p>
+
+                        <br/>
+                    </div>
+                    <div class="modal-footer">
+                        <p>Vaš <strong class="text-info text-center">JokerMobil.com</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <!-- Modal -->
+        <div id="buyingModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Važno! Važno! Važno!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="text-success"><strong>Najbolje i najrealnije cene su kod NAS!</strong></h3>
+                        <p>Cenu koju možete da očekujete pri otkupu jeste <strong class="text-danger">70%-90%</strong> realne cene Vašeg telefona. Odmah u kešu!</p>
+                        <h3 class="text-success"><strong>Ne otkupljujemo telefone sumljivog porekla!</strong></h3>
+                        <p><u>Kradene</u> ili <u>pronadjene</u> telefone ne otkupljujemo. Uz otkup je <strong class="text-danger">obavezan</strong> neki lični dokument!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <p>Vaš <strong class="text-info text-center">JokerMobil.com</strong></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% endif %}
+    <button type="button" class="btn btn-info btn-lg" id="buyingModalbtn" data-toggle="modal" style="display: none;" data-target="#buyingModal">Open Modal</button>
+</div>
+{% endblock %}

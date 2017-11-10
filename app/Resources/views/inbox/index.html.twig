@@ -1,0 +1,30 @@
+{% extends 'containers/fulltable.html.twig' %}
+{% block title %}Inbox <small><i class="fa fa-eye-slash"></i> Nepročitanih poruka <span class="badge">{{ new }}</span> | <i class="fa fa-envelope"></i> Ukupno poruka <span class="badge">{{ inboxes|length }}</span> </small>{% endblock %}
+{% block body %}
+        <thead>
+            <tr>
+                <th></th>
+                <th>Ime i prezime</th>
+                <th>Email</th>
+                <th>Naslov</th>
+                <th>Telefon</th>
+                <th>Stiglo</th>
+                <th>Akcija</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for inbox in inboxes %}
+            <tr {% if inbox.isRead == 0 %}style="background: #faebcc;"{% endif %}>
+                <td>{% if inbox.isRead == 0 %}<span class="badge">NOVO</span> {% endif %}</td>
+                <td>{{ inbox.name }}</td>
+                <td>{{ inbox.email }}</td>
+                <td>{{ inbox.subject }}</td>
+                <td>{{ inbox.phone }}</td>
+                <td>{% if inbox.createdAt %}{{ inbox.createdAt|date('d.m.Y.') }}{% endif %}</td>
+                <td>
+                    <a class="btn btn-success btn-xs" href="{{ path('admin_inbox_show', { 'id': inbox.id }) }}">Procitaj</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+{% endblock %}

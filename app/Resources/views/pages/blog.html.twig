@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="description" content="JokerMobil.com, Prodaja, otkup i zamena mobilnih telefona. Najbolje cene, isplata odmah. Zamenite Va stari telefon za novi.">
+    <meta name="keywords" content="Prodaja telefona, Otkup telefona, Zamena telefona, Mobilni telefoni, Oprema za mobilne telefone, Staro za novo">
+    <meta name="author" content="Milos Aperlic">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+{% block title %} | Blog {% endblock %}
+{% block body %}
+    <!-- Content -->
+    <div class="row content">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="breadcrumbs">
+                <p><a href="/">Početna</a> <i class="icons icon-right-dir"></i> Blog</p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+
+
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="carousel-heading no-margin">
+                        <h4>Blog</h4>
+                    </div>
+                    <br/>
+
+                    {% if blog|length == 0 %}
+                        <div class="page-content">#}
+                            <h3>Uskoro!</h3>
+                            <p>razne zanimljivosti u svetu mobilnih telefona, uputstva i saveti i jos mnogo toga</p>
+                        </div>
+                    {% else %}
+                        {% for b in blog %}
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="blog-item">
+                                    <a href="/blog/{{ b.id }}"><img src="{{ asset('bundles/app/upload/blog/') }}{{ b.img1 }}" alt=""></a>
+                                    <div class="blog-info">
+                                        <h3><a href="/blog/{{ b.id }}">{{ b.name }}</a></h3>
+                                        <div class="blog-meta">
+                                            <span class="date"><i class="icons icon-clock"></i> {% if b.createdAt %}{{ b.createdAt|date('d-m-Y') }}{% endif %}</span>
+                                            <span class="views"><i class="icons icon-eye-1"></i> {{ b.views }}</span>
+                                        </div>
+                                        <p>{{ b.contentTxt|slice(0,118) }}...</p>
+                                    </div>
+                                    <div class="product-actions blog-actions">
+                                        <span class="product-action dark-blue">
+                                            <span class="action-wrapper">
+                                                <i class="icons icon-doc-text"></i>
+                                                <a href="/blog/{{ b.id }}" style="color: #fff;"><span class="action-name"><i class="fa fa-eye"></i> Pročitaj više</span></a>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+        <!-- /Main Content -->
+        {{ render(controller(
+        'AppBundle:Parts:sidebar'
+        )) }}
+    </div>
+    <!-- /Content -->
+    {{ render(controller(
+    'AppBundle:Parts:banners'
+    )) }}
+{% endblock %}

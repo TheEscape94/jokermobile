@@ -1,0 +1,62 @@
+AppBundle\Entity\Buying:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\BuyingRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        phoneModel:
+            type: string
+            length: '65'
+            column: phone_model
+        isNew:
+            type: integer
+            column: is_new
+        stateNum:
+            type: integer
+            column: state_num
+        network:
+            type: string
+            length: '45'
+        kit:
+            type: string
+            length: '55'
+        images:
+            type: string
+            length: 4255
+            nullable: true
+        price:
+            type: string
+            length: '20'
+        description:
+            type: string
+            length: 255
+        isRead:
+            type: boolean
+            column: is_read
+        name:
+            type: string
+            length: 65
+        phoneNum:
+            type: string
+            column: phone_num
+        email:
+            type: string
+            length: 65
+        adress:
+            type: string
+            length: 65
+        city:
+            type: string
+            length: 65
+        postNum:
+            type: string
+            column: post_num
+        createdAt:
+            type: datetime
+            column: created_at
+    lifecycleCallbacks: {  }

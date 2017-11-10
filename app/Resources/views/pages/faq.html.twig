@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="description" content="JokerMobil.com, Prodaja, otkup i zamena mobilnih telefona. Najbolje cene, isplata odmah. Zamenite Va stari telefon za novi.">
+    <meta name="keywords" content="Prodaja telefona, Otkup telefona, Zamena telefona, Mobilni telefoni, Oprema za mobilne telefone, Staro za novo">
+    <meta name="author" content="Milos Aperlic">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+{% block title %} | FAQ {% endblock %}
+{% block body %}
+    <!-- Content -->
+    <div class="row content">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="breadcrumbs">
+                <p><a href="/">Početna</a> <i class="icons icon-right-dir"></i> FAQ</p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+
+
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="carousel-heading no-margin">
+                        <h4>FAQ - najčešće postavljena pitanja</h4>
+                    </div>
+
+                    <div class="page-content">
+                        <br/>
+                        <df><b>Da li su Vaši telefoni novi?</b></df>
+                        <dd>
+                            Mi se bavimo prodajom i novih i polovnih telefona. Ukoliko je telefon označen kao nov, onda jeste nov o dolazi kod
+                            novog vlasnika u vkuum pakovanju.
+                        </dd>
+                        <br/>
+                        <df><b>Da li su vaši telefoni original?</b></df>
+                        <dd>JokerMobil se isključivo bavi prodajom originalnih telefona.</dd>
+                        <br/>
+                        <df><b>Da li vršite isporuku van Republike Srbije?</b></df>
+                        <dd>Za sada isporuku vršimo samo na teritoriji R. Srbije.</dd>
+                        <br/>
+                        <df><b>Koja je garancija da će telefoni biti ispravni?</b></df>
+                        <dd>
+                            Nakon kupovine uređaja imate mogućnost da nas kontaktirate u narednih 7 dana i zatražite zamenu uz doplatu ili vraćanja dela
+                            novca ili pak vraćanje punog iznosa.
+                        </dd>
+                        <br/>
+                        <df><b>Da li je svejedno koja je zemlja porekla telefona?</b></df>
+                        <dd>
+                            Poreklo telefona je nebitno kada se radi o originalnim telefonima.
+                        </dd>
+                        <br/>
+                        <df><b>Da li može telefon da se kupi na rate?</b></df>
+                        <dd>
+                            Za sada ne, ali imamo u planu i tu mogućnost da uvrstimo u ponudu. Za sada je plaćanje isključivo u gotovini i jednokratno.
+                        </dd>
+                        <br/>
+                        <df><b>Kada ćete opet imati "neki" model na stanju?</b></df>
+                        <dd>
+                            Ne možemo Vam precizno odgovoriti na ovo pitanje jer zavisi od nekoliko faktora, ali budite sigurni da će to biti u najkraćem roku.
+                        </dd>
+                        <br/>
+                        <df><b>Zašto su različite cene telefona kada je isti model u pitanju samo je drugačija boja? Da li to znači da im nisu iste tehničke karakteristike?</b></df>
+                        <dd>
+                            Nemojte dozvoliti da vas zbuni razlika u ceni! To su u potpunosti isti modeli, sa istim tehničkim karakteristikama, samo su zbog različitih boja cene drugačije, često definisane odnosom ponude I potražnje na međunarodnom tržištu.
+                        </dd>
+                        <br/>
+                        <df><b>Kada kažete da telefon može da se vrati u odredjenom roku ukoliko nismo zadovoljni, šta se posle toga radi sa tim uredjajem?</b></df>
+                        <dd>
+                            U slučaju da nam se uređaj vrati od nezadovoljnog kupca, ne vraća se dalje u prodaju. Nakon povrata svi aparati idu na sekundarno tržište mobilnih telefona. Ovo se jako retko dešava jer u 99.9% slučajeva kupci budu zadovoljni.
+                        </dd>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /Main Content -->
+        {{ render(controller(
+        'AppBundle:Parts:sidebar'
+        )) }}
+    </div>
+    <!-- /Content -->
+    {{ render(controller(
+    'AppBundle:Parts:banners'
+    )) }}
+{% endblock %}

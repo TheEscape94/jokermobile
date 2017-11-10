@@ -1,0 +1,24 @@
+admin_inbox_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Inbox:index" }
+    methods:  GET
+
+admin_inbox_show:
+    path:     /show/{id}
+    defaults: { _controller: "AppBundle:Inbox:show" }
+    methods:  GET
+
+admin_inbox_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Inbox:new" }
+    methods:  [GET, POST]
+
+admin_inbox_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Inbox:edit" }
+    methods:  [GET, POST]
+
+admin_inbox_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Inbox:delete" }
+    methods:  DELETE

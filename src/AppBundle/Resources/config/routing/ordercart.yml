@@ -1,0 +1,24 @@
+korpa_index:
+    path:     /
+    defaults: { _controller: "AppBundle:OrderCart:index" }
+    methods:  GET
+
+korpa_show:
+    path:     /show/{id}
+    defaults: { _controller: "AppBundle:OrderCart:show" }
+    methods:  GET
+
+korpa_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:OrderCart:new" }
+    methods:  [GET, POST]
+
+korpa_edit:
+    path:     /edit/{id}
+    defaults: { _controller: "AppBundle:OrderCart:edit" }
+    methods:  [GET, POST]
+
+korpa_delete:
+    path:     /delete/{id}
+    defaults: { _controller: "AppBundle:OrderCart:delete" }
+    methods:  DELETE

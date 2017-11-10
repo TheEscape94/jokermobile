@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block title %} | {{ blog.name }} {% endblock %}
+{% block body %}
+    <div class="row content">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="breadcrumbs">
+                <p><a href="{{ path('homepage') }}">Početna</a> <i class="icons icon-right-dir"></i> <a href="{{ path('blog') }}">Blog</a> <i class="icons icon-right-dir"></i> {{ blog.name }}</p>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="carousel-heading" style="margin-bottom: 0;">
+                        <h4>{{ blog.name }}</h4>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="blog-item-one">
+                        <img src="{{ asset('bundles/app/upload/blog/') }}{{ blog.img1 }}" alt="">
+                        <div class="blog-info-one">
+                            <div class="blog-meta">
+                                <span class="date"><i class="icons icon-clock"></i> {% if blog.createdAt %}{{ blog.createdAt|date('d-m-Y H:m') }}{% endif %}</span>
+                                <span class="views"><i class="icons icon-eye-1"></i> {{ blog.views }}</span>
+                                <span class="views pull-right"><i class="icons icon-edit"></i> {{ blog.createdFrom }}</span>
+                            </div>
+                            <hr/>
+                            <p>{{ blog.contentTxt }}</p>
+                            <img class="inline-img" src="{{ asset('bundles/app/upload/blog/') }}{{ blog.img2 }}" />
+                            <hr/>
+                            <div class="blog-meta">
+                                <span class="date"><i class="icons icon-clock"></i> {% if blog.createdAt %}{{ blog.createdAt|date('d-m-Y H:m') }}{% endif %}</span>
+                                <span class="views"><i class="icons icon-eye-1"></i> {{ blog.views }}</span>
+                                <span class="views pull-right"><i class="icons icon-edit"></i> {{ blog.createdFrom }}</span>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {{ render(controller(
+        'AppBundle:Parts:sidebar'
+        )) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}Oprema{% endblock %}
+{% block body %}
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Sva oprema <small class="badge">{{ equiments|length }}</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th style="width: 25%">Naziv</th>
+                        <th>Nabavna</th>
+                        <th>Cena</th>
+                        <th>Popust</th>
+                        <th>Zarada</th>
+                        <th>Dodato</th>
+                        <th><i class="fa fa-eye"></i></th>
+                        <th>Akcija</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for equiment in equiments %}
+                    <tr>
+                        <td>{{ equiment.mark }} {{ equiment.name }}</td>
+                        <td>{{ equiment.myPrice }} RSD</td>
+                        <td>{{ equiment.price }} RSD</td>
+                        <td class="text-success">{{ equiment.priceOff }} %</td>
+                        <td class="text-danger">
+                            {% if equiment.priceOff == 0 %}
+                            <p style="font-size: 12px" class="label label-success">{{ equiment.price - equiment.myPrice }} RSD</p>
+                            {% else %}
+                            <p style="font-size: 12px" class="label label-success">{{ equiment.price - (equiment.priceOff / 100 * equiment.price ) - equiment.myPrice }} RSD</p>
+                            {% endif %}
+                        </td>
+                        <td>{% if equiment.createdAt %}{{ equiment.createdAt|date('d.m.Y.') }}{% endif %}</td>
+                        <td>{{ equiment.views }}</td>
+                        <td>
+                            <a class="btn btn-info btn-xs" href="{{ path('admin_oprema_show', { 'id': equiment.id }) }}">Detaljnije</a>
+                            <a class="btn btn-warning btn-xs" href="{{ path('admin_oprema_edit', { 'id': equiment.id }) }}">Izmena</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

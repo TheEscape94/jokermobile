@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="description" content="JokerMobil.com, Prodaja, otkup i zamena mobilnih telefona. Najbolje cene, isplata odmah. Zamenite Va stari telefon za novi.">
+    <meta name="keywords" content="Prodaja telefona, Otkup telefona, Zamena telefona, Mobilni telefoni, Oprema za mobilne telefone, Staro za novo">
+    <meta name="author" content="Milos Aperlic">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+{% block title %} | Svi telefoni {% endblock %}
+{% block body %}
+    <!-- Content -->
+    <div class="row content">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="breadcrumbs">
+                <p><a href="/">Početna</a> <i class="icons icon-right-dir"></i> Svi telefoni</p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="carousel-heading no-margin">
+                        <h4>Svi telefoni - kategorije</h4>
+                    </div>
+                    <div class="page-content">
+                        {% for c in cat %}
+                            {% if c.id % 4 == 1 %}
+                                <p class="label label-success pull-left marginRight"><a href="/kategorija/{{ c.name }}"><i class="icons icon-right-dir"></i>{{ c.name }}</a></p>
+                            {% elseif c.id % 4 == 2 %}
+                                <p class="label label-info pull-left marginRight"><a href="/kategorija/{{ c.name }}"><i class="icons icon-right-dir"></i>{{ c.name }}</a></p>
+                            {% elseif c.id % 4 == 3 %}
+                                <p class="label label-danger pull-left marginRight"><a href="/kategorija/{{ c.name }}"><i class="icons icon-right-dir"></i>{{ c.name }}</a></p>
+                            {% else %}
+                                <p class="label label-warning pull-left marginRight"><a href="/kategorija/{{ c.name }}"><i class="icons icon-right-dir"></i>{{ c.name }}</a></p>
+                            {% endif %}
+                        {% endfor %}
+                        <br/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="carousel-heading no-margin">
+                        <h4>Svi telefoni - brendovi</h4>
+                    </div>
+                    <div class="page-content">
+                        <div class="row subcategories">
+                            <!-- Subcategory -->
+                            {% if brands|length == 0 %}
+                                <h3 style="text-align: center;" class="alert alert-info col-md-offset-2 col-md-8">Trenutno nema dodatih brendova. Uskoro će biti!</h3>
+                            {% else %}
+                                {% for p in brands %}
+                                    <div class="col-lg-fifth col-md-fifth col-sm-fifth subcategory brands">
+                                        <a href="/kategorija/{{ p.name }}"><img src="{{ asset('bundles/app/upload/brands/') }}{{ p.logo }}" alt="{{ p.name }}"></a>
+                                    </div>
+                                    <!-- /Subcategory -->
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="carousel-heading no-margin">
+                        <h4>Izdvajamo iz ponude</h4>
+                    </div>
+                    <div class="page-content">
+                        {% for t in object %}
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="product">
+                                    <div class="product-image">
+                                        {% set images = t.images|split('|') %}
+                                            <img src="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}" alt="{{ t.mark }} {{ t.model }}">
+                                        <a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}" class="product-hover">
+                                            <i class="icons icon-eye-1"></i> Pregled
+                                        </a>
+                                    </div>
+                                    <div class="product-info">
+                                        <h5><a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}">{{ t.mark }} {{ t.model }}</a></h5>
+                                        <span class="price"><del>{{ t.price }} RSD</del>{{ t.price - (t.priceOff / 100 * t.price) }} RSD</span>
+                                    </div>
+
+                                    <div class="product-actions">
+                                        <span class="add-to-cart">
+                                            <span class="action-wrapper">
+                                                <i class="icons icon-basket-2"></i>
+                                                <span class="action-name">Dodaj u korpu</span>
+                                            </span >
+                                        </span>
+                                                <span class="add-to-favorites">
+                                            <span class="action-wrapper">
+                                                <i class="icons icon-heart-empty"></i>
+                                                <span class="action-name">Dodaj u želje</span>
+                                            </span>
+                                        </span>
+                                        <span class="add-to-compare">
+                                            <span class="action-wrapper">
+                                                <i class="icons icon-docs"></i>
+                                                <a style="color: #fff;" href="/zamena/{{ t.id }}"><span class="action-name">Zamena</span></a>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product Item -->
+                        {% endfor %}
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /Main Content -->
+        {{ render(controller(
+        'AppBundle:Parts:sidebar'
+        )) }}
+    </div>
+    <!-- /Content -->
+    {{ render(controller(
+    'AppBundle:Parts:banners'
+    )) }}
+{% endblock %}

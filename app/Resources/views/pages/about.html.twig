@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="description" content="JokerMobil.com, Prodaja, otkup i zamena mobilnih telefona. Najbolje cene, isplata odmah. Zamenite Va stari telefon za novi.">
+    <meta name="keywords" content="Prodaja telefona, Otkup telefona, Zamena telefona, Mobilni telefoni, Oprema za mobilne telefone, Staro za novo">
+    <meta name="author" content="Milos Aperlic">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+{% block title %} | O nama {% endblock %}
+{% block body %}
+    <!-- Content -->
+    <div class="row content">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="breadcrumbs">
+                <p><a href="/">Početna</a> <i class="icons icon-right-dir"></i> O nama</p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+
+
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="carousel-heading no-margin">
+                        <h4>O nama</h4>
+                    </div>
+
+                    <div class="page-content">
+
+                        <p>
+                            JokerMobil.com je prvi WebShop koji svojim korisnicima pored velikog izbora novih i polovnih telefona nudi i
+                            <span class="label label-info">zamenu</span> i <span class="label label-success">otkup</span> takodje novih i
+                            polovnih telefona. Nudimo najbolje cene telefona i opreme na ovim prostorima, a takodje prilikom zamene i otkupa
+                            nudimo najrealnije cene zamene i otkupa. Dajemo garanciju na sve svoje uredjaje i trudimo se da maksimalno budemo na
+                            raspolaganju našim korisnicima.
+                        </p>
+                        <p>
+                            Na stranici <a href="{{ path('app_contact') }}"><span class="label label-info">kontakt</span></a> nas možete
+                            kontaktirati u svako doba. Odgovor stiže u najkraćem mogućem vremenskom roku.
+                        </p>
+                        <p>
+                            Na stranici <a href="{{ path('replacement') }}"><span class="label label-success">zamena i otkup</span></a> možete naći
+                            više informacija o tome kako izvršiti zamenu i dati ponudu za otkup na <strong>JokerMobil.com</strong>.
+                        </p>
+                        <p>
+                            Na stranici <a href="{{ path('howtobuy') }}"><span class="label label-warning">kako kupiti kod nas</span></a> možete naći
+                            sve informacije o tome kako kupiti proizvode koji su ponudjeni na sajtu <strong>JokerMobil.com</strong>.
+                        </p>
+                        <p>
+                            Na stranici <a href="{{ path('terms') }}"><span class="label label-danger">pravila i uslovi</span></a> možete naći
+                            sve informacije o tome kako <strong>JokerMobil.com</strong> funkcioniše.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /Main Content -->
+        {{ render(controller(
+            'AppBundle:Parts:sidebar'
+        )) }}
+    </div>
+    <!-- /Content -->
+    {{ render(controller(
+        'AppBundle:Parts:banners'
+    )) }}
+{% endblock %}

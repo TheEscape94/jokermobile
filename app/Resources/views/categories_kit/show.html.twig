@@ -1,0 +1,40 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+    <h1>Categories_kit</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ categories_kit.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ categories_kit.name }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if categories_kit.createdAt %}{{ categories_kit.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Enabled</th>
+                <td>{% if categories_kit.enabled %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_categories_kit_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_categories_kit_edit', { 'id': categories_kit.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,167 @@
+{% extends 'base.html.twig' %}
+{% block title %} | {{ cat }} {% endblock %}
+{% block body %}
+    <div class="row content">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="breadcrumbs">
+                <p>
+                    <a href="{{ path("homepage") }}">Početna</a>
+                    <i class="icons icon-right-dir"></i> {% if o == 'p' %}<a href="{{ path('phones') }}">Telefoni</a>{% else %}<a href="{{ path('kit') }}">Oprema</a>{% endif %}
+                    <i class="icons icon-right-dir"></i> {{ cat }}
+                </p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+
+            <div class="row">
+
+                <!-- Heading -->
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="carousel-heading">
+                        <h4>{{ cat }} - izdvajamo iz ponude</h4>
+                    </div>
+
+                </div>
+                <!-- /Heading -->
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="row subcategories">
+                        <!-- Subcategory -->
+                        {% if objectBest|length == 0 %}
+                            <h3 style="text-align: center;" class="alert alert-info col-md-offset-2 col-md-8">Trenutno nemamo modela u ponudi. Uskoro će biti!</h3>
+                        {% else %}
+                            {% for p in objectBest %}
+                                {% set images = p.images|split('|') %}
+                                <div class="col-lg-fifth col-md-fifth col-sm-fifth subcategory">
+                                    {% if o == 'p' %}
+                                        <a href="/telefon/{{ p.mark }}/{{ p.model }}/{{ p.id }}"><img src="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}" alt="{{ p.mark }} {{ p.model }}"></a>
+                                    {% else %}
+                                        <a href="/oprema/{{ p.mark }}/{{ p.name }}/{{ p.id }}"><img src="{{ asset('bundles/app/upload/equiment/') }}{{ images[0] }}" alt="{{ p.mark }} {{ p.name }}"></a>
+                                    {% endif %}
+                                    <div class="product-infoO">
+                                        <h6>{% if o == 'p' %}{{ p.model }}{% else %}{{ p.name }}{% endif %}</h6>
+                                        <span class="price"><del style="font-size: 12px;">{{ p.price }} RSD</del><br/>{{ p.price - (p.priceOff / 100 * p.price) }} RSD</span>
+                                    </div>
+                                </div>
+                            <!-- /Subcategory -->
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row" {% if object|length ==0 %} style="display: none;" {% endif %}>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="category-heading">
+                        <select class="chosen-select">
+                            <option>Sortiraj po</option>
+                            <option>Ceni (manja prvo)</option>
+                            <option>Ceni (veća prvo)</option>
+                        </select>
+                        <div class="category-buttons">
+                            <a href="#"><i class="icons icon-th-3 active-button"></i></a>
+                            <a href="#"><i class="icons icon-th-list-4"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="category-results"></div>
+                </div>
+
+                {#<div class="col-lg-6 col-md-6 col-sm-6">#}
+                    {#<div class="pagination">#}
+                        {#<a href="#"><div class="previous"><i class="icons icon-left-dir"></i></div></a>#}
+                        {#<a href="#"><div class="page-button">1</div></a>#}
+                        {#<a href="#"><div class="page-button">2</div></a>#}
+                        {#<a href="#"><div class="page-button">3</div></a>#}
+                        {#<a href="#"><div class="next"><i class="icons icon-right-dir"></i></div></a>#}
+                    {#</div>#}
+                {#</div>#}
+            </div>
+            <br/>
+            <div class="row">
+                <!-- Product Item -->
+                {% if object|length != 0 %}
+                    {% for t in object %}
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="product">
+                                <div class="product-image">
+                                    {% set images = t.images|split('|') %}
+                                    {% if o == 'p' %}
+                                        <img src="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}" alt="{{ t.mark }} {{ t.model }}">
+                                    {% else %}
+                                        <img src="{{ asset('bundles/app/upload/equiment/') }}{{ images[0] }}" alt="{{ t.mark }} {{ t.name }}">
+                                    {% endif %}
+                                    <a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}" class="product-hover">
+                                        <i class="icons icon-eye-1"></i> Pregled
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h5><a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}">{% if o == 'p' %}{{ t.mark }} {{ t.model }}{% else %}{{ t.name }}{% endif %}</a></h5>
+                                    <span class="price">
+                                        {% if t.priceOff > 0 %}
+                                            <del>{{ t.price }} RSD</del>
+                                            {{ t.price - (t.priceOff / 100 * t.price) }} RSD
+                                        {% else %}
+                                            {{ t.price }} RSD
+                                        {% endif %}
+                                    </span>
+                                </div>
+
+                                <div class="product-actions">
+                                <span class="add-to-cart">
+                                    <span class="action-wrapper">
+                                        <i class="icons icon-basket-2"></i>
+                                        <a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}" style="color: #fff;"><span class="action-name">Dodaj u korpu</span></a>
+                                    </span >
+                                </span>
+                                <span class="add-to-favorites">
+                                    <span class="action-wrapper">
+                                        <i class="icons icon-heart-empty"></i>
+                                        <span class="action-name action-wishlist"
+                                              data-img="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}"
+                                              data-price="{% if t.priceOff > 0 %}{{ t.price - (t.priceOff / 100 * t.price) }}{% else %}{{ t.price }}{% endif %}"
+                                              data-link="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}"
+                                              data-name="{{ t.mark }} {{ t.model }}">Dodaj u želje
+                                        </span>
+                                    </span>
+                                </span>
+                                {% if o == 'p' %}
+                                    <span class="add-to-compare">
+                                        <span class="action-wrapper">
+                                            <i class="icons icon-docs"></i>
+                                            <a style="color: #fff;" href="/zamena/{{ t.id }}"><span class="action-name">Zamena</span></a>
+                                        </span>
+                                    </span>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Product Item -->
+                    {% endfor %}
+                {% endif %}
+                {#<div {% if object|length ==0 %} style="display: none;" {% endif %}>#}
+                    {#<div class="col-lg-6 col-md-6 col-sm-6">#}
+                        {#<div class="pagination">#}
+                            {#<a href="#"><div class="previous"><i class="icons icon-left-dir"></i></div></a>#}
+                            {#<a href="#"><div class="page-button">1</div></a>#}
+                            {#<a href="#"><div class="page-button">2</div></a>#}
+                            {#<a href="#"><div class="page-button">3</div></a>#}
+                            {#<a href="#"><div class="next"><i class="icons icon-right-dir"></i></div></a>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+            </div>
+        </section>
+        <!-- /Main Content -->
+        {{ render(controller(
+            'AppBundle:Parts:sidebar'
+        )) }}
+    </div>
+{% endblock %}

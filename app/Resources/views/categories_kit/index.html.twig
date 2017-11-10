@@ -1,0 +1,34 @@
+{% extends 'containers/halftable.html.twig' %}
+{% block title %}Kategorije opreme{% endblock %}
+{% block body %}
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Naziv</th>
+                <th>Nadkategorija</th>
+                <th>Kreirano</th>
+                <th>Opcije</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categories_kit in categories_kits %}
+            <tr>
+                <td>{{ categories_kit.id }}</td>
+                <td>{{ categories_kit.name }}</td>
+                <td>
+                    {% if categories_kit.upName == 0 %}
+                        Standardna oprema
+                    {% elseif categories_kit.upName == 1 %}
+                        Dodatna oprema
+                    {% elseif categories_kit.upName == 2 %}
+                        Maske i folije
+                    {% endif %}
+                </td>
+                <td>{% if categories_kit.createdAt %}{{ categories_kit.createdAt|date('d-m-Y') }}{% endif %}</td>
+                <td>
+                    <a class="btn btn-info btn-xs" href="{{ path('admin_categories_kit_edit', { 'id': categories_kit.id }) }}">Izmeni</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+{% endblock %}

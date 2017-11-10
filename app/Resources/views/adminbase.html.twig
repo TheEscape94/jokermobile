@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="JokerMobil.com, Prodaja, otkup i zamena mobilnih telefona. Najbolje cene, isplata odmah. Zamenite Va stari telefon za novi.">
+    <meta name="keywords" content="Prodaja telefona, Otkup telefona, Zamena telefona, Mobilni telefoni, Oprema za mobilne telefone, Staro za novo">
+    <meta name="author" content="Milos Aperlic">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JokerMobil Admin </title>
+
+    <!-- Bootstrap -->
+    <link href="{{ asset('/bundles/app/vendors/bootstrap/dist/css/bootstrap.css') }}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- NProgress -->
+    <link href="{{ asset('/bundles/app/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="{{ asset('/bundles/app/vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="{{ asset('/bundles/app/build/css/custom.css') }}" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+
+        <!--sidebar-->
+        {{ render(controller('AppBundle:Parts:adminSidebar')) }}
+
+        <!-- top navigation -->
+        {{ render(controller('AppBundle:Parts:adminNav')) }}
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+               JokerMobil.com | Powered By <a href="https://milosaperlic.com">M.A.</a>
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<button type="button" class="btn btn-info btn-lg danger" style="display: none;" data-toggle="modal" data-target="#danger-modal"></button>
+<div id="danger-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-danger">Upozorenje!</h4>
+            </div>
+            <div class="modal-body">
+                <p id="danger-msg"></p>
+            </div>
+            <div class="modal-footer">
+                <p class="text-center">JokerMobile.com</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="background-shadow"></div>
+<!-- jQuery -->
+<script src="{{ asset('/bundles/app/vendors/jquery/dist/jquery.min.js') }}"></script>
+<!-- Bootstrap -->
+<script src="{{ asset('/bundles/app/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<!-- FastClick -->
+<script src="{{ asset('/bundles/app/vendors/fastclick/lib/fastclick.js') }}"></script>
+<!-- NProgress -->
+<script src="{{ asset('/bundles/app/vendors/nprogress/nprogress.js') }}"></script>
+<!-- Chart.js -->
+<script src="{{ asset('/bundles/app/vendors/Chart.js/dist/Chart.min.js') }}"></script>
+<!-- jQuery Sparklines -->
+<script src="{{ asset('bundles/app/vendors/jquery-sparkline/dist/jquery.sparkline.min.js') }}"></script>
+<!-- Flot -->
+<script src="{{ asset('/bundles/app/vendors/Flot/jquery.flot.js') }}"></script>
+<script src="{{ asset('/bundles/app/vendors/Flot/jquery.flot.pie.js') }}"></script>
+<script src="{{ asset('/bundles/app/vendors/Flot/jquery.flot.time.js') }}"></script>
+<script src="{{ asset('/bundles/app/vendors/Flot/jquery.flot.stack.js') }}"></script>
+<script src="{{ asset('/bundles/app/vendors/Flot/jquery.flot.resize.js') }}"></script>
+<!-- Flot plugins -->
+<script src="{{ asset('/bundles/app/vendors/flot.orderbars/js/jquery.flot.orderBars.js') }}"></script>
+<script src="{{ asset('/bundles/app/vendors/flot-spline/js/jquery.flot.spline.min.js') }}"></script>
+<script src="{{ asset('/bundles/app/vendors/flot.curvedlines/curvedLines.js') }}"></script>
+<!-- DateJS -->
+<script src="{{ asset('/bundles/app/vendors/DateJS/build/date.js') }}"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="{{ asset('/bundles/app/vendors/moment/min/moment.min.js') }}"></script>
+<script src="{{ asset('/bundles/app/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="{{ asset('/bundles/app/build/js/custom.min.js') }}"></script>
+<script src="{{ asset('/bundles/app/build/js/script.js') }}"></script>
+</body>
+</html>

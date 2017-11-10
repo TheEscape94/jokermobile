@@ -1,0 +1,51 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+app_admin_categories_kit:
+    resource: "@AppBundle/Resources/config/routing/categories_kit.yml"
+    prefix:   /admin/kategorije_oprema
+
+app_blog:
+    resource: "@AppBundle/Resources/config/routing/blog.yml"
+    prefix:   /admin/blog
+
+app_admin_brendovi:
+    resource: "@AppBundle/Resources/config/routing/brands.yml"
+    prefix:   /admin/brendovi
+
+app_otkup:
+    resource: "@AppBundle/Resources/config/routing/buying.yml"
+    prefix:   /otkup
+
+app_admin_kategorije:
+    resource: "@AppBundle/Resources/config/routing/categories_phones.yml"
+    prefix:   /admin/kategorije
+
+app_admin_oprema:
+    resource: "@AppBundle/Resources/config/routing/equiment.yml"
+    prefix:   /admin/oprema
+
+app_admin_inbox:
+    resource: "@AppBundle/Resources/config/routing/inbox.yml"
+    prefix:   /admin/inbox
+
+app_korpa:
+    resource: "@AppBundle/Resources/config/routing/ordercart.yml"
+    prefix:   /admin/korpa
+
+app_admin_telefoni:
+    resource: "@AppBundle/Resources/config/routing/phones.yml"
+    prefix:   /admin/telefoni
+
+app_zamena:
+    resource: "@AppBundle/Resources/config/routing/replacement.yml"
+    prefix:   /zamena
+
+app_admin_tagovi:
+    resource: "@AppBundle/Resources/config/routing/tags.yml"
+    prefix:   /admin/tagovi
+
+app_contact:
+    defaults: { _controller: "AppBundle:Inbox:new" }
+    path:   /kontakt

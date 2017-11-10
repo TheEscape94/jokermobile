@@ -1,0 +1,486 @@
+{% extends 'base.html.twig' %}
+{% block head %}
+     <meta charset="UTF-8">
+     <meta name="description" content="JokerMobil.com, Prodaja, otkup i zamena mobilnih telefona. Najbolje cene, isplata odmah. Zamenite Va stari telefon za novi.">
+     <meta name="keywords" content="Prodaja telefona, Otkup telefona, Zamena telefona, Mobilni telefoni, Oprema za mobilne telefone, Staro za novo">
+     <meta name="author" content="Milos Aperlic">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+{% block title %} | Početna {% endblock %}
+{% block body %}
+    <!-- Content -->
+    <div class="row content">
+
+        <!-- Main Content -->
+        <section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+
+            <section class="slider">
+                <div class="tp-banner-container">
+                    <div class="tp-banner" >
+                        <ul>
+                            <!-- SLIDE  -->
+                            <li data-transition="fade" data-slotamount="7" data-masterspeed="1500" >
+                                <!-- MAIN IMAGE -->
+                                <img src="{{ asset('bundles/app/img/slide1.jpg') }}"  alt="slidebg1"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                                <!-- LAYERS -->
+                                <div class="tp-caption skewfromrightshort fadeout"
+                                     data-x="40"
+                                     data-y="60"
+                                     data-speed="500"
+                                     data-start="1200"
+                                     data-easing="Power4.easeOut"><h2><strong>Zamenite stari telefon za novi</strong></h2>
+                                </div>
+                                <div class="tp-caption skewfromrightshort fadeout"
+                                     data-x="40"
+                                     data-y="140"
+                                     data-speed="500"
+                                     data-start="1200"
+                                     data-easing="Power4.easeOut"><h3>Popunite formular i pošaljite nam!</h3>
+                                </div>
+                                <div class="tp-caption skewfromrightshort fadeout"
+                                     data-x="40"
+                                     data-y="250"
+                                     data-speed="500"
+                                     data-start="1200"
+                                     data-easing="Power4.easeOut"><span>Procena Vašeg telefona <span class="price">BESPLATNO</span></span>
+                                </div>
+                                <div class="tp-caption skewfromrightshort fadeout"
+                                     data-x="40"
+                                     data-y="300"
+                                     data-speed="500"
+                                     data-start="1200"
+                                     data-easing="Power4.easeOut"><a class="button big red" href="/zamenaotkup">Više informacija</a>
+                                </div>
+                            </li>
+                            <!-- SLIDE  -->
+                            <li data-transition="zoomout" data-slotamount="7" data-masterspeed="1000" >
+                                <!-- MAIN IMAGE -->
+                                <img src="{{ asset('bundles/app/img/slide2.jpg') }}"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                                <!-- LAYERS -->
+                                <div class="tp-caption skewfromrightshort fadeout"
+                                     data-x="40"
+                                     data-y="60"
+                                     data-speed="500"
+                                     data-start="1200"
+                                     data-easing="Power4.easeOut"><h2 style="color: #fff;"><strong>Novi telefoni <br>po najboljim cenama</strong></h2>
+                                </div>
+                                <div class="tp-caption skewfromrightshort fadeout"
+                                     data-x="40"
+                                     data-y="190"
+                                     data-speed="500"
+                                     data-start="1200"
+                                     data-easing="Power4.easeOut"><h3 style="color: #eaeaea;">Pogledajte našu <strong style="color: dodgerblue">ponudu</strong></h3>
+                                </div>
+                                <div class="tp-caption skewfromrightshort fadeout"
+                                     data-x="40"
+                                     data-y="300"
+                                     data-speed="500"
+                                     data-start="1200"
+                                     data-easing="Power4.easeOut"><span style="color: dodgerblue; font-weight: 700;">Novi telefoni već od<span class="price"> 9.990 RSD</span></span>
+                                </div>
+                                <div class="tp-caption skewfromrightshort fadeout"
+                                     data-x="40"
+                                     data-y="347"
+                                     data-speed="500"
+                                     data-start="1200"
+                                     data-easing="Power4.easeOut"><a class="button big red" href="/telefoni">Kupite odmah</a>
+                                </div>
+                            </li>
+                            <!-- SLIDE  -->
+                            <li data-transition="zoomout" data-slotamount="7" data-masterspeed="1000" >
+                                <!-- MAIN IMAGE -->
+                                <img src="{{ asset('bundles/app/img/slide3.jpg') }}"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                                <!-- LAYERS -->
+                                <div class="tp-caption skewfromrightshort fadeout"
+                                     data-x="40"
+                                     data-y="60"
+                                     data-speed="500"
+                                     data-start="1200"
+                                     data-easing="Power4.easeOut"><h2>Otkup telefona po <strong>najboljim</strong> cenama</h2>
+                                </div>
+                                <div class="tp-caption skewfromrightshort fadeout"
+                                     data-x="40"
+                                     data-y="140"
+                                     data-speed="500"
+                                     data-start="1200"
+                                     data-easing="Power4.easeOut"><h3>Zamenite Vaš telefon za novac, brzo i lako</h3>
+                                </div>
+                                <div class="tp-caption skewfromrightshort fadeout"
+                                     data-x="40"
+                                     data-y="250"
+                                     data-speed="500"
+                                     data-start="1200"
+                                     data-easing="Power4.easeOut"><span>Isplata odmah, u <span class="price">kešu</span>.</span>
+                                </div>
+                                <div class="tp-caption skewfromrightshort fadeout"
+                                     data-x="40"
+                                     data-y="300"
+                                     data-speed="500"
+                                     data-start="1200"
+                                     data-easing="Power4.easeOut"><a class="button big red" href="/otkup">Otkup</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!-- Featured Products -->
+            <div class="products-row row">
+
+                <!-- Carousel Heading -->
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="carousel-heading">
+                        <h4>Preporučeni proizvodi</h4>
+                        <div class="carousel-arrows">
+                            <i class="icons icon-left-dir"></i>
+                            <i class="icons icon-right-dir"></i>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /Carousel Heading -->
+
+                <!-- Carousel -->
+                <div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="owl-carousel" data-max-items="3">
+                        {% for t in phones1 %}
+                            <div>
+                                <!-- Carousel Item -->
+                                <div class="product">
+
+                                    <div class="product-image">
+                                        {% set images = t.images|split('|') %}
+                                        <img src="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}" alt="{{ t.mark }} {{ t.model }}">
+                                        <a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}" class="product-hover">
+                                            <i class="icons icon-eye-1"></i> Pregled
+                                        </a>
+                                    </div>
+
+                                    <div class="product-info">
+                                        <h5><a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}">{{ t.mark }} {{ t.model }}</a></h5>
+                                        <span class="price">
+                                            {% if t.priceOff > 0 %}
+                                                <del>{{ t.price }} RSD</del>
+                                                <span>{{ t.price - (t.priceOff / 100 * t.price) }} RSD</span>
+                                            {% else %}
+                                                <span>{{ t.price }} RSD</span>
+                                            {% endif %}
+                                        </span>
+                                    </div>
+
+                                    <div class="product-actions">
+                                    <span class="add-to-cart">
+                                        <span class="action-wrapper">
+                                            <i class="icons icon-basket-2"></i>
+                                            <a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}" style="color: #fff;"><span class="action-name">Dodaj u korpu</span></a>
+                                        </span >
+                                    </span>
+                                    <span class="add-to-favorites">
+                                        <span class="action-wrapper">
+                                            <i class="icons icon-heart-empty"></i>
+                                            <span class="action-name action-wishlist"
+                                                  data-img="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}"
+                                                  data-price="{% if t.priceOff > 0 %}{{ t.price - (t.priceOff / 100 * t.price) }}{% else %}{{ t.price }}{% endif %}"
+                                                  data-link="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}"
+                                                  data-name="{{ t.mark }} {{ t.model }}">Dodaj u želje
+                                            </span>
+                                        </span>
+                                    </span>
+                                            <span class="add-to-compare">
+                                        <span class="action-wrapper">
+                                            <i class="icons icon-docs"></i>
+                                            <a style="color: #fff;" href="/zamena/{{ t.id }}"><span class="action-name">Zamena</span></a>
+                                        </span>
+                                    </span>
+                                    </div>
+
+                                </div>
+                                <!-- /Carousel Item -->
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- /Carousel -->
+
+            </div>
+            <!-- /Featured Products -->
+
+
+
+
+            <!-- New Collection -->
+            <div class="products-row row">
+
+                <!-- Carousel Heading -->
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="carousel-heading">
+                        <h4>Najnovije | Telefoni</h4>
+                        <div class="carousel-arrows">
+                            <i class="icons icon-left-dir"></i>
+                            <i class="icons icon-right-dir"></i>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /Carousel Heading -->
+
+                <!-- Carousel -->
+                <div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="owl-carousel" data-max-items="3">
+                        {% for t in phones2 %}
+                            <div>
+                                <!-- Carousel Item -->
+                                <div class="product">
+
+                                    <div class="product-image">
+                                        {% set images = t.images|split('|') %}
+                                        <img src="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}" alt="{{ t.mark }} {{ t.model }}">
+                                        <a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}" class="product-hover">
+                                            <i class="icons icon-eye-1"></i> Pregled
+                                        </a>
+                                    </div>
+
+                                    <div class="product-info">
+                                        <h5><a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}">{{ t.mark }} {{ t.model }}</a></h5>
+                                        <span class="price">
+                                            {% if t.priceOff > 0 %}
+                                                <del>{{ t.price }} RSD</del>
+                                                <span>{{ t.price - (t.priceOff / 100 * t.price) }} RSD</span>
+                                            {% else %}
+                                                <span>{{ t.price }} RSD</span>
+                                            {% endif %}
+                                            </span>
+                                        </span>
+                                    </div>
+
+                                    <div class="product-actions">
+                                    <span class="add-to-cart">
+                                        <span class="action-wrapper">
+                                            <i class="icons icon-basket-2"></i>
+                                            <a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}" style="color: #fff;"><span class="action-name">Dodaj u korpu</span></a>
+                                        </span >
+                                    </span>
+                                    <span class="add-to-favorites">
+                                        <span class="action-wrapper">
+                                            <i class="icons icon-heart-empty"></i>
+                                            <span class="action-name action-wishlist"
+                                                  data-img="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}"
+                                                  data-price="{% if t.priceOff > 0 %}{{ t.price - (t.priceOff / 100 * t.price) }}{% else %}{{ t.price }}{% endif %}"
+                                                  data-link="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}"
+                                                  data-name="{{ t.mark }} {{ t.model }}">Dodaj u želje
+                                            </span>
+                                        </span>
+                                    </span>
+                                    <span class="add-to-compare">
+                                        <span class="action-wrapper">
+                                            <i class="icons icon-docs"></i>
+                                            <a href="/zamena/{{ t.id }}"><span class="action-name">Zamena</span></a>
+                                        </span>
+                                    </span>
+                                    </div>
+                                </div>
+                                <!-- /Carousel Item -->
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- /Carousel -->
+
+            </div>
+            <!-- /New Collection -->
+
+
+
+
+
+            <!-- Random Products -->
+            <div class="products-row row">
+
+                <!-- Carousel Heading -->
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="carousel-heading">
+                        <h4>Najnovije | Oprema</h4>
+                        <div class="carousel-arrows">
+                            <i class="icons icon-left-dir"></i>
+                            <i class="icons icon-right-dir"></i>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /Carousel Heading -->
+
+                <!-- Carousel -->
+                <div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="owl-carousel" data-max-items="3">
+                        {% for t in equiment %}
+                        <!-- Slide -->
+                            <div>
+                                <!-- Carousel Item -->
+                                <div class="product">
+
+                                    <div class="product-image">
+                                        {% set images = t.images|split('|') %}
+                                        <img src="{{ asset('bundles/app/upload/equiment/') }}{{ images[0] }}" alt="{{ t.mark }} {{ t.name }}">
+                                        <a href="/oprema/{{ t.mark }}/{{ t.name }}/{{ t.id }}" class="product-hover">
+                                            <i class="icons icon-eye-1"></i> Pregled
+                                        </a>
+                                    </div>
+
+                                    <div class="product-info">
+                                        <h5><a href="/oprema/{{ t.mark }}/{{ t.name }}/{{ t.id }}">{{ t.mark }} {{ t.name }}</a></h5>
+                                        <span class="price">
+                                            {% if t.priceOff > 0 %}
+                                                <del>{{ t.price }} RSD</del>
+                                                <span>{{ t.price - (t.priceOff / 100 * t.price) }} RSD</span>
+                                            {% else %}
+                                                <span>{{ t.price }} RSD</span>
+                                            {% endif %}
+                                        </span>
+                                    </div>
+
+                                    <div class="product-actions">
+                                    <span class="add-to-cart">
+                                        <span class="action-wrapper">
+                                            <i class="icons icon-basket-2"></i>
+                                            <a href="/oprema/{{ t.mark }}/{{ t.name }}/{{ t.id }}" style="color: #fff;"><span class="action-name">Dodaj u korpu</span></a>
+                                        </span >
+                                    </span>
+                                        <span class="add-to-favorites">
+                                        <span class="action-wrapper">
+                                            <i class="icons icon-heart-empty"></i>
+                                            <span class="action-name action-wishlist"
+                                                  data-img="{{ asset('bundles/app/upload/equiment/') }}{{ images[0] }}"
+                                                  data-price="{% if t.priceOff > 0 %}{{ t.price - (t.priceOff / 100 * t.price) }}{% else %}{{ t.price }}{% endif %}"
+                                                  data-link="/oprema/{{ t.mark }}/{{ t.name }}/{{ t.id }}"
+                                                  data-name="{{ t.mark }} {{ t.name }}">Dodaj u želje
+                                            </span>
+                                        </span>
+                                    </span>
+                                    </div>
+                                </div>
+                                <!-- /Carousel Item -->
+                            </div>
+                        <!-- /Slide -->
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- /Carousel -->
+
+            </div>
+            <!-- /Random Products -->
+
+
+
+
+            <!-- Product Brands -->
+            <div class="products-row row">
+
+                <!-- Carousel Heading -->
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="carousel-heading">
+                        <h4>Brendovi</h4>
+                        <div class="carousel-arrows">
+                            <i class="icons icon-left-dir"></i>
+                            <i class="icons icon-right-dir"></i>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /Carousel Heading -->
+
+                <!-- Carousel -->
+                <div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+                    <div class="owl-carousel" data-max-items="5">
+                        {% for p in brands %}
+                            <!-- Slide -->
+                            <a href="/kategorija/{{ p.name }}">
+                                <div class="subcategory brands" style="height: 120px;">
+                                   <img src="{{ asset('bundles/app/upload/brands/') }}{{ p.logo }}" alt="{{ p.name }}">
+                                </div>
+                            </a>
+                            <!-- /Slide -->
+                        {% endfor %}
+                    </div>
+
+                </div>
+                <!-- /Carousel -->
+
+            </div>
+            <!-- /Product Brands -->
+
+
+        </section>
+        <!-- /Main Content -->
+
+        {{ render(controller(
+            'AppBundle:Parts:sidebar'
+        )) }}
+
+    </div>
+    <!-- /Content -->
+
+    <!-- News -->
+    <div class="products-row row">
+
+        <!-- Carousel Heading -->
+        <div class="col-lg-12 col-md-12 col-sm-12">
+
+            <div class="carousel-heading">
+                <h4>Novosti</h4>
+                <div class="carousel-arrows">
+                    <i class="icons icon-left-dir"></i>
+                    <i class="icons icon-right-dir"></i>
+                </div>
+            </div>
+
+        </div>
+        <!-- /Carousel Heading -->
+
+
+        <!-- Carousel -->
+        <div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+
+            <div class="owl-carousel" data-max-items="2">
+
+                {% for b in blog %}
+                    <!-- Slide -->
+                    <div>
+                        <!-- Carousel Item -->
+                        <article class="news">
+                            <div class="news-background">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 news-thumbnail">
+                                        <a href="/blog/{{ b.id }}"><img src="{{ asset('bundles/app/upload/blog/') }}{{ b.img1 }}" alt="Blog"></a>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 news-content">
+                                        <h5><a href="/blog/{{ b.id }}">{{ b.name }}</a></h5>
+                                        <span class="date"><i class="icons icon-clock-1"></i> {% if b.createdAt %}{{ b.createdAt|date('d-m-Y') }}{% endif %}</span>
+                                        <p>{{ b.contentTxt|slice(0, 123) }}...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <!-- /Carousel Item -->
+                    </div>
+                    <!-- /Slide -->
+                {% endfor %}
+            </div>
+
+        </div>
+        <!-- /Carousel -->
+
+    </div>
+    <!-- /News -->
+
+    {{ render(controller(
+    'AppBundle:Parts:banners'
+    )) }}
+
+{% endblock %}

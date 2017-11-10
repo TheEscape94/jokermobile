@@ -1,0 +1,59 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}Svi telefoni{% endblock %}
+{% block body %}
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Svi telefoni <small class="badge">{{ phones|length }}</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 25%">Naziv</th>
+                    <th>Telefon je</th>
+                    <th>Nabavna</th>
+                    <th>Cena</th>
+                    <th>Popust</th>
+                    <th>Zarada</th>
+                    <th>Dodato</th>
+                    <th><i class="fa fa-eye"></i></th>
+                    <th>Akcija</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for phone in phones %}
+                <tr>
+                    <td>{{ phone.mark }} {{ phone.model }}</td>
+                    <td>{% if phone.isNew == 0 %}
+                            Nov
+                        {% else %}
+                            Polovan ( {{ phone.stateNum }}/10 )
+                        {% endif %}</td>
+                    <td>{{ phone.myPrice }} RSD</td>
+                    <td>{{ phone.price }} RSD</td>
+                    <td class="text-danger">{{ phone.priceOff }} %</td>
+                    <td>
+                        {% if phone.priceOff == 0 %}
+                            <p style="font-size: 12px" class="label label-success">{{ phone.price - phone.myPrice }} RSD</p>
+                        {% else %}
+                            <p style="font-size: 12px" class="label label-success">{{ phone.price - (phone.priceOff / 100 * phone.price ) - phone.myPrice }} RSD</p>
+                        {% endif %}
+                    </td>
+                    <td>{% if phone.createdAt %}{{ phone.createdAt|date('d.m.Y') }}{% endif %}</td>
+                    <td>{{ phone.views }}</td>
+                    <td>
+                        <a class="btn btn-info btn-xs" href="{{ path('admin_telefoni_show', { 'id': phone.id }) }}">Detaljnije</a>
+                        <a class="btn btn-warning btn-xs" href="{{ path('admin_telefoni_edit', { 'id': phone.id }) }}">Izmena</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

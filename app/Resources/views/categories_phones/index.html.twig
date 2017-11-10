@@ -1,0 +1,28 @@
+{% extends 'containers/halftable.html.twig' %}
+{% block title %}Kategorije telefona{% endblock %}
+{% block body %}
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Naziv</th>
+        <th>Kreirano</th>
+        <th>Vidljiva</th>
+        <th>Opcije</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for categories_phone in categories_phones %}
+        <tr>
+            <td>{{ categories_phone.id }}</td>
+            <td>{{ categories_phone.name }}</td>
+            <td>{% if categories_phone.createdAt %}{{ categories_phone.createdAt|date('d.m.Y') }}{% endif %}</td>
+            <td>{% if categories_phone.enabled %}<i class="fa fa-check"></i>{% else %}<i class="fa fa-close"></i>{% endif %}</td>
+            <td>
+                <a class="btn btn-info btn-xs" href="{{ path('admin_kategorije_edit', { 'id': categories_phone.id }) }}">Izmeni</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+{% endblock %}
+
+

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="JokerMobil.com, Prodaja, otkup i zamena mobilnih telefona. Najbolje cene, isplata odmah. Zamenite Va stari telefon za novi.">
+    <meta name="keywords" content="Prodaja telefona, Otkup telefona, Zamena telefona, Mobilni telefoni, Oprema za mobilne telefone, Staro za novo">
+    <meta name="author" content="Milos Aperlic">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JokerMobil Login</title>
+
+    <!-- Bootstrap -->
+    <link href="{{ asset('/bundles/app/vendors/bootstrap/dist/css/bootstrap.css') }}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{{ asset('/bundles/app/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="{{ asset('/bundles/app/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="{{ asset('/bundles/app/vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="{{ asset('/bundles/app/build/css/custom.css') }}" rel="stylesheet">
+</head>
+
+<body class="login">
+<div>
+    <div class="login_wrapper">
+        <div class="animate form login_form">
+            {% if error %}
+                <div class="alert alert-danger col-sm-8 col-sm-offset-2 text-center">
+                    Pogrešno uneti podaci! Pokušajte ponovo.
+                </div>
+            {% endif %}
+            <br />
+            <br />
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <div class="col-sm-12">
+                <h3>Već ste ulogovani</h3>
+                <br/>
+                <div class="input-group animated bounceInLeft">
+                    <a href="/admin" class="btn btn-success" style="margin-right: 10px">Idi na profil</a>
+                    <a href="{{ logout_path() }}" class="btn btn-danger">Odjavi se</a>
+                </div>
+            </div>
+            {% else %}
+            <section class="login_content">
+                <form action="{{ path('login') }}" method="post">
+                    <h1>Prijava</h1>
+                    <div>
+                        <input type="email" class="form-control" placeholder="Email" name="_username" required="" value="{{ last_username }}" />
+                    </div>
+                    <div>
+                        <input type="password" class="form-control" name="_password" placeholder="Lozinka" required="" />
+                    </div>
+                    <div>
+                        <input type="hidden" name="go_to" value="{{ path('admin') }}" />
+                        <input type="hidden" name="back_to" value="/login" />
+                        <button class="btn btn-default" type="submit">Prijavi se</button>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="separator">
+                        <div>
+                            <h1><i class="fa fa-mobile"></i> JokerMobil.com</h1>
+                            <p>©2017 Sva prava zadrzana.</p>
+                        </div>
+                    </div>
+                </form>
+                <div>
+                    <a class="btn btn-default" href="/">Nazad na sajt</a>
+                </div>
+            </section>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

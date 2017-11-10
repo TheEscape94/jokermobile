@@ -1,0 +1,28 @@
+{% extends 'containers/halftable.html.twig' %}
+{% block title %}Brendovi{% endblock %}
+{% block body %}
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Naziv</th>
+            <th>Logo</th>
+            <th>Kreirano</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for brand in brands %}
+        <tr>
+            <td>{{ brand.id }}</td>
+            <td>{{ brand.name }}</td>
+            <td>
+                <img src="{{ asset('bundles/app/upload/brands/') }}{{ brand.logo }}" width="40px" />
+            </td>
+            <td>{% if brand.createdAt %}{{ brand.createdAt|date('d-m-Y') }}{% endif %}</td>
+            <td>
+                <a class="btn btn-info btn-xs" href="{{ path('admin_brendovi_edit', { 'id': brand.id }) }}">Izmena</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+{% endblock %}

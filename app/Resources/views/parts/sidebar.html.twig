@@ -1,0 +1,176 @@
+<!-- Sidebar -->
+<aside class="sidebar col-lg-3 col-md-3 col-sm-3  col-lg-pull-9 col-md-pull-9 col-sm-pull-9">
+
+    <!-- Categories -->
+    <div class="row sidebar-box purple">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+
+            <div class="sidebar-box-heading">
+                <i class="icons icon-folder-open-empty"></i>
+                <h4>Kategorije</h4>
+            </div>
+
+            <div class="sidebar-box-content">
+                <ul>
+                    {% for c in categories %}
+                        <li><a href="/kategorija/{{ c.name }}">{{ c.name }} <i class="icons icon-right-dir"></i></a></li>
+                    {% endfor %}
+                    <hr/>
+                    <li><a href="/oprema">Oprema<i class="icons icon-right-dir"></i></a></li>
+                    <li><a href="/brendovi">Brendovi<i class="icons icon-right-dir"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /Categories -->
+
+    <!-- Bestsellers -->
+    <div class="row sidebar-box red">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+
+            <div class="sidebar-box-heading">
+                <i class="icons icon-award-2"></i>
+                <h4>Najpopularniji</h4>
+            </div>
+
+            <div class="sidebar-box-content">
+                <table class="bestsellers-table">
+                    {% for p in popular %}
+                        <tr>
+                            <td class="product-thumbnail"><a href="/telefon/{{ p.mark }}/{{ p.model }}/{{ p.id }}">
+                                    {% set images = p.images|split('|') %}
+                                    <img src="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}" alt="{{ p.mark }}{{ p.model }}">
+                                </a></td>
+                            <td class="product-infoO">
+                                <p><a href="/telefon/{{ p.mark }}/{{ p.model }}/{{ p.id }}">{{ p.mark }} {{ p.model }}</a></p>
+                                <span class="price">
+                                    {% if p.priceOff != 0 %}
+                                        {{ p.price - (p.priceOff / 100 * p.price) }} RSD
+                                    {% else %}
+                                        {{ p.price }} RSD
+                                    {% endif %}
+                                </span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /Bestsellers -->
+
+
+    <!-- Tag Cloud -->
+    <div class="row sidebar-box green">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+
+            <div class="sidebar-box-heading">
+                <i class="icons icon-tag-6"></i>
+                <h4>Tagovi</h4>
+            </div>
+
+            <div class="sidebar-box-content sidebar-padding-box">
+                {% for t in tags %}
+                    <a href="#" class="tag-item">{{ t.name }}</a>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /Tag Cloud -->
+
+
+    <!-- Specials -->
+    <div class="row products-row sidebar-box orange">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+
+            <!-- Carousel Heading -->
+            <div class="carousel-heading no-margin">
+
+                <h4><i class="icons icon-magic"></i>Top ponuda</h4>
+                <div class="carousel-arrows">
+                    <i class="icons icon-left-dir"></i>
+                    <i class="icons icon-right-dir"></i>
+                </div>
+
+            </div>
+            <!-- /Carousel Heading -->
+
+        </div>
+
+        <!-- Carousel -->
+        <div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+
+            <div class="owl-carousel" data-max-items="1">
+                {% for t in top %}
+                <!-- Slide -->
+                    <div>
+                        <!-- Carousel Item -->
+                        <div class="product">
+
+                            <div class="product-image">
+                                {% set images = t.images|split('|') %}
+                                <img src="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}" alt="{{ t.mark }} {{ t.model }}">
+                                <a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}" class="product-hover">
+                                    <i class="icons icon-eye-1"></i> Pregled
+                                </a>
+                            </div>
+
+                            <div class="product-info">
+                                <h5><a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}">{{ t.mark }} {{ t.model }}</a></h5>
+                                <span class="price"><del>{{ t.price }} RSD</del>{{ t.price - (t.priceOff / 100 * t.price) }} RSD</span>
+                            </div>
+
+                            <div class="product-actions">
+                                <span class="add-to-cart">
+                                    <span class="action-wrapper">
+                                        <i class="icons icon-basket-2"></i>
+                                        <a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}" style="color: #fff;"><span class="action-name">Dodaj u korpu</span></a>
+                                    </span >
+                                </span>
+                                <span class="add-to-favorites">
+                                    <span class="action-wrapper">
+                                        <i class="icons icon-heart-empty"></i>
+                                        <span class="action-name action-wishlist"
+                                              data-img="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}"
+                                              data-price="{% if t.priceOff > 0 %}{{ t.price - (t.priceOff / 100 * t.price) }}{% else %}{{ t.price }}{% endif %}"
+                                              data-link="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}"
+                                              data-name="{{ t.mark }} {{ t.model }}">Dodaj u želje
+                                            </span>
+                                    </span>
+                                </span>
+                                <span class="add-to-compare">
+                                    <span class="action-wrapper">
+                                        <i class="icons icon-docs"></i>
+                                        <a href="/zamena/{{ t.id }}"><span class="action-name">Zamena</span></a>
+                                    </span>
+                                </span>
+                            </div>
+
+                        </div>
+                        <!-- /Carousel Item -->
+                    </div>
+                <!-- /Slide -->
+                {% endfor %}
+
+            </div>
+
+        </div>
+        <!-- / Carousel -->
+
+
+    </div>
+    <!-- /Specials -->
+
+
+</aside>
+<!-- /Sidebar -->

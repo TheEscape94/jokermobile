@@ -1,0 +1,24 @@
+zamena_index:
+    path:     /{id}
+    defaults: { _controller: "AppBundle:Replacement:new" }
+    methods:  [GET, POST]
+
+zamena_show:
+    path:     /show/{id}
+    defaults: { _controller: "AppBundle:Replacement:show" }
+    methods:  GET
+
+zamena_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Replacement:index" }
+    methods:  GET
+
+zamena_edit:
+    path:     /edit/{id}
+    defaults: { _controller: "AppBundle:Replacement:edit" }
+    methods:  [GET, POST]
+
+zamena_delete:
+    path:     /delete/{id}
+    defaults: { _controller: "AppBundle:Replacement:delete" }
+    methods:  DELETE

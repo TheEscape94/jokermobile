@@ -1,0 +1,18 @@
+AppBundle\Entity\Tags:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\TagsRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '45'
+        createdAt:
+            type: datetime
+            column: created_at
+    lifecycleCallbacks: {  }

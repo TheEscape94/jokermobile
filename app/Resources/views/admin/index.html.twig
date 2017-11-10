@@ -1,0 +1,308 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %} | Pocetna {% endblock %}
+{% block body %}
+    <div class="row top_tiles">
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-mobile"></i></div>
+                <div class="count">{{ brojOglasaTel|length }}</div>
+                <h3>Oglasi telefona</h3>
+                <p>Ukupna vrednost 165.000 RSD</p>
+            </div>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-headphones"></i></div>
+                <div class="count">{{ brojOglasaOp|length }}</div>
+                <h3>Oglasi opreme</h3>
+                <p>Ukupna vrednost 35.000 RSD</p>
+            </div>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-bar-chart"></i></div>
+                <div class="count">{{ brojPorudzbina|length }}</div>
+                <h3>Porudžbine</h3>
+                <p>Ukupna vrednost 12.000 RSD</p>
+            </div>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-money"></i></div>
+                <div class="count">{{ brojOtkupa|length }}</div>
+                <h3>Otkup uredjaja</h3>
+                <p>Ukupna vrednost 56.000 RSD</p>
+            </div>
+        </div>
+    </div>
+    <div class="row top_tiles">
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-retweet"></i></div>
+                <div class="count">{{ brojZamena|length }}</div>
+                <h3>Zamena</h3>
+                <p>Uspešno obavljene zamene</p>
+            </div>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-reorder"></i></div>
+                <div class="count">{{ brojKatTel|length }} | {{ brojKatOp|length }}</div>
+                <h3>Kategorije</h3>
+                <p>Kategorije telefona i opreme</p>
+            </div>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-star"></i></div>
+                <div class="count">{{ brojBrendova|length }} | {{ brojTagova|length }}</div>
+                <h3>Brendovi i tagovi</h3>
+                <p>Brendovi telefona i opreme</p>
+            </div>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-newspaper-o"></i></div>
+                <div class="count">{{ brojBlogova|length }}</div>
+                <h3>Blog</h3>
+                <p>Zanimljivosti, uputstva i ostalo</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Pregled nedelje <small>prodaja</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="row" style="border-bottom: 1px solid #E0E0E0; padding-bottom: 5px; margin-bottom: 5px;">
+                        <div class="col-md-7" style="overflow:hidden;">
+                            <span class="sparkline_one" style="height: 160px; padding: 10px 25px;">
+                                  <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
+                            </span>
+                            <h4 style="margin:18px">Progres prodaje</h4>
+                        </div>
+
+                        <div class="col-md-5">
+                            <div class="row" style="text-align: center;">
+                                <div class="col-md-4">
+                                    <canvas class="canvasDoughnut" height="110" width="110" style="margin: 5px 10px 10px 0"></canvas>
+                                    <h4 style="margin:0">Brendovi</h4>
+                                </div>
+                                <div class="col-md-4">
+                                    <canvas class="canvasDoughnut" height="110" width="110" style="margin: 5px 10px 10px 0"></canvas>
+                                    <h4 style="margin:0">Otkup</h4>
+                                </div>
+                                <div class="col-md-4">
+                                    <canvas class="canvasDoughnut" height="110" width="110" style="margin: 5px 10px 10px 0"></canvas>
+                                    <h4 style="margin:0">Zamena</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3>Poslednje prodato na sajtu <small></small></h3>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item One Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item Two Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item Two Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item Two Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item Three Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3>Poslednje dodati oglasi <small>telefona</small></h3>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item One Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item Two Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item Two Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item Two Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item Three Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3>Poslednje poruke <small></small></h3>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item One Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item Two Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item Two Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item Two Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                    <article class="media event">
+                        <a class="pull-left date">
+                            <p class="month">April</p>
+                            <p class="day">23</p>
+                        </a>
+                        <div class="media-body">
+                            <a class="title" href="#">Item Three Title</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

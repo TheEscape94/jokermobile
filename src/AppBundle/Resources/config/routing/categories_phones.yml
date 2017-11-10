@@ -1,0 +1,24 @@
+admin_kategorije_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Categories_phones:index" }
+    methods:  GET
+
+admin_kategorije_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Categories_phones:show" }
+    methods:  GET
+
+admin_kategorije_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Categories_phones:new" }
+    methods:  [GET, POST]
+
+admin_kategorije_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Categories_phones:edit" }
+    methods:  [GET, POST]
+
+admin_kategorije_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Categories_phones:delete" }
+    methods:  DELETE

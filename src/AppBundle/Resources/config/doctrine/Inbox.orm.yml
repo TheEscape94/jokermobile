@@ -1,0 +1,33 @@
+AppBundle\Entity\Inbox:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\InboxRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '45'
+        email:
+            type: string
+            length: '65'
+        subject:
+            type: string
+            length: 255
+        phone:
+            type: string
+            length: '20'
+        msg:
+            type: string
+            length: '1255'
+        isRead:
+            type: boolean
+            column: is_read
+        createdAt:
+            type: datetime
+            column: created_at
+    lifecycleCallbacks: {  }

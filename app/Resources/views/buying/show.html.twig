@@ -1,0 +1,110 @@
+{% extends 'adminbase.html.twig' %}
+{% block body %}
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2><strong>Zahtev za otkup <small>No. {{ buying.id }}</small></strong></h2>
+            <ul class="nav navbar-right panel_toolbox">
+
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ buying.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ponudjeno</th>
+                        <td>{{ buying.phoneModel }}</td>
+                    </tr>
+                    <tr>
+                        <th>Telefon je</th>
+                        <td>{% if buying.isNew == 0 %} Nov {% else %} Polovan ( {{ buying.stateNum }}/10 ){% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>Statenum</th>
+                        <td>{{ buying.stateNum }} / 10</td>
+                    </tr>
+                    <tr>
+                        <th>Network</th>
+                        <td>
+                            {% if buying.network == 0 %}
+                                SimFri
+                            {% elseif buying.network == 1 %}
+                                MTS
+                            {% elseif buying.network == 2 %}
+                                Telenor
+                            {% elseif buying.network == 3 %}
+                                Vip
+                            {% elseif buying.network == 4 %}
+                                Ostalo
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Oprema</th>
+                        <td>
+                            {% if buying.kit == 0 %}
+                                Sve (punjač, slušalice, kutija)
+                            {% elseif buying.kit == 1 %}
+                                Punjač i slušalice
+                            {% elseif buying.kit == 2 %}
+                                Punjač
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Slike</th>
+                        <td>
+                            {% set images = buying.images|split('|') %}
+                            {% for i in images %}
+                                <img class="previewImg previewBig" src="{{ asset('bundles/app/upload/replacement/') }}{{ i }}" width="100" height="100" />
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ponudjena cena</th>
+                        <td>{{ buying.price }} RSD</td>
+                    </tr>
+                    <tr>
+                        <th>Opis</th>
+                        <td>{{ buying.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Stiglo</th>
+                        <td>{% if buying.createdAt %}{{ buying.createdAt|date('d-m-Y H:i') }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="background-color: #faebcc;"><strong>Podaci korisnika</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Ime</td>
+                        <td>{{ buying.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Telefon</td>
+                        <td>{{ buying.phoneNum }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>{{ buying.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Adresa</td>
+                        <td>{{ buying.adress}}, {{ buying.city }}, {{ buying.postNum }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="form-group">
+                <a class="btn btn-success pull-left" href="{{ path('buyingOffer') }}">Povratak na listu</a>
+                {{ form_start(delete_form) }}
+                <input class="btn btn-danger pull-right" type="submit" value="Obriši">
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

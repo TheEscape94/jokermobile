@@ -1,0 +1,27 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+<div class="col-md-offset-2 col-md-8 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2><i class="fa fa-edit"></i> Izmena brenda</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li class="pull-right"><i class="fa fa-info"></i></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <br />
+            {{ form_start(edit_form) }}
+                {{ form_widget(edit_form) }}
+                <input type="submit" value="Edit" />
+            {{ form_end(edit_form) }}
+            <br/>
+
+            {{ form_start(delete_form) }}
+            <input class="btn btn-danger pull-left" type="submit" value="Obriši">
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

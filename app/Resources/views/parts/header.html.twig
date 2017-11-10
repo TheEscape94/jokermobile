@@ -1,0 +1,258 @@
+<header class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <!-- Top Header -->
+        <div id="top-header">
+            <div class="row">
+                <nav id="top-navigation" class="col-lg-7 col-md-7 col-sm-7">
+                    <ul class="pull-left">
+                        <li><a href="/onama">O nama</a></li>
+                        <li><a href="/kakokupiti">Kako kupiti kod nas?</a></li>
+                        <li><a href="/isporukaiplacanje">Isporuka i plaćanje</a></li>
+                        <li><a href="/zamenaiotkup"><b>Zamena i otkup</b></a></li>
+                        <li><a href="{{ path('app_contact') }}">Kontakt</a></li>
+                        <li><a href="javascript:void(0);" class="request">Ajax Test</a></li>
+                        <li class="output"></li>
+                    </ul>
+                </nav>
+                <nav class="col-lg-5 col-md-5 col-sm-5">
+                    <ul class="pull-right">
+                        <li class="purple"><a href="/pravilaiuslovi">Pravila i uslovi</a></li>
+                        <li><a href="/faq">FAQ</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+
+        </div>
+        <!-- /Top Header -->
+        <!-- Main Header -->
+        <div id="main-header">
+
+            <div class="row">
+
+                <div id="logo" class="col-lg-4 col-md-4 col-sm-4">
+                    <a href="/"><img src="{{ asset('bundles/app/img/logo/logo-h.png') }}" alt="Logo"></a>
+                </div>
+
+                <nav id="middle-navigation" class="col-lg-8 col-md-8 col-sm-8">
+                    <ul class="pull-right">
+                        <li class="red">
+                            <a href="javascript:void(0);"><i class="icons icon-heart-empty"></i><span class="count-wishlist">0</span> Stvari</a>
+                            <ul id="cart-dropdown" class="box-dropdown parent-arrow">
+                                <li>
+                                    <div class="box-wrapper parent-border">
+                                        <p>Stvari koje Vam se svidjaju:</p>
+
+                                        <table class="cart-table wish-table">
+                                            <p class="wish-table-notify" style="text-align: center; margin-top: 15px;">Vaša lista želja je prazna</p>
+                                            {# wishlist from .js #}
+                                        </table>
+                                        <br class="clearfix">
+                                    </div>
+                                    <div class="box-wrapper no-border" >
+                                        <a style="display: none;" class="button pull-right parent-background clear-wishlist" href="#">Poništi</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="orange"><a href="javascript:void(0);"><i class="icons icon-basket-2"></i><span class="count-cart">0</span> Stvari</a>
+                            <ul id="cart-dropdown" class="box-dropdown parent-arrow">
+                                <li>
+                                    <div class="box-wrapper parent-border">
+                                        <p>Upravo dodate stvari:</p>
+
+                                        <table class="cart-table cart-result-table">
+                                            <p class="cart-table-notify" style="text-align: center; margin-top: 15px;">Vaša korpa je prazna</p>
+                                            {# cartlist from .js #}
+                                        </table>
+
+                                        <br class="clearfix">
+                                    </div>
+                                    <div class="cart-footer" style="display: none;">
+                                        <div class="footer">
+                                            <table class="checkout-table pull-right">
+                                                <tr>
+                                                    <td class="align-right"><strong>Ukupno:</strong></td>
+                                                    <td><strong class="parent-color"><span class="all-products-price">0</span> RSD</strong></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="box-wrapper no-border">
+                                            <a class="button pull-right parent-background" href="{{ path('korpa_new') }}">Poruči</a>
+                                            <a class="button pull-right clear-cart-list" href="#">Očisti korpu</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="blue"><a href="javascript:void(0);"><i class="icons icon-flag-filled"></i>Srpski</a>
+                            <ul class="box-dropdown parent-arrow">
+                                <li>
+                                    <div class="box-wrapper no-padding parent-border">
+                                        <table class="language-table">
+                                            <tr>
+                                                <td><span style="color: dodgerblue;" class="icons icon-flag-circled"></span></td>
+                                                <td class="country"><a href="#">Srpski</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span style="color: dodgerblue;" class="icons icon-flag-circled"></span></td>
+                                                <td class="country"><a href="#">English</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span style="color: dodgerblue;" class="icons icon-flag-circled"></span></td>
+                                                <td class="country"><a href="#">German</a></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </li>
+                        <li class="green"><a href="javascript:void(0);"><i class="icons icon-money"></i>RSD</a>
+                            <ul class="box-dropdown parent-arrow">
+                                <li>
+                                    <div class="box-wrapper no-padding parent-border">
+                                        <table class="currency-table">
+                                            <tr>
+                                                <td><a href="#">$ US Dollar</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#">€ Euro</a></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+
+        </div>
+        <!-- /Main Header -->
+
+
+        <!-- Main Navigation -->
+        <nav id="main-navigation" class="style1">
+            <ul>
+
+                <li class="home-green current-item">
+                    <a href="/">
+                        <i class="icons icon-shop-1"></i>
+                        <span class="nav-caption">Početna</span>
+                        <span class="nav-description">JokerMobil.com</span>
+                    </a>
+                </li>
+
+                <li class="red">
+                    <a href="/telefoni">
+                        <i class="icons icon-mobile-6"></i>
+                        <span class="nav-caption">Telefoni</span>
+                        <span class="nav-description">Novi i polovni</span>
+                    </a>
+                </li>
+
+                <li class="blue">
+                    <a href="/oprema">
+                        <i class="icons icon-headphones"></i>
+                        <span class="nav-caption">Oprema</span>
+                        <span class="nav-description">Oprema za telefone</span>
+                    </a>
+
+                    <ul class="wide-dropdown normalAnimation">
+                        <li>
+                            <ul>
+                                <li><span class="nav-caption">Standardna oprema</span></li>
+                                {% for c in categories %}
+                                    {% if c.upName == 0 %}
+                                        <li><a href="/oprema/kategorija/{{ c.id }}"><i class="icons icon-right-dir"></i>{{ c.name }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li>
+                            <ul>
+                                <li><span class="nav-caption">Dodatna oprema</span></li>
+                                {% for c in categories %}
+                                    {% if c.upName == 1 %}
+                                        <li><a href="/oprema/kategorija/{{ c.id }}"><i class="icons icon-right-dir"></i>{{ c.name }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li>
+                            <ul>
+                                <li><span class="nav-caption">Maske i folije</span></li>
+                                {% for c in categories %}
+                                    {% if c.upName == 2 %}
+                                        <li><a href="/oprema/kategorija/{{ c.id }}"><i class="icons icon-right-dir"></i>{{ c.name }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="orange">
+                    <a href="{{ path('otkup_index') }}">
+                        <i class="icons icon-money"></i>
+                        <span class="nav-caption">Otkup</span>
+                        <span class="nav-description">Otkup telefona</span>
+                    </a>
+                </li>
+
+                <li class="green">
+                    <a href="/blog">
+                        <i class="icons icon-pencil-7"></i>
+                        <span class="nav-caption">Blog</span>
+                        <span class="nav-description">Novosti i zanimljivosti</span>
+                    </a>
+                </li>
+
+                <li class="purple">
+                    <a href="{{ path('app_contact') }}">
+                        <i class="icons icon-location-7"></i>
+                        <span class="nav-caption">Kontakt</span>
+                        <span class="nav-description">Kontakt i lokacija</span>
+                    </a>
+                </li>
+
+                <li class="nav-search">
+                    <i class="icons icon-search-1"></i>
+                </li>
+
+            </ul>
+
+            <div id="search-bar">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <table id="search-bar-table">
+                        <tr>
+                            <td class="search-column-1">
+                                <p><span class="grey">Popularno:</span> <a href="#">brendirane maske</a>, <a href="#">apple</a>, <a href="#">samsung</a>, <a href="#">slušalice</a>, <a href="#">power bank</a></p>
+                                <input type="text" placeholder="Unesite pojam za pretragu">
+                            </td>
+                            <td class="search-column-2">
+                                <p class="align-right"><a href="/naprednapretraga">Napredna pretraga</a></p>
+                                <select class="chosen-select-search">
+                                    <option>Telefoni</option>
+                                    <option>Oprema</option>
+                                    <option>Blog</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="search-button">
+                    <input type="submit" value="">
+                    <i class="icons icon-search-1"></i>
+                </div>
+            </div>
+
+        </nav>
+        <!-- /Main Navigation -->
+
+    </div>
+
+</header>

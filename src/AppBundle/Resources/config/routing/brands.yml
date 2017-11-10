@@ -1,0 +1,24 @@
+admin_brendovi_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Brands:index" }
+    methods:  GET
+
+admin_brendovi_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Brands:show" }
+    methods:  GET
+
+admin_brendovi_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Brands:new" }
+    methods:  [GET, POST]
+
+admin_brendovi_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Brands:edit" }
+    methods:  [GET, POST]
+
+admin_brendovi_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Brands:delete" }
+    methods:  DELETE

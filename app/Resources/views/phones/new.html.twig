@@ -1,0 +1,47 @@
+{% extends 'adminbase.html.twig' %}
+{% block body %}
+    <div class="col-md-offset-2 col-md-8 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><i class="fa fa-plus"></i> Novi telefon</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li class="pull-right"><i class="fa fa-info"></i></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                <div class="col-md-12 col-xs-12">
+                    <label>Marka telefona (kategorija):</label>
+                    <select class="form-control pass-to-form">
+                        <option><i>Izaberite marku</i></option>
+                       {% for c in cat %}
+                           <option value="{{ c.name }}">{{ c.name }}</option>
+                       {% endfor %}
+                    </select>
+                </div>
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <div class="col-md-12 col-xs-12">
+                    {% for tag in tags %}
+                        {% if tag.id % 4 == 3 %}
+                            <p class="label label-success phone_tag">{{ tag.name }}</p>
+                        {% elseif tag.id % 4 == 2 %}
+                            <p class="label label-warning phone_tag">{{ tag.name }}</p>
+                        {% elseif tag.id % 4 == 1 %}
+                            <p class="label label-info phone_tag">{{ tag.name }}</p>
+                        {% else %}
+                            <p class="label label-danger phone_tag">{{ tag.name }}</p>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                    <div class="clearfix"></div>
+                    <br/>
+                    <br/>
+                    <a class="btn btn-info pull-left marginTop" href="{{ path('admin_telefoni_index') }}">Povratak na listu</a>
+                    <button class="btn btn-success pull-right marginTop" type="submit"><i class="fa fa-plus-circle"></i> Dodaj</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

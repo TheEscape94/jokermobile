@@ -1,0 +1,39 @@
+{% extends 'containers/fulltable.html.twig' %}
+{% block title %} Blog <small>tekstovi</small>{% endblock %}
+{% block body %}
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Naslov</th>
+                <th>Naslovna slika</th>
+                <th>Tekst slika</th>
+                <th>Tekst</th>
+                <th>Napisao</th>
+                <th>Kreirano</th>
+                <th>Pregleda</th>
+                <th>Akcija</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for blog in blogs %}
+            <tr>
+                <td><a href="{{ path('blog_show', { 'id': blog.id }) }}">{{ blog.id }}</a></td>
+                <td>{{ blog.name }}</td>
+                <td>
+                    <img src="{{ asset('bundles/app/upload/blog/') }}{{ blog.img1 }}" alt="blog-img" height="80" width="80">
+                </td>
+                <td>
+                    <img src="{{ asset('bundles/app/upload/blog/') }}{{ blog.img2 }}" alt="blog-img" height="80" width="80">
+                </td>
+                <td>{{ blog.contentTxt }}</td>
+                <td>{{ blog.createdFrom }}</td>
+                <td>{% if blog.createdAt %}{{ blog.createdAt|date('d-m-Y H:i:s') }}{% endif %}</td>
+                <td>{{ blog.views }}</td>
+                <td>
+                    <a class="btn btn-info" href="{{ path('blog_show', { 'id': blog.id }) }}"><i class="fa fa-eye"></i></a>
+                    <a class="btn btn-warning" href="{{ path('blog_edit', { 'id': blog.id }) }}"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+{% endblock %}

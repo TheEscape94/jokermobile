@@ -1,0 +1,28 @@
+{% extends 'containers/halftable.html.twig' %}
+{% block title %} Telefoni <small><a class="btn btn-warning btn-xs" href="{{ path('admin_telefoni_index') }}">veća tabela</a></small>{% endblock %}
+{% block body %}
+    <thead>
+        <tr>
+            <th style="width: 25%">Naziv</th>
+            <th>Cena</th>
+            <th>Zarada</th>
+            <th>Dodato</th>
+            <th><i class="fa fa-eye"></i></th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for phone in phones %}
+        <tr>
+            <td>{{ phone.mark }} {{ phone.model }}</td>
+            <td>{{ phone.price }} RSD</td>
+            <td><p class="label label-success" style="font-size: 12px">{{ phone.price - (phone.priceOff / 100 * phone.price ) - phone.myPrice }} RSD</p></td>
+            <td>{% if phone.createdAt %}{{ phone.createdAt|date('d.m.') }}{% endif %}</td>
+            <td>{{ phone.views }}</td>
+            <td>
+                <a class="btn btn-info btn-xs" href="{{ path('admin_telefoni_show', { 'id': phone.id }) }}">Detaljnije</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+{% endblock %}

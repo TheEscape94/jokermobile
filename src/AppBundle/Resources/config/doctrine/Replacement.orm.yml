@@ -1,0 +1,62 @@
+AppBundle\Entity\Replacement:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\ReplacementRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        choosedPhone:
+            type: string
+            length: 255
+            column: choosed_phone
+        phone:
+            type: string
+            length: 255
+        isNew:
+            type: integer
+            column: is_new
+        stateNum:
+            type: integer
+            column: state_num
+        network:
+            type: string
+            length: '45'
+        kit:
+            type: string
+            length: 255
+        description:
+            type: string
+            length: 255
+        isRead:
+            type: boolean
+            column: is_read
+        images:
+            type: string
+            length: 4255
+            nullable: true
+        name:
+            type: string
+            length: 65
+        phoneNum:
+            type: string
+            column: phone_num
+        email:
+            type: string
+            length: 65
+        adress:
+            type: string
+            length: 65
+        city:
+            type: string
+            length: 65
+        postNum:
+            type: string
+            column: post_num
+        createdAt:
+            type: datetime
+            column: created_at
+    lifecycleCallbacks: {  }

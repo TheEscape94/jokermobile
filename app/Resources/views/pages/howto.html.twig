@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="description" content="JokerMobil.com, Prodaja, otkup i zamena mobilnih telefona. Najbolje cene, isplata odmah. Zamenite Va stari telefon za novi.">
+    <meta name="keywords" content="Prodaja telefona, Otkup telefona, Zamena telefona, Mobilni telefoni, Oprema za mobilne telefone, Staro za novo">
+    <meta name="author" content="Milos Aperlic">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+{% block title %} | Kako kupiti kod nas{% endblock %}
+{% block body %}
+    <!-- Content -->
+    <div class="row content">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="breadcrumbs">
+                <p><a href="/">Početna</a> <i class="icons icon-right-dir"></i> Kako kupiti kod nas?</p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+
+
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="carousel-heading no-margin">
+                        <h4>Kako kupiti kod nas?</h4>
+                    </div>
+
+                    <div class="page-content">
+                        <h3>Lako, pouzdano i brzo</h3>
+                        <p>
+                            Naručivanje putem sajta je veoma jednostavno. Kao i u maloprodajnim objektima, tako i ovde, potrebno je da pronađete odgovarajući
+                            artikal koji želite da naručite, zatim kliknite na dugme "Dodaj u korpu", količina je automatski podešena na 1, ali ukoliko želite
+                            više modela, možete izabrati bilo koji broj koji je manji ili jednak naznačenom broju modela na stanju. Nakon završenog dodavanja
+                            artikala u korpu i naknadnom proverom da li je sv u korpi onako kako ste želeli, kliknite na dugme "Završi porudžbinu". Sada če
+                            Vam se otvoriti prozor sa poljima koje treba da popunite sa Vašim <b>tačnim</b> podacima.
+                        </p>
+                        <p>
+                            Ukoliko ste se odlučili da <b>zamenite Vaš stari telefon za novi</b> ili da <b>Vi nama prodate Vaš telefon</b>, odnosno da ga otkupimo,
+                            više informacija možete pronaći <a href="/zamenaiotkup">ovde</a>.
+                        </p>
+                        <p>Pogledajte više o ostalim <i>pravilima i uslovima</i> <a href="/pravilaiuslovi">ovde</a></p>.
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /Main Content -->
+        {{ render(controller(
+        'AppBundle:Parts:sidebar'
+        )) }}
+    </div>
+    <!-- /Content -->
+    {{ render(controller(
+    'AppBundle:Parts:banners'
+    )) }}
+{% endblock %}

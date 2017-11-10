@@ -1,0 +1,87 @@
+{% extends 'containers/fulltable.html.twig' %}
+{% block title %}Zahtevi za otkup <small>brzi pregled</small>{% endblock %}
+{% block body %}
+        <thead>
+            <tr>
+                <th></th>
+                <th>Ponudjeno</th>
+                <th>Novo / Polovno</th>
+                <th>Oprema</th>
+                <th>Mreza</th>
+                <th>Predvidjena cena</th>
+                <th>Stiglo</th>
+                <th><i class="fa fa-user"></i></th>
+                <th>Akcija</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for buying in buyings %}
+            <tr {% if buying.isRead == 0 %}style="background: #faebcc;"{% endif %}>
+                <td>{% if buying.isRead == 0 %}<span class="badge">NOVO</span> {% endif %}</td>
+                <td>{{ buying.phoneModel }}</td>
+                <td>
+                    {% if buying.isNew == 0 %}
+                        Nov
+                    {% else %}
+                        Polovan {{ buying.stateNum }} / 10
+                    {% endif %}
+                </td>
+                <td>
+                    {% if buying.kit == 0 %}
+                        Sve (punjač, slušalice, kutija)
+                    {% elseif buying.kit == 1 %}
+                        Punjač i slušalice
+                    {% elseif buying.kit == 2 %}
+                        Punjač
+                    {% endif %}
+                </td>
+                <td>
+                    {% if buying.network == 0 %}
+                        SimFri
+                    {% elseif buying.network == 1 %}
+                        MTS
+                    {% elseif buying.network == 2 %}
+                        Telenor
+                    {% elseif buying.network == 3 %}
+                        Vip
+                    {% elseif buying.network == 4 %}
+                        Ostalo
+                    {% endif %}
+                </td>
+                <td>{{ buying.price }} RSD</td>
+                <td>{% if buying.createdAt %}{{ buying.createdAt|date('d.m. h:m') }}{% endif %}</td>
+                <td>
+                    <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal{{ buying.id }}"><i class="fa fa-user"></i></button>
+                    <!-- Modal -->
+                    <div id="myModal{{ buying.id }}" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Kontakt podaci</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><strong>Ime:</strong> {{ buying.name }}</li>
+                                        <li class="list-group-item"><strong>Telefon:</strong> {{ buying.phoneNum }}</li>
+                                        <li class="list-group-item"><strong>Email:</strong> {{ buying.email }}</li>
+                                        <li class="list-group-item"><strong>Adresa:</strong> {{ buying.adress}}, {{ buying.city }}, {{ buying.postNum }}</li>
+                                    </ul>
+                                </div>
+                                <div class="modal-footer">
+                                    <p>Stiglo: {% if buying.createdAt %}{{ buying.createdAt|date('d.m. h:m') }}{% endif %}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <a class="btn btn-warning btn-xs" href="{{ path('otkup_show', { 'id': buying.id }) }}"><i class="fa fa-eye"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+{% endblock %}

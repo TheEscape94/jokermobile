@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="description" content="JokerMobil.com, Prodaja, otkup i zamena mobilnih telefona. Najbolje cene, isplata odmah. Zamenite Va stari telefon za novi.">
+    <meta name="keywords" content="Prodaja telefona, Otkup telefona, Zamena telefona, Mobilni telefoni, Oprema za mobilne telefone, Staro za novo">
+    <meta name="author" content="Milos Aperlic">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+{% block title %} | Oprema za telefon {% endblock %}
+{% block body %}
+    <!-- Content -->
+    <div class="row content">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="breadcrumbs">
+                <p><a href="/">Početna</a> <i class="icons icon-right-dir"></i> Oprema za telefon</p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+
+
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="carousel-heading no-margin">
+                        <h4>Oprema za telefon</h4>
+                    </div>
+                    <div class="page-content">
+                        <br/>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <h3 class="label label-success">STANDARDNA OPREMA</h3>
+                            <br/>
+                            <br/>
+                            <ul>
+                                {% for e in eq %}
+                                    {% if e.upName == 0 %}
+                                        <li><a href="/oprema/kategorija/{{ e.id }}"><i class="icons icon-right-dir"></i>{{ e.name }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <h3 class="label label-info">DODATNA OPREMA</h3>
+                            <br/>
+                            <br/>
+                            <ul>
+                                {% for e in eq %}
+                                    {% if e.upName == 1 %}
+                                        <li><a href="/oprema/kategorija/{{ e.id }}"><i class="icons icon-right-dir"></i>{{ e.name }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <h3 class="label label-warning">MASKE I FOLIJE</h3>
+                            <br/>
+                            <br/>
+                            <ul>
+                                {% for e in eq %}
+                                    {% if e.upName == 2 %}
+                                        <li><a href="/oprema/kategorija/{{ e.id }}"><i class="icons icon-right-dir"></i>{{ e.name }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="carousel-heading no-margin">
+                        <h4>Izdvajamo iz ponude</h4>
+                    </div>
+                    <div class="page-content">
+                        <br/>
+                        {% for t in equiment %}
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="product">
+                                    <div class="product-image">
+                                        {% set images = t.images|split('|') %}
+                                        <img src="{{ asset('bundles/app/upload/equiment/') }}{{ images[0] }}" alt="{{ t.mark }} {{ t.name }}">
+                                        <a href="/oprema/{{ t.mark }}/{{ t.name }}/{{ t.id }}" class="product-hover">
+                                            <i class="icons icon-eye-1"></i> Pregled
+                                        </a>
+                                    </div>
+                                    <div class="product-info">
+                                        <h5><a href="/oprema/{{ t.mark }}/{{ t.name }}/{{ t.id }}">{{ t.mark }} {{ t.name }}</a></h5>
+                                        <span class="price"><del style="font-size: 12px;">{{ t.price }} RSD</del>{{ t.price - (t.priceOff / 100 * t.price) }} RSD</span>
+                                    </div>
+                                    <div class="product-actions">
+                                    <span class="add-to-cart">
+                                        <span class="action-wrapper">
+                                            <i class="icons icon-basket-2"></i>
+                                            <span class="action-name">Dodaj u korpu</span>
+                                        </span >
+                                    </span>
+                                    <span class="add-to-favorites">
+                                        <span class="action-wrapper">
+                                            <i class="icons icon-heart-empty"></i>
+                                            <span class="action-name">Dodaj u želje</span>
+                                        </span>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product Item -->
+                        {% endfor %}
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /Main Content -->
+        {{ render(controller(
+        'AppBundle:Parts:sidebar'
+        )) }}
+    </div>
+    <!-- /Content -->
+    {{ render(controller(
+    'AppBundle:Parts:banners'
+    )) }}
+{% endblock %}

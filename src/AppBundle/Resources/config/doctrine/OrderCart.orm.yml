@@ -1,0 +1,50 @@
+AppBundle\Entity\OrderCart:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\OrderCartRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        orderNum:
+            type: integer
+            column: order_num
+        orderTxt:
+            type: string
+            length: '3000'
+            column: order_txt
+        orderPrice:
+            type: string
+            length: 255
+            column: order_price
+        name:
+            type: string
+            length: '45'
+        lastName:
+            type: string
+            length: '45'
+            column: last_name
+        adress:
+            type: string
+            length: '95'
+        city:
+            type: string
+            length: '45'
+        phone:
+            type: string
+            length: '20'
+        email:
+            type: string
+            length: '65'
+        isRead:
+            type: boolean
+            column: is_read
+        delivered:
+            type: boolean
+        createdAt:
+            type: datetime
+            column: created_at
+    lifecycleCallbacks: {  }

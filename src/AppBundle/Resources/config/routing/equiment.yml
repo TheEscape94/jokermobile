@@ -1,0 +1,29 @@
+admin_oprema_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Equiment:index" }
+    methods:  GET
+
+admin_oprema_view:
+    path:     /
+    defaults: { _controller: "AppBundle:Equiment:view" }
+    methods:  GET
+
+admin_oprema_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Equiment:show" }
+    methods:  GET
+
+admin_oprema_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Equiment:new" }
+    methods:  [GET, POST]
+
+admin_oprema_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Equiment:edit" }
+    methods:  [GET, POST]
+
+admin_oprema_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Equiment:delete" }
+    methods:  DELETE

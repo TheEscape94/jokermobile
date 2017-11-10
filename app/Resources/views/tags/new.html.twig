@@ -1,0 +1,22 @@
+{% extends 'adminbase.html.twig' %}
+{% block body %}
+    {{ render(controller('AppBundle:Tags:index')) }}
+    <div class="col-md-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>+ Novi tag</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button class="btn btn-success pull-right marginTop" type="submit">+ Dodaj</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

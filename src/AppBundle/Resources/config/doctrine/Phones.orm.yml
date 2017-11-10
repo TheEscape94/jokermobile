@@ -1,0 +1,69 @@
+AppBundle\Entity\Phones:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\PhonesRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        mark:
+            type: string
+            length: '65'
+        model:
+            type: string
+            length: '65'
+        isNew:
+            type: integer
+            column: is_new
+        stateNum:
+            type: integer
+            column: state_num
+        garanty:
+            type: string
+            length: 255
+        kit:
+            type: string
+            length: 255
+        description:
+            type: string
+            length: '1255'
+        network:
+            type: integer
+        quantity:
+            type: integer
+        images:
+            type: string
+            length: 4255
+        myPrice:
+            type: integer
+            column: my_price
+        priceOff:
+            type: integer
+            column: price_off
+        price:
+            type: integer
+        videoLink:
+            type: string
+            length: 255
+            column: video_link
+        link:
+            type: string
+            length: 255
+        funFact:
+            type: string
+            length: 255
+            column: fun_fact
+        tags:
+            type: string
+            length: 1255
+            nullable: true
+        createdAt:
+            type: datetime
+            column: created_at
+        views:
+            type: integer
+            column: views
+    lifecycleCallbacks: {  }

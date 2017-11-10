@@ -1,0 +1,91 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %} | Porudžbine {% endblock %}
+{% block body %}
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Porudžbine</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Broj porudžbine</th>
+                        <th>Porudžbina</th>
+                        <th>Cena</th>
+                        <th>Isporučena</th>
+                        <th>Poručeno</th>
+                        <th>Poručio</th>
+                        <th>Pregled</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for orderCart in orderCarts %}
+                    <tr {% if orderCart.isRead == 0 %}style="background-color: #faebcc;"{% endif %}>
+                        <td>{% if orderCart.isRead == 0 %}<span class="badge">NOVO</span> {% endif %}</td>
+                        <td>{{ orderCart.orderNum }}</td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#cart"><i class="fa fa-cart-arrow-down"></i></button>
+                            <div id="cart" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Porudžbina <small>No. {{ orderCart.orderNum }}</small></h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            {{ orderCart.orderTxt }}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <p>Poruceno: {% if orderCart.createdAt %}{{ orderCart.createdAt|date('d.m. h:m') }}{% endif %}</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ orderCart.orderPrice }} RSD</td>
+                        <td>{% if orderCart.delivered %}<i class="fa fa-check text-success"></i>{% else %}<i class="fa fa-close text-danger"></i>{% endif %}</td>
+                        <td>{% if orderCart.createdAt %}{{ orderCart.createdAt|date('d-m-Y H:i') }}{% endif %}</td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-user"></i></button>
+                            <!-- Modal -->
+                            <div id="myModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Kontakt podaci</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><strong>Ime:</strong> {{ orderCart.name }} {{ orderCart.lastName }}</li>
+                                                <li class="list-group-item"><strong>Telefon:</strong> {{ orderCart.phone }}</li>
+                                                <li class="list-group-item"><strong>Email:</strong> {{ orderCart.email }}</li>
+                                                <li class="list-group-item"><strong>Adresa:</strong> {{ orderCart.adress}}, {{ orderCart.city }}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <p>Poruceno: {% if orderCart.createdAt %}{{ orderCart.createdAt|date('d.m. h:m') }}{% endif %}</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </td>
+                        <td><a class="btn btn-warning btn-xs" href="{{ path('korpa_show', { 'id': orderCart.id }) }}"><i class="fa fa-eye"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

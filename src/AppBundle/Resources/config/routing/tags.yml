@@ -1,0 +1,24 @@
+admin_tagovi_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Tags:index" }
+    methods:  GET
+
+admin_tagovi_show:
+    path:     /show/{id}
+    defaults: { _controller: "AppBundle:Tags:show" }
+    methods:  GET
+
+admin_tagovi_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Tags:new" }
+    methods:  [GET, POST]
+
+admin_tagovi_edit:
+    path:     /edit/{id}
+    defaults: { _controller: "AppBundle:Tags:edit" }
+    methods:  [GET, POST]
+
+admin_tagovi_delete:
+    path:     /delete/{id}
+    defaults: { _controller: "AppBundle:Tags:delete" }
+    methods:  DELETE

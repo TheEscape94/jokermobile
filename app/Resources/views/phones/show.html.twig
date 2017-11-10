@@ -1,0 +1,137 @@
+{% extends 'adminbase.html.twig' %}
+{% block body %}
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2><strong>{{ phone.mark }}</strong> {{ phone.model }}</h2>
+            <ul class="nav navbar-right panel_toolbox">
+
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ phone.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Marka</th>
+                        <td>{{ phone.mark }}</td>
+                    </tr>
+                    <tr>
+                        <th>Model</th>
+                        <td>{{ phone.model }}</td>
+                    </tr>
+                    <tr>
+                        <th>Telefon je</th>
+                        <td>{% if phone.isNew == 0 %} Nov {% else %} Polovan ( {{ phone.stateNum }}/10 ){% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>Garancija</th>
+                        <td>
+                            {% if phone.garanty == 0 %}
+                                Standardna (7 dana)
+                            {% else %}
+                                Fabricka (12 meseci)
+                            {% endif %}
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Oprema</th>
+                        <td>
+                            {% if phone.kit == 0 %}
+                                Sve (punjač, slušalice, kutija)
+                            {% elseif phone.kit == 1 %}
+                                Punjač i slušalice
+                            {% elseif phone.kit == 2 %}
+                                Punjač
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Opis</th>
+                        <td>{{ phone.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Mreža</th>
+                        <td>
+                            {% if phone.network == 0 %}
+                                SimFree
+                            {% elseif phone.network == 1 %}
+                                MTS
+                            {% elseif phone.network == 2 %}
+                                Telenor
+                            {% elseif phone.network == 3 %}
+                                Vip
+                            {% elseif phone.network == 4 %}
+                                Ostalo
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Količina</th>
+                        <td>{{ phone.quantity }}</td>
+                    </tr>
+                    <tr>
+                        <th>Slike</th>
+                        <td>
+                            {% set images = phone.images|split('|') %}
+                            {% for i in images %}
+                                <img class="previewImg previewBig" src="{{ asset('bundles/app/upload/phones/') }}{{ i }}" width="100" height="100" />
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Nabavna cena</th>
+                        <td>{{ phone.myPrice }} RSD</td>
+                    </tr>
+                    <tr>
+                        <th>Popust</th>
+                        <td>{{ phone.priceOff }} %</td>
+                    </tr>
+                    <tr>
+                        <th>Prodajna cena</th>
+                        <td>{{ phone.price }} RSD</td>
+                    </tr>
+                    <tr style="background-color: #faebcc">
+                        <th>Zarada</th>
+                        <td>
+                            <strong>{{ phone.price - (phone.priceOff / 100 * phone.price ) - phone.myPrice }} RSD</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Video link</th>
+                        <td>{{ phone.videoLink }}</td>
+                    </tr>
+                    <tr>
+                        <th>Link</th>
+                        <td>{{ phone.link }}</td>
+                    </tr>
+                    <tr>
+                        <th>Zanimljivost</th>
+                        <td>{{ phone.funFact }}</td>
+                    </tr>
+                    <tr>
+                        <th>Dodato</th>
+                        <td>{% if phone.createdAt %}{{ phone.createdAt|date('d-m-Y h:m') }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                       <td colspan="2">
+                           <div class="form-group">
+                               <a class="btn btn-info pull-left marginTop" href="{{ path('admin_telefoni_index') }}">Povratak na listu</a>
+                               <a class="btn btn-warning pull-right marginTop" style="margin-left: 10px" href="{{ path('admin_telefoni_edit', { 'id': phone.id }) }}">Izmeni</a>
+                               {{ form_start(delete_form) }}
+                                    <input class="btn btn-danger pull-right marginTop" type="submit" value="Obriši">
+                               {{ form_end(delete_form) }}
+                           </div>
+                       </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,491 @@
+{% extends 'base.html.twig' %}
+{% block title %} |
+    {{ object.mark }}
+    {% if o == 'p' %}
+        {{ object.model }}
+    {% else %}
+        {{ object.name }}
+    {% endif %}
+
+{% endblock %}
+{% block body %}
+    <div class="row content">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="breadcrumbs">
+                <p><a href="{{ path('homepage') }}">Početna</a>
+                    {% if o == 'p' %}
+                        <i class="icons icon-right-dir"></i><a href="/kategorija/{{ object.mark }}">{{ object.mark }}</a>
+                        <i class="icons icon-right-dir"></i>{{ object.model }}</p>
+                    {% else %}
+                        <i class="icons icon-right-dir"></i><a href="/oprema/kategorija/{{ object.category }}">{{ object.mark }}</a>
+                        <i class="icons icon-right-dir"></i>{{ object.name }}</p>
+                    {% endif %}
+            </div>
+        </div>
+        <!-- Main Content -->
+        <section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+            <div id="product-single">
+                <!-- Product -->
+                <div class="product-single">
+                    <div class="row">
+                        <!-- Product Images Carousel -->
+                        <div class="col-lg-5 col-md-5 col-sm-5 product-single-image">
+                            <div id="product-slider">
+                                {% set images = object.images|split('|') %}
+                                <ul class="slides">
+                                    <li>
+                                        {% if o == 'p' %}
+                                            <img class="cloud-zoom" src="{{ asset("bundles/app/upload/phones/") }}{{ images[0] }}" data-large="{{ asset("bundles/app/upload/phones/") }}{{ images[0] }}" alt="" />
+                                        {% else %}
+                                            <img class="cloud-zoom" src="{{ asset("bundles/app/upload/equiment/") }}{{ images[0] }}" data-large="{{ asset("bundles/app/upload/equiment/") }}{{ images[0] }}" alt="" />
+                                        {% endif %}
+                                        {#<a class="fullscreen-button" href="#" id="{{ asset("bundles/app/upload/phones/") }}{{ images[0] }}">#}
+                                            {#<div class="product-fullscreen">#}
+                                                {#<i class="icons icon-resize-full-1"></i>#}
+                                            {#</div>#}
+                                        {#</a>#}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="product-carousel">
+                                <ul class="slides">
+                                    {% for i in images %}
+                                        <li>
+                                        {% if o == 'p' %}
+                                            <a class="fancybox" rel="product-images" href="#" id="{{ asset("bundles/app/upload/phones/") }}{{ i }}"></a>
+                                            <img src="{{ asset("bundles/app/upload/phones/") }}{{ i }}" data-large="{{ asset("bundles/app/upload/phones/") }}{{ i }}" alt=""/>
+                                        {% else %}
+                                            <a class="fancybox" rel="product-images" href="#" id="{{ asset("bundles/app/upload/equiment/") }}{{ i }}"></a>
+                                            <img src="{{ asset("bundles/app/upload/equiment/") }}{{ i }}" data-large="{{ asset("bundles/app/upload/equiment/") }}{{ i }}" alt=""/>
+                                        {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                                <div class="product-arrows">
+                                    <div class="left-arrow">
+                                        <i class="icons icon-left-dir"></i>
+                                    </div>
+                                    <div class="right-arrow">
+                                        <i class="icons icon-right-dir"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Product Images Carousel -->
+
+
+                        <div class="col-lg-7 col-md-7 col-sm-7 product-single-info">
+                            {% if o == 'p' %}
+                                <h2>{{ object.mark }} {{ object.model }}</h2>
+                            {% else %}
+                                <h2>{{ object.mark }} {{ object.name }}</h2>
+                            {% endif %}
+                            <table>
+                                <tr>
+                                    <td>Stanje:</td>
+                                    <td>
+                                        {% if o == 'p' %}
+                                            {% if object.isNew == 0 %}
+                                                <p class="label label-info">NOVO</p>
+                                            {% else %}
+                                                <p class="label label-info">Polovan {{ object.stateNum }} / 10</p>
+                                            {% endif %}
+                                        {% else %}
+                                            <p class="label label-info">NOVO</p>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Lager:</td>
+                                    <td>
+                                        {% if o == 'p' %}
+                                            {% if object.quantity != 0 %}
+                                                <p class="label label-success">Na stanju</p>
+                                            {% else %}
+                                                <p class="label label-danger">Nema na stanju</p>
+                                            {% endif %}
+                                        {% else %}
+                                            <p class="label label-success">Na stanju</p>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% if o == 'p' %}
+                                    <tr>
+                                        <td>Garancija:</td>
+                                        <td>
+                                            {% if object.garanty == 0 %}
+                                                <span class="label label-warning">Standardna (7 dana)</span>
+                                            {% else %}
+                                                <span class="label label-warning">Fabricka (12 meseci)</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oprema:</td>
+                                        <td>
+                                            {% if object.kit == 0 %}
+                                                <span class="label label-primary">Sve (punjač, slušalice, kutija)</span>
+                                            {% elseif object.kit == 1 %}
+                                                <span class="label label-primary">Punjač i slušalice</span>
+                                            {% elseif object.kit == 2 %}
+                                                <span class="label label-primary">Punjač</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mreža:</td>
+                                        <td>
+                                            {% if object.network == 0 %}
+                                                <span class="label label-default">SimFree</span>
+                                            {% elseif object.network == 1 %}
+                                                <span class="label label-default">MTS</span>
+                                            {% elseif object.network == 2 %}
+                                                <span class="label label-default">Telenor</span>
+                                            {% elseif object.network == 3 %}
+                                                <span class="label label-default">Vip</span>
+                                            {% elseif object.network == 4 %}
+                                                <span class="label label-default">Ostalo</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            </table>
+
+                            {% if object.priceOff != 0 %}
+                                <span class="price"><del>{{ object.price }} RSD</del> {{ object.price - (object.priceOff / 100 * object.price) }} RSD</span>
+                            {% else %}
+                                <span class="price">{{ object.price }} RSD</span>
+                            {% endif %}
+
+
+                            <table class="product-actions-single">
+                                <tr>
+                                    <td>Količina:</td>
+                                    <td>
+                                        <div class="numeric-input">
+                                            <input class="quantity-of" type="text" value="1">
+                                            <span class="arrow-up"><i class="icons icon-up-dir"></i></span>
+                                            <span class="arrow-down"><i class="icons icon-down-dir"></i></span>
+                                        </div>
+                                        <a href="#">
+                                            <span class="add-to-cart">
+                                                <span class="action-wrapper">
+                                                    <i class="icons icon-basket-2"></i>
+                                                    <span class="action-name action-cart"
+                                                          data-img="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}"
+                                                          data-price="{% if object.priceOff > 0 %}{{ object.price - (object.priceOff / 100 * object.price) }}{% else %}{{ object.price }}{% endif %}"
+                                                          data-name="{{ object.mark }} {{ object.model }}">Dodaj u korpu
+                                                    </span>
+                                                </span >
+                                            </span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <br/>
+                            <div class="product-actions">
+                                <span class="add-to-favorites">
+                                    <span class="action-wrapper">
+                                        <i class="icons icon-heart-empty"></i>
+                                         <span class="action-name action-wishlist"
+                                               data-img="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}"
+                                               data-price="{% if object.priceOff > 0 %}{{ object.price - (object.priceOff / 100 * object.price) }}{% else %}{{ object.price }}{% endif %}"
+                                               data-link="/telefon/{{ object.mark }}/{{ object.model }}/{{ object.id }}"
+                                               data-name="{{ object.mark }} {{ object.model }}">Dodaj u želje
+                                            </span>
+                                    </span>
+                                </span>
+                                {% if o == 'p' %}
+                                    <span class="add-to-compare">
+                                        <span class="action-wrapper">
+                                            <i class="icons icon-docs"></i>
+                                            <a style="color: #fff;" href="/zamena/{{ object.id }}"><span class="action-name">Zamena</span></a>
+                                        </span>
+                                    </span>
+                                {% endif %}
+                                <span class="green product-action">
+                                    <span class="action-wrapper">
+                                        <i class="icons icon-info"></i>
+                                        <a style="color: #fff;" href="{{ path('app_contact') }}"><span class="action-name">Postavi pitanje</span></a>
+                                    </span>
+                                </span>
+                            </div>
+                            {#<div class="social-share">#}
+                                {#<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21" style="border:none; overflow:hidden; height:21px; width:100px;"></iframe>#}
+
+                                {#<iframe src="https://platform.twitter.com/widgets/tweet_button.html" style="width:100px; height:20px;"></iframe>#}
+
+                                {#<!-- Place this tag where you want the +1 button to render. -->#}
+                                {#<div class="g-plusone" data-size="medium"></div>#}
+
+                                {#<!-- Place this tag after the last +1 button tag. -->#}
+                                {#<script type="text/javascript">#}
+                                    {#(function() {#}
+                                        {#var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;#}
+                                        {#po.src = 'https://apis.google.com/js/platform.js';#}
+                                        {#var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);#}
+                                    {#})();#}
+                                {#</script>#}
+                                {#<a href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=http%3A%2F%2Ftest.ratkosolar.com%2Fhomeshop%2F15-blog_post.html&description=Next%20stop%3A%20Pinterest" data-pin-do="buttonPin" data-pin-config="beside" class="pinterest"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>#}
+                                {#<!-- Please call pinit.js only once per page -->#}
+                                {#<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>#}
+                            {#</div>#}
+                        </div>
+                        <br/>
+                    </div>
+                </div>
+                <!-- /Product -->
+
+
+                <!-- Product Tabs -->
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+
+                        <div class="tabs">
+
+                            <div class="tab-heading">
+                                <a href="#tab1" class="button big">Opis</a>
+                                <a href="#tab2" class="button big">Dodatne informacije</a>
+                            </div>
+
+                            <div class="page-content tab-content">
+
+                                <div id="tab1">
+                                    <p>{{ object.description }}</p>
+                                    <br/>
+                                    {% if object.link != '' %}
+                                        <p>Na ovom linku možete pogledati više o ovom modelu: <a href="{{ object.link }}" target="_blank" class="btn btn-info btn-small"><i class="icons icon-info-circled"></i> O telefonu</a></p>
+                                    {% endif %}
+                                    <br/>
+                                    {% set tags = object.tags|split(' ') %}
+                                    {% for tag in tags %}
+
+                                        <p class="label label-warning phone_tag">{{ tag}}</p>
+
+                                    {% endfor %}
+                                </div>
+
+                                <div id="tab2">
+                                    <h3>Zanimljivosti:</h3>
+                                    <p>{{ object.funFact }}</p>
+                                    <br/>
+                                    {% if object.videoLink != "" %}
+                                        {% set videoId = object.videoLink|split('=') %}
+                                            {% if videoId|length > 1 %}
+                                                <h3>Video:</h3>
+                                                <iframe width="420" height="315"
+                                                        src="https://www.youtube.com/embed/{{ videoId[1] }}">
+                                                </iframe>
+                                            {% endif %}
+                                    {% endif %}
+                                </div>
+
+                                <div id="tab3">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /Product Tabs -->
+
+            </div>
+
+
+            <!-- New Collection -->
+            <div class="products-row row">
+
+                <!-- Carousel Heading -->
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="carousel-heading">
+                        <h4>Slični proizvodi</h4>
+                        <div class="carousel-arrows">
+                            <i class="icons icon-left-dir"></i>
+                            <i class="icons icon-right-dir"></i>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /Carousel Heading -->
+
+                <!-- Carousel -->
+                <div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="owl-carousel" data-max-items="3">
+
+                        {% for t in relphone %}
+                        <!-- Slide -->
+                            <div>
+                                <!-- Carousel Item -->
+                                <div class="product">
+                                    <div class="product-image">
+                                        {% set images = t.images|split('|') %}
+                                        <img src="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}" alt="{{ t.mark }} {{ t.model }}">
+                                        <a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}" class="product-hover">
+                                            <i class="icons icon-eye-1"></i> Pregled
+                                        </a>
+                                    </div>
+                                    <div class="product-info">
+                                        <h5><a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}">{{ t.mark }} {{ t.model }}</a></h5>
+                                        <span class="price"><del>{{ t.price }} RSD</del>{{ t.price - (t.priceOff / 100 * t.price) }} RSD</span>
+                                    </div>
+
+                                    <div class="product-actions">
+                                        <span class="add-to-cart">
+                                            <span class="action-wrapper">
+                                                <i class="icons icon-basket-2"></i>
+                                                <a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}" style="color: #fff;"><span class="action-name">Dodaj u korpu</span></a>
+                                            </span >
+                                        </span>
+                                        <span class="add-to-favorites">
+                                            <span class="action-wrapper">
+                                                <i class="icons icon-heart-empty"></i>
+                                                <span class="action-name action-wishlist"
+                                                      data-img="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}"
+                                                      data-price="{% if t.priceOff > 0 %}{{ t.price - (t.priceOff / 100 * t.price) }}{% else %}{{ t.price }}{% endif %}"
+                                                      data-link="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}"
+                                                      data-name="{{ t.mark }} {{ t.model }}">Dodaj u želje
+                                                </span>
+                                            </span>
+                                        </span>
+                                        <span class="add-to-compare">
+                                            <span class="action-wrapper">
+                                                <i class="icons icon-docs"></i>
+                                                <a style="color: #fff;" href="/zamena/{{ t.id }}"><span class="action-name">Zamena</span></a>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- /Carousel Item -->
+                            </div>
+                        {% endfor %}
+                        <!-- /Slide -->
+                    </div>
+                </div>
+                <!-- /Carousel -->
+
+            </div>
+            <!-- /New Collection -->
+
+            <!-- Recently Viewed Products -->
+            <div class="products-row row">
+
+                <!-- Carousel Heading -->
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="carousel-heading">
+                        <h4>Oprema</h4>
+                        <div class="carousel-arrows">
+                            <i class="icons icon-left-dir"></i>
+                            <i class="icons icon-right-dir"></i>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /Carousel Heading -->
+
+
+                <!-- Carousel -->
+                <div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="owl-carousel" data-max-items="3">
+                        {% for e in releq %}
+                            {% set images = e.images|split('|') %}
+                            <!-- Slide -->
+                            <div>
+                                <!-- Carousel Item -->
+                                <div class="product">
+
+                                    <div class="product-image">
+                                        <img src="{{ asset('bundles/app/upload/equiment/') }}{{ images[0] }}" alt="{{ e.mark }} {{ e.name }}">
+                                        <a href="/oprema/{{ e.mark }}/{{ e.name }}/{{ e.id }}" class="product-hover">
+                                            <i class="icons icon-eye-1"></i> Pregled
+                                        </a>
+                                    </div>
+
+                                    <div class="product-info">
+                                        <h5><a href="/oprema/{{ e.mark }}/{{ e.name }}/{{ e.id }}">{{ e.name }}</a></h5>
+                                        <p class="product-categories">
+                                            {% if e.priceOff != 0 %}
+                                                <span class="price"><del>{{ e.price }} RSD</del> {{ e.price - (e.priceOff / 100 * e.price) }} RSD</span>
+                                            {% else %}
+                                                <span class="price">{{ e.price }} RSD</span>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="product-actions">
+                                        <span class="add-to-cart">
+                                            <span class="action-wrapper">
+                                                <i class="icons icon-basket-2"></i>
+                                                <a href="/oprema/{{ e.mark }}/{{ e.name }}/{{ e.id }}" style="color: #fff;"><span class="action-name">Dodaj u korpu</span></a>
+                                            </span >
+                                        </span>
+                                        <span class="add-to-favorites">
+                                            <span class="action-wrapper">
+                                                <i class="icons icon-heart-empty"></i>
+                                                  <span class="action-name action-wishlist"
+                                                        data-img="{{ asset('bundles/app/upload/equiment/') }}{{ images[0] }}"
+                                                        data-price="{% if e.priceOff > 0 %}{{ e.price - (e.priceOff / 100 * e.price) }}{% else %}{{ e.price }}{% endif %}"
+                                                        data-link="/oprema/{{ e.mark }}/{{ e.name }}/{{ e.id }}"
+                                                        data-name="{{ e.mark }} {{ e.name }}">Dodaj u želje
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- /Carousel Item -->
+                            </div>
+                            <!-- /Slide -->
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- /Carousel -->
+
+
+            </div>
+            <!-- /Recently Viewed Products -->
+
+
+
+            {#<!-- Product Buttons -->#}
+            {#<div class="row button-row">#}
+
+                {#<div class="col-lg-5 col-md-5 col-sm-5">#}
+                    {#<a class="button grey regular" href="#"><i class="icons icon-reply"></i> BACK TO: Computers &amp; Tablets</a>#}
+                {#</div>#}
+
+                {#<div class="col-lg-7 col-md-7 col-sm-7 align-right">#}
+                    {#<a class="button grey regular" href="#"><i class="icons icon-left-dir"></i> PREVIOUS PRODUCT</a>#}
+                    {#<a class="button grey regular right-icon" href="#">NEXT PRODUCT <i class="icons icon-right-dir"></i></a>#}
+                {#</div>#}
+
+            {#</div>#}
+            {#<!-- /Product Buttons -->#}
+
+
+        </section>
+        <!-- /Main Content -->
+
+        <!-- Sidebar -->
+
+        {{ render(controller(
+            'AppBundle:Parts:sidebar'
+        )) }}
+        <!-- /Sidebar -->
+
+        <!-- Banner -->
+        {{ render(controller(
+            'AppBundle:Parts:banners'
+        )) }}
+        <!-- /Banner -->
+
+    </div>
+    <!-- /Content -->
+{% endblock %}

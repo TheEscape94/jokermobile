@@ -1,0 +1,24 @@
+otkup_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Buying:new" }
+    methods:  [GET, POST]
+
+otkup_show:
+    path:     /show/{id}/
+    defaults: { _controller: "AppBundle:Buying:show" }
+    methods:  GET
+
+otkup_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Buying:index" }
+    methods:  GET
+
+otkup_edit:
+    path:     /edit/{id}/
+    defaults: { _controller: "AppBundle:Buying:edit" }
+    methods:  [GET, POST]
+
+otkup_delete:
+    path:     /delete/{id}/
+    defaults: { _controller: "AppBundle:Buying:delete" }
+    methods:  DELETE

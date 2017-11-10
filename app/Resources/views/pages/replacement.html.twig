@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="description" content="JokerMobil.com, Prodaja, otkup i zamena mobilnih telefona. Najbolje cene, isplata odmah. Zamenite Va stari telefon za novi.">
+    <meta name="keywords" content="Prodaja telefona, Otkup telefona, Zamena telefona, Mobilni telefoni, Oprema za mobilne telefone, Staro za novo">
+    <meta name="author" content="Milos Aperlic">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+{% block title %} | Zamena i otkup {% endblock %}
+{% block body %}
+    <!-- Content -->
+    <div class="row content">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="breadcrumbs">
+                <p><a href="/">Početna</a> <i class="icons icon-right-dir"></i> Zamena i otkup</p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+
+
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="carousel-heading no-margin">
+                        <h4>Zamena i otkup</h4>
+                    </div>
+
+                    <div class="page-content">
+
+                        <h3>Zamena</h3>
+                        <p>
+                            Ukoliko ste se odlučili da kupite novi telefon, ali ne znate šta ćete sa starim telefonom, ne brinite, i dalje ste na
+                            pravom mestu. Pronađite model koji Vam se sviđa i koji bi ste želeli da imate zatim umesto na dugme "Dodaj u korpu" kliknite
+                            na dugme "Zamena". Otvoriće Vam se nova stranica gde treba da popunite informacije o Vašem uređaju kao što su stanje, kratak opis,
+                            dodate slike i slično kako bi mogli da procenimo Vaš uređaj i damo Vam <b>najbolju ponudu</b>. Nakon što popunite informacije o
+                            Vašem uređaju potrebno je da popunite i informacije o Vama kao što su ime i prezime i broj telefona na koji možemo da Vam javimo
+                            ponudu u najkraćem roku.
+                        </p>
+                        <h3>Otkup</h3>
+                        <p>
+                            Ukoliko želite da Vi nama prodate Vaš telefon, takođe ste na pravom mestu. Ponudu Vašeg uređaja nam možete poslati putem stranice
+                            za otkup odnosno <a href="/otkup">ovde</a>. Potrebno je da popunite navedena polja, aplodujete par slika, zatim popunite informacije
+                            o Vama pomoću kojih Vas možemo kontaktirati i javiti Vam da li smo zainteresovani i koliko možemo da Vam ponudimo za Vaš uređaj.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /Main Content -->
+        {{ render(controller(
+        'AppBundle:Parts:sidebar'
+        )) }}
+    </div>
+    <!-- /Content -->
+    {{ render(controller(
+    'AppBundle:Parts:banners'
+    )) }}
+{% endblock %}

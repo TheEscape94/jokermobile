@@ -1,0 +1,32 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+<div class="col-md-offset-2 col-md-8 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2><i class="fa fa-edit"></i> Izmena kategorije</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li class="pull-right"><i class="fa fa-info"></i></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <br />
+            {{ form_start(edit_form) }}
+                {{ form_widget(edit_form) }}
+            <div class="form-group">
+                <a class="btn btn-info pull-left" href="{{ path('admin_kategorije_new') }}">Povratak na listu</a>
+                <button class="btn btn-success pull-right" type="submit">Sačuvaj</button>
+            </div>
+            <div class="clearfix"></div>
+            {{ form_end(edit_form) }}
+
+            <br/>
+
+            {{ form_start(delete_form) }}
+            <input class="btn btn-danger pull-left" type="submit" value="Obriši">
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

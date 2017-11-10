@@ -1,0 +1,20 @@
+AppBundle\Entity\Categories_phones:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\Categories_phonesRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '65'
+        createdAt:
+            type: datetime
+            column: created_at
+        enabled:
+            type: boolean
+    lifecycleCallbacks: {  }

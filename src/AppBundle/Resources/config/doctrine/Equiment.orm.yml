@@ -1,0 +1,53 @@
+AppBundle\Entity\Equiment:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\EquimentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        category:
+            type: integer
+        mark:
+            type: string
+            length: '45'
+        name:
+            type: string
+            length: '145'
+        myPrice:
+            type: integer
+            column: my_price
+        priceOff:
+            type: integer
+            column: price_off
+        price:
+            type: integer
+        description:
+            type: string
+            length: '1255'
+        images:
+            type: string
+            length: '4255'
+        videoLink:
+            type: string
+            length: 255
+            column: video_link
+        link:
+            type: string
+            length: 255
+        funFact:
+            type: string
+            length: 255
+            column: fun_fact
+        tags:
+            type: string
+            length: 1255
+        createdAt:
+            type: datetime
+            column: created_at
+        views:
+            type: integer
+    lifecycleCallbacks: {  }

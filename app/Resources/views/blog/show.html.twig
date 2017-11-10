@@ -1,0 +1,59 @@
+{% extends 'adminbase.html.twig' %}
+{% block body %}
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2><strong>{{ blog.name }}</strong></h2>
+            <ul class="nav navbar-right panel_toolbox">
+
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Naslov:</th>
+                        <td>{{ blog.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Naslovna slika:</th>
+                        <td><img class="previewImg previewBig" src="{{ asset('bundles/app/upload/blog/') }}{{ blog.img1 }}" alt="blog-img" height="80" width="80"></td>
+                    </tr>
+                    <tr>
+                        <th>Sika u tekstu</th>
+                        <td><img class="previewImg previewBig" src="{{ asset('bundles/app/upload/blog/') }}{{ blog.img2 }}" alt="blog-img" height="80" width="80"></td>
+                    </tr>
+                    <tr>
+                        <th>Text:</th>
+                        <td>{{ blog.contentTxt }}</td>
+                    </tr>
+                    <tr>
+                        <th>Kreirao</th>
+                        <td>{{ blog.createdFrom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Kreirano</th>
+                        <td>{% if blog.createdAt %}{{ blog.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>Pregleda</th>
+                        <td><h3 class="label label-success">{{ blog.views }}</h3></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                <a class="btn btn-info pull-left marginTop" href="{{ path('blogBox') }}">Povratak na listu</a>
+                                <a class="btn btn-warning pull-right marginTop" style="margin-left: 10px" href="{{ path('blog_edit', { 'id': blog.id }) }}">Izmeni</a>
+                                {{ form_start(delete_form) }}
+                                    <input class="btn btn-danger pull-right marginTop" type="submit" value="Obriši">
+                                {{ form_end(delete_form) }}
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

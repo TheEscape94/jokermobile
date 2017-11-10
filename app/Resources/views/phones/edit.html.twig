@@ -1,0 +1,61 @@
+{% extends 'adminbase.html.twig' %}
+{% block body %}
+<div class="col-md-offset-2 col-md-8 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2><i class="fa fa-edit"></i> Izmena</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li class="pull-right"><i class="fa fa-info"></i></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <br />
+            {{ form_start(edit_form) }}
+                {{ form_widget(edit_form) }}
+                <div class="col-md-12 col-xs-12">
+                    <button class="btn btn-warning pull-right" data-toggle="modal" data-target="#tagmodal"><i class="fa fa-hashtag"></i> Izaberi tagove</button>
+                </div>
+                <!-- Modal -->
+                <div id="tagmodal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Tagovi</h4>
+                            </div>
+                            <div class="modal-body">
+                                {% for tag in tags %}
+                                    {% if tag.id % 4 == 3 %}
+                                        <p class="label label-success phone_tag">{{ tag.name }}</p>
+                                    {% elseif tag.id % 4 == 2 %}
+                                        <p class="label label-warning phone_tag">{{ tag.name }}</p>
+                                    {% elseif tag.id % 4 == 1 %}
+                                        <p class="label label-info phone_tag">{{ tag.name }}</p>
+                                    {% else %}
+                                        <p class="label label-danger phone_tag">{{ tag.name }}</p>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <div class="modal-footer">
+                                <p>JokerMobil.com</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-info pull-left marginTop" href="{{ path('admin_telefoni_index') }}">Povratak na listu</a>
+                    <button class="btn btn-success pull-right marginTop" type="submit">Sačuvaj izmene</button>
+                </div>
+            {{ form_end(edit_form) }}
+            <div class="form-group">
+                {{ form_start(delete_form) }}
+                <input class="btn btn-danger pull-left marginTop" type="submit" value="Obriši">
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

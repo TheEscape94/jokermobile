@@ -1,0 +1,42 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+    encoders:
+        AppBundle\Entity\Users:
+            algorithm: bcrypt
+
+    providers:
+        db_provider:
+            entity:
+                  class: AppBundle:Users
+
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            form_login:
+                  login_path: login
+                  check_path: login
+                  target_path_parameter: go_to
+                  failure_path_parameter: back_to
+
+            logout:
+                  path: /logout
+                  target: /
+
+    access_control:
+        - { path: ^/dashboard, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/admin/*, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/zamena/new, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/zamena/show, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/zamena/edit, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/otkup/new, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/otkup/show, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/otkup/edit, role: IS_AUTHENTICATED_FULLY }
+
+

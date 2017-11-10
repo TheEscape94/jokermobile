@@ -1,0 +1,106 @@
+{% extends 'adminbase.html.twig' %}
+{% block body %}
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Zahtev za zamenu <small>No. {{ replacement.id }}</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ replacement.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Izabran telefon</th>
+                        <td>{{ replacement.choosedPhone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ponudjen telefon</th>
+                        <td>{{ replacement.phone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Telefon je</th>
+                        <td>{% if replacement.isNew == 0 %} Nov {% else %} Polovan ( {{ replacement.stateNum }}/10 ){% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>Mreza</th>
+                        <td>
+                            {% if replacement.network == 0 %}
+                                SimFri
+                            {% elseif replacement.network == 1 %}
+                                MTS
+                            {% elseif replacement.network == 2 %}
+                                Telenor
+                            {% elseif replacement.network == 3 %}
+                                Vip
+                            {% elseif replacement.network == 4 %}
+                                Ostalo
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Oprema</th>
+                        <td>
+                            {% if replacement.kit == 0 %}
+                                Sve (punjač, slušalice, kutija)
+                            {% elseif replacement.kit == 1 %}
+                                Punjač i slušalice
+                            {% elseif replacement.kit == 2 %}
+                                Punjač
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Opis</th>
+                        <td>{{ replacement.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Slike</th>
+                        <td>
+                            {% set images = replacement.images|split('|') %}
+                            {% for i in images %}
+                                <img class="previewImg previewBig" src="{{ asset('bundles/app/upload/replacement/') }}{{ i }}" width="100" height="100" />
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Stiglo</th>
+                        <td>{% if replacement.createdAt %}{{ replacement.createdAt|date('d-m-Y H:i') }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                       <td colspan="2" style="background-color: #faebcc;"><strong>Podaci korisnika</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Ime</td>
+                        <td>{{ replacement.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Telefon</td>
+                        <td>{{ replacement.phone }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>{{ replacement.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Adresa</td>
+                        <td>{{ replacement.adress}}, {{ replacement.city }}, {{ replacement.postNum }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="form-group">
+                <a class="btn btn-success pull-left" href="{{ path('replaceOffer') }}">Povratak na listu</a>
+                {{ form_start(delete_form) }}
+                <input class="btn btn-danger pull-right" type="submit" value="Obriši">
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
