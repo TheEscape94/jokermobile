@@ -1,0 +1,18 @@
+AppBundle\Entity\Reminder:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\ReminderRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+            column: created_at
+    lifecycleCallbacks: {  }

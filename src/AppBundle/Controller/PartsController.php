@@ -12,20 +12,32 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 class PartsController extends Controller
 {
     /**
      * @Route("/header_part_one", name="header_part_one")
      */
-    public function headerAction(Request $request)
+    public function headerAction(Request $request, SessionInterface $session)
     {
         $em = $this->getDoctrine()->getManager();
         $categories = $em->getRepository('AppBundle:Categories_kit')->findBy(array(), array(
             'id' => 'DESC',
         ));
 
+        $allprice = 0;
+        $articles = $session->get('articles');
+        if ($articles != null){
+            for($i = 0; $i < count($articles); $i++){
+                $allprice = $allprice + $articles[$i]['price'] * $articles[$i]['q'];
+            }
+        }
+
+
         return $this->render('parts/header.html.twig', array(
             'categories' => $categories,
+            'allprice' => $allprice,
         ));
     }
 

@@ -34,14 +34,17 @@
             <br />
             <br />
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <div class="col-sm-12">
-                <h3>Već ste ulogovani</h3>
                 <br/>
-                <div class="input-group animated bounceInLeft">
-                    <a href="/admin" class="btn btn-success" style="margin-right: 10px">Idi na profil</a>
-                    <a href="{{ logout_path() }}" class="btn btn-danger">Odjavi se</a>
-                </div>
-            </div>
+                <center>
+                    <div class="col-sm-12">
+                        <h3>Već ste ulogovani</h3>
+                        <br/>
+                        <div class="input-group animated bounceInLeft">
+                            <a href="/admin" class="btn btn-success" style="margin-right: 10px">Idi na profil</a>
+                            <a href="{{ logout_path() }}" class="btn btn-danger">Odjavi se</a>
+                        </div>
+                    </div>
+                </center>
             {% else %}
             <section class="login_content">
                 <form action="{{ path('login') }}" method="post">

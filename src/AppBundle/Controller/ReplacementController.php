@@ -77,6 +77,15 @@ class ReplacementController extends Controller
             $em->persist($replacement);
             $em->flush();
 
+            //sending notification email
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Obavestenje sa JokerMobil.com')
+                ->setFrom(['jokermobilapp@gmail.com' => 'JokerMobil.com'])
+                ->setTo(['office@jokermobil.com'])
+                ->setBody('Stigao je novi zahtev za zamenu! Pogledajte u admin panelu o čemu se radi.');
+            $this->get('mailer')->send($message);
+
             $request->getSession()->getFlashBag()->add('success_replacement_buy', '');
 
             return $this->redirectToRoute('zamena_index', array('id' => $id));

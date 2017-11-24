@@ -1000,10 +1000,20 @@ span.nav-description{
 	border-left:1px solid #fff;
 }
 
-#search-button input[type="submit"]{
+#search-button button {
 	height:100%;
+	width: 100%;
+	border-radius: 0;
+	border: none;
 	background:#1abc9c;
 	transition: all 0.2s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-o-transition: all 0.5s;
+}
+#search-button button:hover i{
+	transform: scale(1.5);
 	-webkit-transition: all 0.2s;
 	-moz-transition: all 0.2s;
 	-ms-transition: all 0.2s;
@@ -4044,7 +4054,7 @@ table.orderinfo-table tr:hover{
 
 table.orderinfo-table th{
 	width:170px;
-	padding:5px 20px;	
+	padding:5px 20px;
 }
 
 table.orderinfo-table td{
@@ -5025,7 +5035,7 @@ input[type="checkbox"]:checked + label:before{
 	}
 	.banner-item{
 		width:100%;
-		margin:20px 0!important;	
+		margin:20px 0!important;
 	}
 	.banner .left-side-banner{
 		width:100%;
@@ -5244,4 +5254,46 @@ input[type="checkbox"]:checked + label:before{
 
 del{
 	font-size:12px !important;
+}
+
+.notify {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	width: 230px;
+	z-index: 999999999;
+	display: none;
+	padding-top: 5px;
+	font-size: 14px;
+	text-align: center;
+}
+
+.notify p {
+	font-weight: bold;
+}
+
+.notify span {
+	float: right;
+	color: #ccc;
+	font-weight: bold;
+}
+
+.notify span:hover {
+	cursor: pointer;
+	color: #333;
+}
+
+.cart-table-notify {
+	text-align: center;
+	margin-top: 15px;
+}
+
+.orderinfo-table tr td {
+	vertical-align: middle !important;
+}
+#tab2 {
+ display: none;
+}
+.wish-list-product td a:hover {
+ text-decoration: underline;
 }

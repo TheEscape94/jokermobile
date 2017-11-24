@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,15 +15,42 @@ class OrderCartType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('orderNum', null, array())
-            ->add('orderTxt')
-            ->add('orderPrice')
-            ->add('name')
-            ->add('lastName')
-            ->add('adress')
-            ->add('city')
-            ->add('phone')
-            ->add('email');
+            ->add('name', null, array(
+                'label' => "Ime:",
+                'attr' => array(
+                    'class' => 'form-control parent-half'
+                )
+            ))
+            ->add('lastName', null, array(
+                'label' => "Prezime:",
+                'attr' => array(
+                    'class' => 'form-control parent-half'
+                )
+            ))
+            ->add('adress', null, array(
+                'label' => "Adresa:",
+                'attr' => array(
+                    'class' => 'form-control parent-half'
+                )
+            ))
+            ->add('city', null, array(
+                'label' => "Grad:",
+                'attr' => array(
+                    'class' => 'form-control parent-half'
+                )
+            ))
+            ->add('phone', null, array(
+                'label' => "Telefon:",
+                'attr' => array(
+                    'class' => 'form-control parent-half'
+                )
+            ))
+            ->add('email', null, array(
+                'label' => "Email:",
+                'attr' => array(
+                    'class' => 'form-control parent-half'
+                )
+            ));
     }
     
     /**

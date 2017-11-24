@@ -46,12 +46,26 @@ class InboxController extends Controller
             $em->persist($inbox);
             $em->flush();
 
-            return $this->redirectToRoute('app_contact');
+            //sending notification email
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Obavestenje sa JokerMobil.com')
+                ->setFrom(['jokermobilapp@gmail.com' => 'JokerMobil.com'])
+                ->setTo(['office@jokermobil.com'])
+                ->setBody('Stigao je novi zahtev za kontakt! Pogledajte u admin panelu o čemu se radi.');
+            $this->get('mailer')->send($message);
+
+            $msg = "Poruka uspešno poslata! Uskoro ćemo Vas kontaktirati";
+
+            return $this->render('inbox/new.html.twig', array(
+                'contact_success' => $msg,
+            ));
         }
 
         return $this->render('inbox/new.html.twig', array(
             'inbox' => $inbox,
             'form' => $form->createView(),
+            'contact_success' => null,
         ));
     }
 

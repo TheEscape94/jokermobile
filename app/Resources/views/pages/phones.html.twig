@@ -27,7 +27,7 @@
                     <div class="carousel-heading no-margin">
                         <h4>Svi telefoni - kategorije</h4>
                     </div>
-                    <div class="page-content">
+                    <div class="page-content" style="color: #fff;">
                         {% for c in cat %}
                             {% if c.id % 4 == 1 %}
                                 <p class="label label-success pull-left marginRight"><a href="/kategorija/{{ c.name }}"><i class="icons icon-right-dir"></i>{{ c.name }}</a></p>
@@ -92,16 +92,21 @@
                                     </div>
 
                                     <div class="product-actions">
-                                        <span class="add-to-cart">
+                                         <span class="add-to-cart">
                                             <span class="action-wrapper">
                                                 <i class="icons icon-basket-2"></i>
-                                                <span class="action-name">Dodaj u korpu</span>
+                                                <a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}" style="color: #fff;"><span class="action-name">Dodaj u korpu</span></a>
                                             </span >
                                         </span>
-                                                <span class="add-to-favorites">
+                                        <span class="add-to-favorites">
                                             <span class="action-wrapper">
                                                 <i class="icons icon-heart-empty"></i>
-                                                <span class="action-name">Dodaj u želje</span>
+                                                 <span class="action-name action-wishlist"
+                                                       data-type = "1"
+                                                       data-id = "{{ t.id }}"
+                                                       data-link="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}"
+                                                 >Dodaj u želje
+                                                 </span>
                                             </span>
                                         </span>
                                         <span class="add-to-compare">

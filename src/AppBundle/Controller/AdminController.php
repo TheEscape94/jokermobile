@@ -35,6 +35,12 @@ class AdminController extends Controller
         $replace = $em->getRepository('AppBundle:Replacement')->findAll();
         $blog = $em->getRepository('AppBundle:Blog')->findAll();
 
+        $reminder = $em->getRepository("AppBundle:Reminder")->findAll();
+        $discount = $em->getRepository("AppBundle:Discount")->findAll();
+
+        $emailList = $em->getRepository('AppBundle:EmailList')->findBy(array(), array(), 9);
+        $searchList = $em->getRepository('AppBundle:Searches')->findBy(array(), array(), 9);
+
         //potrebne informacije
         //ukupna vrednost robe na sajtu
         //potencijalna zarada (razlika u cenama - price i my-price)
@@ -52,6 +58,10 @@ class AdminController extends Controller
             "brojOtkupa" => $buy,
             "brojZamena" => $replace,
             "brojBlogova" => $blog,
+            "reminder" => $reminder,
+            "discount" => $discount,
+            "emailList" => $emailList,
+            "searchList" => $searchList,
         ));
     }
 
@@ -120,5 +130,29 @@ class AdminController extends Controller
         return $this->render('admin/blog.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
+    }
+
+    /**
+     * @Route("/admin/emaillista", name="emailList")
+     */
+    public function emailListAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $emailList = $em->getRepository('AppBundle:EmailList')->findAll();
+        return $this->render('admin/emails.html.twig', array(
+            'emails' => $emailList,
+        ));
+    }
+
+    /**
+     * @Route("/admin/pretrage", name="searchList")
+     */
+    public function searchListAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $searchList = $em->getRepository('AppBundle:Searches')->findAll();
+        return $this->render('admin/searches.html.twig', array(
+            'searches' => $searchList,
+        ));
     }
 }

@@ -49,7 +49,6 @@ class BuyingController extends Controller
 
             if($files != null) {
                 $key = 0;
-
                 foreach ($files as $file)
                 {
                     $fileName = $fileUploader->upload($file);
@@ -62,6 +61,15 @@ class BuyingController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($buying);
             $em->flush();
+
+            //sending notification email
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Obavestenje sa JokerMobil.com')
+                ->setFrom(['jokermobilapp@gmail.com' => 'JokerMobil.com'])
+                ->setTo(['office@jokermobil.com'])
+                ->setBody('Stigao je novi zahtev za otkup! Pogledajte u admin panelu o čemu se radi.');
+            $this->get('mailer')->send($message);
 
             $request->getSession()->getFlashBag()->add('success_offer_buy', '');
 

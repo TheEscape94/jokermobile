@@ -20,10 +20,13 @@ class FileUploader
 
     public function upload(UploadedFile $file)
     {
-        $fileName = md5(uniqid()).'.'.$file->guessExtension();
+        if($file == "" || $file == null){
+            $fileName = 'noimage.jpg';
+        } else {
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+        }
 
         $file->move($this->getTargetDir(), $fileName);
-
         return $fileName;
     }
 

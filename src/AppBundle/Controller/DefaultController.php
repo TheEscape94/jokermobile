@@ -2,9 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\EmailList;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
 {
@@ -122,6 +124,13 @@ class DefaultController extends Controller
             'id' => $id,
         ));
         if(!empty($blog)){
+
+            $data = $em->getRepository('AppBundle:Blog')->findOneBy(array(
+                'id' => $id,
+            ));
+            $data->setViews($data->getViews() + 1);
+            $em->flush();
+
             return $this->render('engine/blog.html.twig', array(
                 'blog' => $blog,
             ));
@@ -165,20 +174,33 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/pretraga", name="search")
-     */
-    public function searchAction(Request $request)
-    {
-        // replace this example code with whatever you need
-        return $this->render('pages/search.html.twig', array());
-    }
-
-    /**
      * @Route("/naprednapretraga", name="supersearch")
      */
     public function superSearchAction(Request $request)
     {
         // replace this example code with whatever you need
         return $this->render('pages/supersearch.html.twig', array());
+    }
+
+    /**
+     * @Route("/api/newsletter_get", name="newsletter_get")
+     */
+    public function newsletterAction(Request $request)
+    {
+        if ($request->isXMLHttpRequest()) {
+            $mail = $request->request->get('mail');
+
+            $emailList = new EmailList();
+            $emailList->setEmail($mail);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($emailList);
+            $em->flush();
+
+            return new JsonResponse(array(
+               'res' => true,
+            ));
+        }
+        return new Response('This is not ajax!', 400);
     }
 }

@@ -49,7 +49,7 @@ class ProductEngineController extends Controller
      *
      * Matches /oprema/*
      *
-     * @Route("/oprema/{mark}/{name}/{id}", name="choosed_kit")
+     * @Route("/oprema/{mark}/{name}/{id}", name="choosed_kit_single")
      */
 
     public function eqFindAction($mark, $name, $id)

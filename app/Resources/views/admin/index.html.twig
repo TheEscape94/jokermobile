@@ -7,7 +7,7 @@
                 <div class="icon"><i class="fa fa-mobile"></i></div>
                 <div class="count">{{ brojOglasaTel|length }}</div>
                 <h3>Oglasi telefona</h3>
-                <p>Ukupna vrednost 165.000 RSD</p>
+                {#<p>Ukupna vrednost 165.000 RSD</p>#}
             </div>
         </div>
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -15,7 +15,7 @@
                 <div class="icon"><i class="fa fa-headphones"></i></div>
                 <div class="count">{{ brojOglasaOp|length }}</div>
                 <h3>Oglasi opreme</h3>
-                <p>Ukupna vrednost 35.000 RSD</p>
+                {#<p>Ukupna vrednost 35.000 RSD</p>#}
             </div>
         </div>
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -23,7 +23,7 @@
                 <div class="icon"><i class="fa fa-bar-chart"></i></div>
                 <div class="count">{{ brojPorudzbina|length }}</div>
                 <h3>Porudžbine</h3>
-                <p>Ukupna vrednost 12.000 RSD</p>
+                {#<p>Ukupna vrednost 12.000 RSD</p>#}
             </div>
         </div>
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -31,7 +31,7 @@
                 <div class="icon"><i class="fa fa-money"></i></div>
                 <div class="count">{{ brojOtkupa|length }}</div>
                 <h3>Otkup uredjaja</h3>
-                <p>Ukupna vrednost 56.000 RSD</p>
+                {#<p>Ukupna vrednost 56.000 RSD</p>#}
             </div>
         </div>
     </div>
@@ -109,70 +109,32 @@
             </div>
         </div>
     </div>
-
-
-
     <div class="row">
         <div class="col-md-4">
             <div class="x_panel">
                 <div class="x_title">
-                    <h3>Poslednje prodato na sajtu <small></small></h3>
                     <ul class="nav navbar-right panel_toolbox">
                         <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                     </ul>
+                    <h3>Potsetnik <small></small></h3>
                     <div class="clearfix"></div>
+                    <br/>
+                    <input type="text" class="form-control reminder-txt" placeholder="Potsetnik" name="reminder" />
+                    <button class="btn btn-success pull-right add-reminder"><i class="fa fa-plus"></i> Dodaj</button>
                 </div>
-                <div class="x_content">
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item One Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item Two Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item Two Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item Two Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item Three Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
+                <div class="x_content reminder-list">
+                    {% for r in reminder|sort|reverse %}
+                        <article class="media event">
+                            <a class="pull-left date">
+                                <p class="month">{{ r.createdAt|date('M')}}</p>
+                                <p class="day">{{ r.createdAt|date('d')}}</p>
+                            </a>
+                            <div class="media-body">
+                                <span class="rembtn remove-reminder" data-id="{{ r.id }}">x</span>
+                                <p>{{ r.name }}</p>
+                            </div>
+                        </article>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -180,63 +142,46 @@
         <div class="col-md-4">
             <div class="x_panel">
                 <div class="x_title">
-                    <h3>Poslednje dodati oglasi <small>telefona</small></h3>
                     <ul class="nav navbar-right panel_toolbox">
                         <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                     </ul>
+                    <h3>Popusti</h3>
+                    <br/>
                     <div class="clearfix"></div>
+                    <center>
+                        <input type="radio" name="type" class="discount-type" value="0" checked /> Popust u % &nbsp; &nbsp;&nbsp; &nbsp;
+                        <input type="radio" name="type" class="discount-type" value="1" /> Popust u RSD
+                    </center>
+                    <br/><br/>
+                    <input type="number" name="value" placeholder="Iznos" class="form-control discount-value">
+                    <input type="text" name="name" placeholder="Naziv popusta" class="form-control discount-name">
+                    <input type="text" name="password" placeholder="Kod popusta" class="form-control discount-code">
+                    <button class="btn btn-success pull-right add-discount"><i class="fa fa-plus"></i> Dodaj</button>
                 </div>
-                <div class="x_content">
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item One Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item Two Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item Two Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item Two Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item Three Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
+                <div class="x_content discount-list">
+                    {% for d in discount|sort|reverse %}
+                        <article class="media event">
+                            <a class="pull-left date">
+                                <p class="month">{{ d.createdAt|date('M')}}</p>
+                                <p class="day">{{ d.createdAt|date('d')}}</p>
+                            </a>
+                            <div class="media-body">
+                                <span class="rembtn remove-discount" data-id="{{ d.id }}">x</span>
+                                <a class="title" href="javascript:void(0)">{{ d.discountPass }}</a>
+                                <p>
+                                    {{ d.name }}
+                                    <span class="label label-warning">
+                                        {{ d.quantity }}
+                                        {% if d.type == 0 %}
+                                            %
+                                        {% else %}
+                                            RSD
+                                        {% endif %}
+                                    </span>
+                                </p>
+                            </div>
+                        </article>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -244,63 +189,42 @@
         <div class="col-md-4">
             <div class="x_panel">
                 <div class="x_title">
-                    <h3>Poslednje poruke <small></small></h3>
                     <ul class="nav navbar-right panel_toolbox">
                         <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                     </ul>
+                    <h3>Mejling lista <small></small></h3>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item One Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item Two Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item Two Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item Two Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
-                    <article class="media event">
-                        <a class="pull-left date">
-                            <p class="month">April</p>
-                            <p class="day">23</p>
-                        </a>
-                        <div class="media-body">
-                            <a class="title" href="#">Item Three Title</a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </article>
+                    {% for e in emailList|reverse %}
+                        <article class="media event">
+                            <p>{{ e.email }} <span class="label label-info">{{ e.createdAt|date('d-m-Y h:m') }}</span></p>
+                        </article>
+                    {% endfor %}
+                    <hr/>
+                    <a class="pull-right" href="{{ path('emailList') }}">Pogledaj sve</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    </ul>
+                    <h3>Pretrage <small></small></h3>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    {% for s in searchList|reverse %}
+                        <article class="media event">
+                            <p>{{ s.search }} <span class="label label-info">{{ s.createdAt|date('d-m-Y h:m') }}</span></p>
+                        </article>
+                    {% endfor %}
+                    <hr/>
+                    <a class="pull-right" href="{{ path('searchList') }}">Pogledaj sve</a>
                 </div>
             </div>
         </div>

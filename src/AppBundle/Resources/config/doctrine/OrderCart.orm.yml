@@ -23,6 +23,13 @@ AppBundle\Entity\OrderCart:
         name:
             type: string
             length: '45'
+        discount:
+            type: string
+            length: '45'
+        discountName:
+            type: string
+            length: '45'
+            column: discount_name
         lastName:
             type: string
             length: '45'

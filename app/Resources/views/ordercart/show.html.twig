@@ -22,7 +22,29 @@
                     </tr>
                     <tr>
                         <th>Porudžbina</th>
-                        <td>{{ orderCart.orderTxt }}</td>
+                        <td>
+                            <table class="table table-striped" style="text-align: center;">
+                                <th style="text-align: center;">Artikal</th>
+                                <th style="text-align: center;">Kol</th>
+                                <th style="text-align: center;">Cena</th>
+                                <th style="text-align: center;">Kol * Cena</th>
+                                {% set order =  orderCart.orderTxt|split('|') %}
+                                {% set allP = 0 %}
+                                {% for o in order %}
+                                    {% set col =  o|split('-') %}
+                                    {#[0] - name ; [1] - quantity ; [2] - price ; [3] - quantity * price#}
+                                    {% if col|length == 4%}
+                                        <tr>
+                                            <td>{{ col[0] }}</td>
+                                            <td>{{ col[1] }}</td>
+                                            <td>{{ col[2] }} RSD</td>
+                                            <td>{{ col[3] }} RSD</td>
+                                            {% set allP = allP + col[3] %}
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </table>
+                        </td>
                     </tr>
                     <tr>
                         <th>Cena</th>

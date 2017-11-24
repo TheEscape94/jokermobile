@@ -5,6 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\OrderCart;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Ordercart controller.
@@ -38,6 +40,7 @@ class OrderCartController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($orderCart);
             $em->flush();
@@ -127,5 +130,30 @@ class OrderCartController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/cart/set_delivery_true", name="set_delivery_true")
+     */
+
+    public function setDeliveryAction(Request $request){
+        if ($request->isXMLHttpRequest()) {
+            $id = $request->request->get('id');
+            $em = $this->getDoctrine()->getManager();
+            $data = $em->getRepository('AppBundle:OrderCart')->findOneBy(array(
+                'id' => $id,
+            ));
+            if($data != null) {
+                $data->setDelivered(1);
+                $em->flush();
+                $c = true;
+            } else {
+                $c = false;
+            }
+            return new JsonResponse(array(
+                'res' => $c,
+            ));
+        }
+        return new Response('This is not ajax!', 400);
     }
 }

@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+{% block title %} | Joker korpa {% endblock %}
+{% block body %}
+<div class="row content">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="breadcrumbs">
+            <p>
+                <a href="{{ path("homepage") }}">Početna</a>
+                <i class="icons icon-right-dir"></i> Joker korpa
+
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+        <div class="tabs">
+            {% if msg != null %}
+                <br/>
+                <br/>
+                <p class="alert alert-success" style="text-align: center;">Vaša porudžbina je uspešno poslata!</p>
+            {% else %}
+            <div class="tab-heading margin-heading">
+                <a href="javascript:void(0)" class="button big">Moja korpa</a>
+                <a href="javascript:void(0)" class="button big">No. {{ orderNum }}</a>
+            </div>
+            <div class="tab-content no-padding" id="tab1">
+                <table class="orderinfo-table">
+                    <tr>
+                        <th style="text-align: center;">Slika</th>
+                        <th style="width: 40%;">Naziv proizvoda</th>
+                        <th style="text-align: center;">Količina</th>
+                        <th style="text-align: right;">Cena</th>
+                        <th style="text-align: right;">Ukupno</th>
+                    </tr>
+                    {% if app.session.get('articles')|length > 0 %}
+                        {% set allprice = 0 %}
+                        {% for i in app.session.get('articles') %}
+                            {% set allprice = allprice + i['q'] * i['price'] %}
+                            <tr>
+                                <td class="align-center">
+                                    {% if i['type'] == 0 %}
+                                        <img src="{{ asset('bundles/app/upload/phones/') }}{{ i['img'] }}" alt="product" width="50" height="50">
+                                    {% else %}
+                                        <img src="{{ asset('bundles/app/upload/equiment/') }}{{ i['img'] }}" alt="product" width="50" height="50">
+                                    {% endif %}
+                                </td>
+                                <td>{{ i['name'] }}</td>
+                                <td class="align-center">{{ i['q'] }}</td>
+                                <td class="align-right">{{ i['price'] }} RSD</td>
+                                <td class="align-right">{{ i['q'] * i['price'] }} RSD</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <h3 class="alert alert-warning" style="text-align: center;">Vaša korpa je prazna!</h3>
+                    {% endif %}
+                </table>
+                {% if app.session.get('articles')|length != 0 %}
+                    <table class="orderinfo-table">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="align-right" colspan="3">Popust:</td>
+                            <td class="align-right">
+                                <input type="text" name="jokerpriceoff" class="discount-code" placeholder="Unesite promo kod" />
+                                <button class="btn btn-info check-discount">Proveri</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td colspan="3"></td>
+                            <td style="text-align: center;" class="discount-result"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="align-right" colspan="3">Poštarina:</td>
+                            {% set postcost = 250 + (1/100 * allprice) %}
+                            <td class="align-right">{{ postcost }} RSD</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="align-right" colspan="3"><span class="price big">Ukupno:</span></td>
+                            <td class="align-right"><span class="price big final-all-price">{{ allprice + postcost }} RSD</span></td>
+                        </tr>
+                    </table>
+                    <button class="btn btn-warning pull-right next-chapter" style="margin-right: 20px;">DALJE</button>
+                {% endif %}
+            </div>
+            <div class="tab-content clearfix" id="tab2">
+                <h3>Unesite Vaše podatke:</h3>
+                <br/>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <br/>
+                <br/>
+                    <button class="btn btn-danger pull-left previous-chapter" style="margin-left: 15px;">Nazad</button>
+                    <input class="btn btn-success pull-right" style="margin-right: 15px;" type="submit" value="Pošalji" />
+                {{ form_end(form) }}
+            </div>
+            {% endif %}
+        </div>
+    </section>
+    {{ render(controller(
+    'AppBundle:Parts:sidebar'
+    )) }}
+</div>
+
+{% endblock %}

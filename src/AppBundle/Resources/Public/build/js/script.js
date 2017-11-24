@@ -94,5 +94,4 @@ $(document).ready(function () {
     $('.open-tagmodal').click(function () {
         $('#tagmodal').show();
     });
-
 });

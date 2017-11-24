@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% block title %} | Kontakt {% endblock %}
 {% block body %}
     <div class="row content">
         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -15,7 +15,7 @@
                         <h4>KONTAKT INFORMACIJE</h4>
                     </div>
                     <div class="page-content contact-info">
-                        <iframe width="425" height="350" src="https://maps.google.rs/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=marmora+road&amp;sll=44.210767,20.922416&amp;sspn=4.606139,10.821533&amp;ie=UTF8&amp;hq=&amp;hnear=Marmora+Rd,+London+SE22+0RX,+United+Kingdom&amp;t=m&amp;z=14&amp;ll=51.451955,-0.055755&amp;output=embed"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2273.343715855918!2d19.846449954405507!3d45.25727753290019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b1066288059b3%3A0x8f395d002ec8c516!2sZmaj+Jovina+26%2C+Novi+Sad!5e0!3m2!1sen!2srs!4v1511370355638" width="425" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
                         <div class="row">
 
                             <div class="col-lg-6 col-md-6 col-sm-6">
@@ -64,21 +64,18 @@
                     <div class="carousel-heading no-margin">
                         <h4>POŠALJITE NAM PORUKU</h4>
                     </div>
-
-                    <div class="page-content contact-form">
-
-                        {{ form_start(form) }}
+                    {% if contact_success != null %}
+                        <p style="text-align: center;" class="alert alert-success"><i class="fa fa-check"></i> {{ contact_success }}</p>
+                    {% else %}
+                        <div class="page-content contact-form">
+                            {{ form_start(form) }}
                             {{ form_widget(form) }}
                             <input class="btn btn-success pull-right" type="submit" value="Pošalji" />
-                        {{ form_end(form) }}
-
-                        <div class="clearfix"></div>
-
-                    </div>
-
+                            {{ form_end(form) }}
+                            <div class="clearfix"></div>
+                        </div>
+                    {% endif %}
                 </div>
-
-
             </div>
 
         </section>

@@ -1,0 +1,26 @@
+AppBundle\Entity\Discount:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\DiscountRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        type:
+            type: boolean
+        name:
+            type: string
+            length: '125'
+        quantity:
+            type: integer
+        discountPass:
+            type: string
+            length: 255
+            column: discount_pass
+        createdAt:
+            type: datetime
+            column: created_at
+    lifecycleCallbacks: {  }

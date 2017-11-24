@@ -21,8 +21,27 @@
     <link rel="stylesheet" href="{{ asset('bundles/app/css/chosen.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/app/css/flexslider.css') }}" type="text/css" media="screen" >
     <link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap.min.css') }}">
-
     <link rel="stylesheet" href="{{ asset('bundles/app/css/style.css') }}">
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('bundles/app/img/icons/apple-icon-57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('bundles/app/img/icons/apple-icon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('bundles/app/img/icons/apple-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('bundles/app/img/icons/apple-icon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('bundles/app/img/icons/apple-icon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('bundles/app/img/icons/apple-icon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('bundles/app/img/icons/apple-icon-144x144.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('bundles/app/img/icons/apple-icon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('bundles/app/img/icons/apple-icon-180x180.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('bundles/app/img/icons/android-icon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('bundles/app/img/icons/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('bundles/app/img/icons/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('bundles/app/img/icons/favicon-16x16.png') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
 </head>
 <body>
 
@@ -47,12 +66,11 @@
                 <div class="row">
 
                     <!-- Newsletter -->
-                    <div class="col-lg-7 col-md-7 col-sm-7">
-                        <form id="newsletter" action="php/newsletter.php">
-                            <h4>Prijavite se da bi dobijali novosti sa JokerMobile.com</h4>
-                            <input type="text" name="newsletter-email" placeholder="Vaša email adresa">
-                            <input type="submit" name="newsletter-submit" value="Pošalji">
-                        </form>
+                    <div class="col-lg-7 col-md-7 col-sm-7" id="newsletter">
+                        <h4>Prijavite se da bi dobijali novosti sa JokerMobile.com</h4>
+                        <input type="text" name="newsletter-email" placeholder="Vaša email adresa">
+                        <button class="btn btn-info" name="newsletter-submit">Pošalji</button>
+                        <p class="text-info"></p>
                     </div>
                     <!-- /Newsletter -->
 
@@ -61,11 +79,10 @@
                     <div class="col-lg-5 col-md-5 col-sm-5 social-media">
                         <h4>Zapratite nas i na:</h4>
                         <ul>
-                            <li class="social-googleplus tooltip-hover" data-toggle="tooltip" data-placement="top" title="Google+"><a href="#"></a></li>
+                            {#<li class="social-facebook tooltip-hover" data-toggle="tooltip" data-placement="top" title="Instagram"><a href="#"></a></li>#}
                             <li class="social-facebook tooltip-hover" data-toggle="tooltip" data-placement="top" title="Facebook"><a href="#"></a></li>
-                            <li class="social-pinterest tooltip-hover" data-toggle="tooltip" data-placement="top" title="Pinterest"><a href="#"></a></li>
-                            <li class="social-twitter tooltip-hover" data-toggle="tooltip" data-placement="top" title="Twitter"><a href="#"></a></li>
                             <li class="social-youtube tooltip-hover" data-toggle="tooltip" data-placement="top" title="Youtube"><a href="#"></a></li>
+                            <li class="social-googleplus tooltip-hover" data-toggle="tooltip" data-placement="top" title="Google+"><a href="#"></a></li>
                         </ul>
                     </div>
                     <!-- /Social Media -->
@@ -104,10 +121,17 @@
                     <!-- Like us on Facebook -->
                     <div class="col-lg-3 col-md-3 col-sm-6 facebook-iframe">
                         <h4>Pratite nas na Facebook-u</h4>
-                        <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2FFacebookDevelopers&amp;width=270&amp;height=250&amp;colorscheme=light&amp;header=false&amp;show_faces=true&amp;stream=false&amp;show_border=false" style="border:none; overflow:hidden; width:100%; height:290px;"></iframe>
+                        <div class="fb-page" data-href="https://www.facebook.com/JokerMobil.NS/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/JokerMobil.NS/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/JokerMobil.NS/">Joker Mobil</a></blockquote></div>
                     </div>
                     <!-- /Like us on Facebook -->
-
+                    <div id="fb-root"></div>
+                    <script>(function(d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) return;
+                            js = d.createElement(s); js.id = id;
+                            js.src = 'https://connect.facebook.net/sr_RS/sdk.js#xfbml=1&version=v2.11&appId=428179234182683';
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));</script>
 
                     <!-- Information -->
                     <div class="col-lg-3 col-md-3 col-sm-6">
@@ -145,22 +169,16 @@
         <!-- /Main Footer -->
         <!-- Lower Footer -->
         <div class="col-lg-12 col-md-12 col-sm-12">
-
             <div id="lower-footer">
-
                 <div class="row">
-
                     <div class="col-lg-6 col-md-6 col-sm-6">
-                        <p class="copyright">Sva prava zadržana &copy; 2017. <a href="/">JokerMobile.com</a></p>
-                        <p class="copyright">Powered by <a href="milosaperlic.com">M.A.</a></p>
+                        <p class="copyright">Sva prava zadržana &copy; 2017. <a href="{{ path('homepage') }}">JokerMobile.com</a></p>
+                        <p class="copyright">Powered by <a href="http://milosaperlic.com/" target="_blank">M.A.</a></p>
                     </div>
                 </div>
-
             </div>
-
         </div>
         <!-- /Lower Footer -->
-
     </footer>
     <!-- Footer -->
 
@@ -198,6 +216,17 @@
         <hr/>
         <h3>JokerMobil.com</h3>
     </div>
+</div>
+
+<div class="alert alert-warning notify cart-notify">
+    <span>x</span>
+    <br/>
+    <p></p> je uspešno dodat u korpu!
+</div>
+<div class="alert alert-danger notify favorite-notify">
+    <span>x</span>
+    <br/>
+    <p></p> je uspešno dodat na listu želja!
 </div>
 
 <!-- JavaScript -->

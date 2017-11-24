@@ -1,4 +1,12 @@
 {% extends 'base.html.twig' %}
+{% block head %}
+    {% set images = object.images|split('|') %}
+    <meta property="og:title" content="{{ object.mark }}{% if o == 'p' %}{{ object.model }}{% else %}{{ object.name }}{% endif %}">
+    <meta property="og:image" content="{{ object.mark }}{% if o == 'p' %}{{ asset("bundles/app/upload/phones/") }}{{ images[0] }}{% else %}{{ asset("bundles/app/upload/equiment/") }}{{ images[0] }}{% endif %}">
+    <meta property="og:url" content="{{ object.mark }}{% if o == 'p' %}http://jokermobil.com/telefon/{{ object.mark }}/{{ object.model }}/{{ object.id }}{% else %}http://jokermobil.com/oprema/{{ object.mark }}/{{ object.name }}/{{ object.id }}{% endif %}">
+    <meta property="og:site_name" content="JokerMobil.com">
+    <meta property="og:description" content="{{ object.description }}">
+{% endblock %}
 {% block title %} |
     {{ object.mark }}
     {% if o == 'p' %}
@@ -6,7 +14,6 @@
     {% else %}
         {{ object.name }}
     {% endif %}
-
 {% endblock %}
 {% block body %}
     <div class="row content">
@@ -31,9 +38,9 @@
                         <!-- Product Images Carousel -->
                         <div class="col-lg-5 col-md-5 col-sm-5 product-single-image">
                             <div id="product-slider">
-                                {% set images = object.images|split('|') %}
                                 <ul class="slides">
                                     <li>
+                                        {% set images = object.images|split('|') %}
                                         {% if o == 'p' %}
                                             <img class="cloud-zoom" src="{{ asset("bundles/app/upload/phones/") }}{{ images[0] }}" data-large="{{ asset("bundles/app/upload/phones/") }}{{ images[0] }}" alt="" />
                                         {% else %}
@@ -49,6 +56,7 @@
                             </div>
                             <div id="product-carousel">
                                 <ul class="slides">
+                                    {% set images = object.images|split('|') %}
                                     {% for i in images %}
                                         <li>
                                         {% if o == 'p' %}
@@ -167,70 +175,48 @@
                                             <span class="arrow-up"><i class="icons icon-up-dir"></i></span>
                                             <span class="arrow-down"><i class="icons icon-down-dir"></i></span>
                                         </div>
-                                        <a href="#">
-                                            <span class="add-to-cart">
-                                                <span class="action-wrapper">
-                                                    <i class="icons icon-basket-2"></i>
-                                                    <span class="action-name action-cart"
-                                                          data-img="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}"
-                                                          data-price="{% if object.priceOff > 0 %}{{ object.price - (object.priceOff / 100 * object.price) }}{% else %}{{ object.price }}{% endif %}"
-                                                          data-name="{{ object.mark }} {{ object.model }}">Dodaj u korpu
-                                                    </span>
-                                                </span >
-                                            </span>
+                                        <a href="javascript:void(0)">
+                                            <button class="btn btn-warning action-name add_to_cart_phones"
+                                                  data-id="{{ object.id }}"
+                                                  data-type = "{% if o == 'p' %}0{% else %}1{% endif %}">
+                                                <i class="icons icon-basket-2"></i> Dodaj u korpu</button>
                                         </a>
-                                    </td>
-                                </tr>
-                            </table>
-                            <br/>
-                            <br/>
-                            <div class="product-actions">
-                                <span class="add-to-favorites">
-                                    <span class="action-wrapper">
-                                        <i class="icons icon-heart-empty"></i>
-                                         <span class="action-name action-wishlist"
-                                               data-img="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}"
-                                               data-price="{% if object.priceOff > 0 %}{{ object.price - (object.priceOff / 100 * object.price) }}{% else %}{{ object.price }}{% endif %}"
-                                               data-link="/telefon/{{ object.mark }}/{{ object.model }}/{{ object.id }}"
-                                               data-name="{{ object.mark }} {{ object.model }}">Dodaj u želje
-                                            </span>
-                                    </span>
-                                </span>
-                                {% if o == 'p' %}
-                                    <span class="add-to-compare">
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <br/>
+                                <div class="product-actions">
+                                    <span class="add-to-favorites">
                                         <span class="action-wrapper">
-                                            <i class="icons icon-docs"></i>
-                                            <a style="color: #fff;" href="/zamena/{{ object.id }}"><span class="action-name">Zamena</span></a>
+                                            <i class="icons icon-heart-empty"></i>
+                                             <span class="action-name action-wishlist"
+                                                   data-type = "{% if o == 'p' %}0{% else %}1{% endif %}"
+                                                   data-id = "{{ object.id }}"
+                                                    {% if o == 'p' %}
+                                                        data-link="/telefon/{{ object.mark }}/{{ object.model }}/{{ object.id }}"
+                                                    {% else %}
+                                                        data-link="/oprema/{{ object.mark }}/{{ object.name }}/{{ object.id }}"
+                                                    {% endif %}
+                                                    >Dodaj u želje
+                                             </span>
                                         </span>
                                     </span>
-                                {% endif %}
-                                <span class="green product-action">
-                                    <span class="action-wrapper">
-                                        <i class="icons icon-info"></i>
-                                        <a style="color: #fff;" href="{{ path('app_contact') }}"><span class="action-name">Postavi pitanje</span></a>
+                                    {% if o == 'p' %}
+                                        <span class="add-to-compare">
+                                            <span class="action-wrapper">
+                                                <i class="icons icon-docs"></i>
+                                                <a style="color: #fff;" href="/zamena/{{ object.id }}"><span class="action-name">Zamena</span></a>
+                                            </span>
+                                        </span>
+                                    {% endif %}
+                                    <span class="green product-action">
+                                        <span class="action-wrapper">
+                                            <i class="icons icon-info"></i>
+                                            <a style="color: #fff;" href="{{ path('app_contact') }}"><span class="action-name">Postavi pitanje</span></a>
+                                        </span>
                                     </span>
-                                </span>
-                            </div>
-                            {#<div class="social-share">#}
-                                {#<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21" style="border:none; overflow:hidden; height:21px; width:100px;"></iframe>#}
-
-                                {#<iframe src="https://platform.twitter.com/widgets/tweet_button.html" style="width:100px; height:20px;"></iframe>#}
-
-                                {#<!-- Place this tag where you want the +1 button to render. -->#}
-                                {#<div class="g-plusone" data-size="medium"></div>#}
-
-                                {#<!-- Place this tag after the last +1 button tag. -->#}
-                                {#<script type="text/javascript">#}
-                                    {#(function() {#}
-                                        {#var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;#}
-                                        {#po.src = 'https://apis.google.com/js/platform.js';#}
-                                        {#var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);#}
-                                    {#})();#}
-                                {#</script>#}
-                                {#<a href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=http%3A%2F%2Ftest.ratkosolar.com%2Fhomeshop%2F15-blog_post.html&description=Next%20stop%3A%20Pinterest" data-pin-do="buttonPin" data-pin-config="beside" class="pinterest"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>#}
-                                {#<!-- Please call pinit.js only once per page -->#}
-                                {#<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>#}
-                            {#</div>#}
+                                </div>
                         </div>
                         <br/>
                     </div>
@@ -347,11 +333,11 @@
                                         <span class="add-to-favorites">
                                             <span class="action-wrapper">
                                                 <i class="icons icon-heart-empty"></i>
-                                                <span class="action-name action-wishlist"
-                                                      data-img="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}"
-                                                      data-price="{% if t.priceOff > 0 %}{{ t.price - (t.priceOff / 100 * t.price) }}{% else %}{{ t.price }}{% endif %}"
-                                                      data-link="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}"
-                                                      data-name="{{ t.mark }} {{ t.model }}">Dodaj u želje
+                                                 <span class="action-name action-wishlist"
+                                                       data-type = "0"
+                                                       data-id = "{{ object.id }}"
+                                                       data-link="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}"
+                                                    >Dodaj u želje
                                                 </span>
                                             </span>
                                         </span>
@@ -430,11 +416,11 @@
                                         <span class="add-to-favorites">
                                             <span class="action-wrapper">
                                                 <i class="icons icon-heart-empty"></i>
-                                                  <span class="action-name action-wishlist"
-                                                        data-img="{{ asset('bundles/app/upload/equiment/') }}{{ images[0] }}"
-                                                        data-price="{% if e.priceOff > 0 %}{{ e.price - (e.priceOff / 100 * e.price) }}{% else %}{{ e.price }}{% endif %}"
-                                                        data-link="/oprema/{{ e.mark }}/{{ e.name }}/{{ e.id }}"
-                                                        data-name="{{ e.mark }} {{ e.name }}">Dodaj u želje
+                                                 <span class="action-name action-wishlist"
+                                                       data-type = "1"
+                                                       data-id = "{{ e.id }}"
+                                                       data-link="/oprema/{{ e.mark }}/{{ e.name }}/{{ e.id }}"
+                                                     >Dodaj u želje
                                                 </span>
                                             </span>
                                         </span>

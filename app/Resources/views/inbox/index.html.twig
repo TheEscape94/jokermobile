@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for inbox in inboxes %}
+        {% for inbox in inboxes|reverse %}
             <tr {% if inbox.isRead == 0 %}style="background: #faebcc;"{% endif %}>
                 <td>{% if inbox.isRead == 0 %}<span class="badge">NOVO</span> {% endif %}</td>
                 <td>{{ inbox.name }}</td>

@@ -71,85 +71,23 @@ $(document).ready(function () {
         }
     })
 
-    //add in wish list - FRONT
-    $('.action-wishlist').click(function () {
-        $('.wish-table-notify').hide();
-        $('.clear-wishlist').show();
 
-        var tableList = $('.wish-table');
 
-        var price = $(this).attr('data-price');
-        var imgsrc = $(this).attr('data-img');
-        var link = $(this).attr('data-link');
-        var name = $(this).attr('data-name');
-
-        tableList.append(
-            '<tr class="wish-list-product">' +
-                '<td><img src="'+ imgsrc +'" alt="product"></td>' +
-                '<td>' +
-                    '<h6>' + name + '</h6>' +
-                '</td>' +
-                '<td>' +
-                    '<span class="quantity"><span class="light"></span>' + price + ' RSD</span>' +
-                    '<a href="' + link + '" class="parent-color"><i class="fa fa-plus"></i> Dodaj u korpu</a>' +
-                '</td>' +
-            '</tr>'
-        );
-
-        var items = $(".wish-list-product");
-        $('.count-wishlist').text(items.length);
-
+    $('.notify span').click(function () {
+       $(this).parent().hide(150);
     });
 
-    $('.clear-wishlist').click(function (e) {
-        $(this).hide();
-        $('.wish-table-notify').show();
-        $('.wish-table tr').remove();
-        $('.count-wishlist').text('0');
-    });
+    var tab1 = $('#tab1');
+    var tab2 = $('#tab2');
 
-    //add in cart list - FRONT
+    $('.next-chapter').click(function () {
+        tab1.hide();
+        tab2.show();
+    })
 
-    $('.action-cart').click(function () {
-        $('.cart-table-notify').hide();
-        $('.cart-footer').show();
-
-        var tablelist = $('.cart-result-table');
-        var allprice = $('.all-products-price');
-
-        var q = parseInt($('.quantity-of').val());
-
-        var price = parseInt($(this).attr('data-price'));
-        var img = $(this).attr('data-img');
-        var name = $(this).attr('data-name');
-
-        var countprice = parseInt(allprice.text()) + q * price;
-
-        tablelist.append(
-            '<tr class="cart-list-product">' +
-            '<td><img src="'+ img +'" alt="product"></td>' +
-            '<td>' +
-            '<h6>' + name + '</h6>' +
-            '</td>' +
-            '<td>' +
-            '<span class="quantity"><span class="light">'+ q +' x </span>' + price + ' RSD</span>' +
-            '<a class="parent-color"><i class="fa fa-minus"></i> Ukloni</a>' +
-            '</td>' +
-            '</tr>'
-        );
-
-        allprice.text(countprice);
-
-        var items = $(".cart-list-product");
-        $('.count-cart').text(items.length);
-    });
-
-    $('.clear-cart-list').click(function () {
-        $('.cart-result-table tr').remove();
-        $('.count-cart').text('0');
-        $('.cart-footer').hide();
-        $('.cart-table-notify').show();
-        $('.all-products-price').text('0');
-    });
+    $('.previous-chapter').click(function () {
+        tab2.hide();
+        tab1.show();
+    })
 
 })

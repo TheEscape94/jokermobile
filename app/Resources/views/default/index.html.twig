@@ -35,7 +35,7 @@
                                      data-y="140"
                                      data-speed="500"
                                      data-start="1200"
-                                     data-easing="Power4.easeOut"><h3>Popunite formular i pošaljite nam!</h3>
+                                     data-easing="Power4.easeOut"><h3>Kliknite na ikonicu zamene, popunite formular i pošaljite nam!</h3>
                                 </div>
                                 <div class="tp-caption skewfromrightshort fadeout"
                                      data-x="40"
@@ -49,7 +49,7 @@
                                      data-y="300"
                                      data-speed="500"
                                      data-start="1200"
-                                     data-easing="Power4.easeOut"><a class="button big red" href="/zamenaotkup">Više informacija</a>
+                                     data-easing="Power4.easeOut"><a class="button big red" href="/zamenaiotkup">Više informacija</a>
                                 </div>
                             </li>
                             <!-- SLIDE  -->
@@ -76,7 +76,7 @@
                                      data-y="300"
                                      data-speed="500"
                                      data-start="1200"
-                                     data-easing="Power4.easeOut"><span style="color: dodgerblue; font-weight: 700;">Novi telefoni već od<span class="price"> 9.990 RSD</span></span>
+                                     data-easing="Power4.easeOut"><span style="color: dodgerblue; font-weight: 700;">Novi telefoni već od<span class="price"> 13.990 RSD</span></span>
                                 </div>
                                 <div class="tp-caption skewfromrightshort fadeout"
                                      data-x="40"
@@ -181,11 +181,11 @@
                                         <span class="action-wrapper">
                                             <i class="icons icon-heart-empty"></i>
                                             <span class="action-name action-wishlist"
-                                                  data-img="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}"
-                                                  data-price="{% if t.priceOff > 0 %}{{ t.price - (t.priceOff / 100 * t.price) }}{% else %}{{ t.price }}{% endif %}"
+                                                  data-type = "0"
+                                                  data-id = "{{ t.id }}"
                                                   data-link="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}"
-                                                  data-name="{{ t.mark }} {{ t.model }}">Dodaj u želje
-                                            </span>
+                                                    >Dodaj u želje
+                                             </span>
                                         </span>
                                     </span>
                                             <span class="add-to-compare">
@@ -268,11 +268,11 @@
                                         <span class="action-wrapper">
                                             <i class="icons icon-heart-empty"></i>
                                             <span class="action-name action-wishlist"
-                                                  data-img="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}"
-                                                  data-price="{% if t.priceOff > 0 %}{{ t.price - (t.priceOff / 100 * t.price) }}{% else %}{{ t.price }}{% endif %}"
+                                                  data-type = "0"
+                                                  data-id = "{{ t.id }}"
                                                   data-link="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}"
-                                                  data-name="{{ t.mark }} {{ t.model }}">Dodaj u želje
-                                            </span>
+                                                    >Dodaj u želje
+                                             </span>
                                         </span>
                                     </span>
                                     <span class="add-to-compare">
@@ -355,10 +355,10 @@
                                         <span class="action-wrapper">
                                             <i class="icons icon-heart-empty"></i>
                                             <span class="action-name action-wishlist"
-                                                  data-img="{{ asset('bundles/app/upload/equiment/') }}{{ images[0] }}"
-                                                  data-price="{% if t.priceOff > 0 %}{{ t.price - (t.priceOff / 100 * t.price) }}{% else %}{{ t.price }}{% endif %}"
+                                                  data-type = "1"
+                                                  data-id = "{{ t.id }}"
                                                   data-link="/oprema/{{ t.mark }}/{{ t.name }}/{{ t.id }}"
-                                                  data-name="{{ t.mark }} {{ t.name }}">Dodaj u želje
+                                                    >Dodaj u želje
                                             </span>
                                         </span>
                                     </span>

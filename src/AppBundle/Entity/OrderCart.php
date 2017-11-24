@@ -20,6 +20,16 @@ class OrderCart
     /**
      * @var string
      */
+    private $discount;
+
+    /**
+     * @var string
+     */
+    private $discountName;
+
+    /**
+     * @var string
+     */
     private $orderTxt;
 
     /**
@@ -72,10 +82,8 @@ class OrderCart
      */
     private $createdAt;
 
-
     function __construct()
     {
-        $this->orderNum = rand(0, 999999);
         $this->delivered = 0;
         $this->isRead = 0;
         $this->createdAt = new \DateTime();
@@ -370,6 +378,22 @@ class OrderCart
     }
 
     /**
+     * @return string
+     */
+    public function getDiscount()
+    {
+        return $this->discount;
+    }
+
+    /**
+     * @param string $discount
+     */
+    public function setDiscount($discount)
+    {
+        $this->discount = $discount;
+    }
+
+    /**
      * Get createdAt
      *
      * @return \DateTime
@@ -378,5 +402,22 @@ class OrderCart
     {
         return $this->createdAt;
     }
+
+    /**
+     * @return string
+     */
+    public function getDiscountName()
+    {
+        return $this->discountName;
+    }
+
+    /**
+     * @param string $discountName
+     */
+    public function setDiscountName($discountName)
+    {
+        $this->discountName = $discountName;
+    }
+
 }
 

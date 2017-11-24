@@ -1806,10 +1806,32 @@ ul.top_profiles li:nth-child(odd) {
     line-height: 27px;
     font-weight: bold
 }
+
+.event .media-body {
+    position: relative;
+}
+
+.event .media-body .rembtn {
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    color: #cccccc;
+}
+
+.event .media-body .rembtn:hover {
+    color: #333;
+    cursor: pointer;
+}
+
+.discount-result span {
+    font-size: 13px !important;
+}
+
 .event .media-body a.title {
     font-weight: bold
 }
 .event .media-body p {
+    margin-top: 10px;
     margin-bottom: 0
 }
 h4.graph_title {

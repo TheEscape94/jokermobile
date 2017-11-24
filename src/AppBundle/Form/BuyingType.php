@@ -80,7 +80,7 @@ class BuyingType extends AbstractType
                     'class' => 'form-control results-preview-user',
                     'style' => 'display:none;',
                     'requred' => false,
-                )
+                ),
             ))
             ->add('price', null, array(
                 'label' => 'Koja je Vaša željena cena? (u RSD)*',

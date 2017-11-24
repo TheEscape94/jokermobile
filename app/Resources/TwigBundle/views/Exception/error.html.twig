@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="description" content="JokerMobil.com, Prodaja, otkup i zamena mobilnih telefona. Najbolje cene, isplata odmah. Zamenite Va stari telefon za novi.">
+    <meta name="keywords" content="Prodaja telefona, Otkup telefona, Zamena telefona, Mobilni telefoni, Oprema za mobilne telefone, Staro za novo">
+    <meta name="author" content="Milos Aperlic">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+{% block title %} | Ooops! {% endblock %}
+{% block body %}
+    <!-- Content -->
+    <div class="row content">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="breadcrumbs">
+                <p><a href="/">Početna</a> <i class="icons icon-right-dir"></i> Greška!</p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="carousel-heading no-margin">
+                        <h4>Greška!</h4>
+                    </div>
+                    <div class="page-content">
+                        <h1 style="text-align: center;">Ooops! Došlo je do neke greške! Pokušajte ponovo kasnije.</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /Main Content -->
+        {{ render(controller(
+        'AppBundle:Parts:sidebar'
+        )) }}
+    </div>
+    <!-- /Content -->
+    {{ render(controller(
+    'AppBundle:Parts:banners'
+    )) }}
+{% endblock %}

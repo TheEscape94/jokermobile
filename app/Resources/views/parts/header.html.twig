@@ -10,8 +10,6 @@
                         <li><a href="/isporukaiplacanje">Isporuka i plaćanje</a></li>
                         <li><a href="/zamenaiotkup"><b>Zamena i otkup</b></a></li>
                         <li><a href="{{ path('app_contact') }}">Kontakt</a></li>
-                        <li><a href="javascript:void(0);" class="request">Ajax Test</a></li>
-                        <li class="output"></li>
                     </ul>
                 </nav>
                 <nav class="col-lg-5 col-md-5 col-sm-5">
@@ -37,48 +35,112 @@
                 <nav id="middle-navigation" class="col-lg-8 col-md-8 col-sm-8">
                     <ul class="pull-right">
                         <li class="red">
-                            <a href="javascript:void(0);"><i class="icons icon-heart-empty"></i><span class="count-wishlist">0</span> Stvari</a>
+                            <a href="javascript:void(0);"><i class="icons icon-heart-empty"></i><span class="count-wishlist">
+                                     {% if app.session.get('wishlist')|length > 0 %}
+                                         {% set wlistsize = app.session.get('wishlist')|length %}
+                                         {{ wlistsize }}
+                                     {% else %}
+                                         0
+                                     {% endif %}
+                                </span> Stvari</a>
                             <ul id="cart-dropdown" class="box-dropdown parent-arrow">
                                 <li>
                                     <div class="box-wrapper parent-border">
                                         <p>Stvari koje Vam se svidjaju:</p>
 
                                         <table class="cart-table wish-table">
-                                            <p class="wish-table-notify" style="text-align: center; margin-top: 15px;">Vaša lista želja je prazna</p>
-                                            {# wishlist from .js #}
+                                            {% if app.session.get('wishlist')|length > 0 %}
+                                            {% set x = 0 %}
+                                                {% for i in app.session.get('wishlist') %}
+                                                    <tr class="wish-list-product">
+                                                        <td>
+                                                            {% if i['type'] == 0 %}
+                                                            <img src="{{ asset('bundles/app/upload/phones/') }}{{ i['img'] }}" alt="product">
+                                                            {% else %}
+                                                            <img src="{{ asset('bundles/app/upload/equiment/') }}{{ i['img'] }}" alt="product">
+                                                            {% endif %}
+                                                        </td>
+                                                        <td>
+                                                            <h6>{{ i['name'] }}</h6>
+                                                        </td>
+                                                        <td>
+                                                            <span class="quantity"><span class="light">{{ i['price'] }} RSD</span></span>
+                                                            <a href="{{ i['link'] }}" class="parent-color"><i class="fa fa-plus"></i> Pregled</a><br/>
+                                                            <a href="javascript:void(0)"
+                                                               data-id = "{{ i['id'] }}"
+                                                               data-type = "{{ i['type'] }}"
+                                                               style="color: orange;" class="add_to_cart_phones"><i class="fa fa-plus"></i> Dodaj u korpu</a>
+                                                        </td>
+                                                    </tr>
+                                                    {% set x = x + 1 %}
+                                                {% endfor %}
+                                            {% else %}
+                                                <p class="wish-table-notify" style="text-align: center; margin-top: 15px;">Vaša lista želja je prazna</p>
+                                            {% endif %}
+
                                         </table>
                                         <br class="clearfix">
                                     </div>
-                                    <div class="box-wrapper no-border" >
-                                        <a style="display: none;" class="button pull-right parent-background clear-wishlist" href="#">Poništi</a>
+                                    <div class="box-wrapper no-border wishlist-footer" {% if app.session.get('wishlist')|length == 0 %} style="display: none;" {% endif %}>
+                                        <a class="button pull-right parent-background clear-wishlist" href="javascript:void(0)">Poništi</a>
                                     </div>
                                 </li>
                             </ul>
                         </li>
-                        <li class="orange"><a href="javascript:void(0);"><i class="icons icon-basket-2"></i><span class="count-cart">0</span> Stvari</a>
+                        <li class="orange"><a href="javascript:void(0);"><i class="icons icon-basket-2"></i><span class="count-cart">
+                                     {% if app.session.get('articles')|length > 0 %}
+                                         {% set cartsize = app.session.get('articles')|length %}
+                                         {{ cartsize }}
+                                     {% else %}
+                                         0
+                                     {% endif %}
+                                </span> Stvari</a>
                             <ul id="cart-dropdown" class="box-dropdown parent-arrow">
                                 <li>
                                     <div class="box-wrapper parent-border">
                                         <p>Upravo dodate stvari:</p>
 
                                         <table class="cart-table cart-result-table">
-                                            <p class="cart-table-notify" style="text-align: center; margin-top: 15px;">Vaša korpa je prazna</p>
-                                            {# cartlist from .js #}
+                                            {% if app.session.get('articles')|length > 0 %}
+                                                {% set j = 0 %}
+                                                {% for i in app.session.get('articles') %}
+                                                    <tr class="cart-list-product">
+                                                        <td>
+                                                            {% if i['type'] == 0 %}
+                                                                <img src="{{ asset('/bundles/app/upload/phones/') }}{{ i['img'] }}" alt="product">
+                                                            {% else %}
+                                                                <img src="{{ asset('/bundles/app/upload/equiment/') }}{{ i['img'] }}" alt="product">
+                                                            {% endif %}
+                                                        </td>
+                                                        <td>
+                                                            <h6>{{ i['name'] }}</h6>
+                                                        </td>
+                                                        <td>
+                                                            <span class="quantity"><span class="light">{{ i['q'] }} x </span>{{ i['price'] }} RSD</span>
+                                                            <a href="javascript:void(0)" class="parent-color btn btn-link remove-item" data-id="{{ j }}"><i class="fa fa-minus"></i> Ukloni</a>
+                                                        </td>
+                                                    </tr>
+                                                    {% set j = j + 1 %}
+                                                {% endfor %}
+                                            {% else %}
+                                                <p class="cart-table-notify">Vaša korpa je prazna</p>
+                                            {% endif %}
                                         </table>
 
                                         <br class="clearfix">
                                     </div>
-                                    <div class="cart-footer" style="display: none;">
+                                    
+                                    <div class="cart-footer" {% if app.session.get('articles')|length == 0 %} style="display: none;" {% endif %}>
                                         <div class="footer">
                                             <table class="checkout-table pull-right">
                                                 <tr>
                                                     <td class="align-right"><strong>Ukupno:</strong></td>
-                                                    <td><strong class="parent-color"><span class="all-products-price">0</span> RSD</strong></td>
+                                                    <td><strong class="parent-color"><span class="all-products-price">{{ allprice }}</span> RSD</strong></td>
                                                 </tr>
                                             </table>
                                         </div>
                                         <div class="box-wrapper no-border">
-                                            <a class="button pull-right parent-background" href="{{ path('korpa_new') }}">Poruči</a>
+                                            <a class="button pull-right parent-background" href="{{ path('cart') }}">Poruči</a>
                                             <a class="button pull-right clear-cart-list" href="#">Očisti korpu</a>
                                         </div>
                                     </div>
@@ -225,29 +287,28 @@
             </ul>
 
             <div id="search-bar">
-
+                <form action="{{ path('search_article_user') }}">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <table id="search-bar-table">
-                        <tr>
-                            <td class="search-column-1">
-                                <p><span class="grey">Popularno:</span> <a href="#">brendirane maske</a>, <a href="#">apple</a>, <a href="#">samsung</a>, <a href="#">slušalice</a>, <a href="#">power bank</a></p>
-                                <input type="text" placeholder="Unesite pojam za pretragu">
-                            </td>
-                            <td class="search-column-2">
-                                <p class="align-right"><a href="/naprednapretraga">Napredna pretraga</a></p>
-                                <select class="chosen-select-search">
-                                    <option>Telefoni</option>
-                                    <option>Oprema</option>
-                                    <option>Blog</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
+                        <table id="search-bar-table">
+                            <tr>
+                                <td class="search-column-1">
+                                    <p><span class="grey">Popularno:</span> <a href="#">brendirane maske</a>, <a href="#">apple</a>, <a href="#">samsung</a>, <a href="#">slušalice</a>, <a href="#">power bank</a></p>
+                                    <input type="text" name="search_val" placeholder="Unesite pojam za pretragu">
+                                </td>
+                                <td class="search-column-2">
+                                    <p class="align-right">Niste pronašli? <a style="color: orange;" href="/kontakt">Kontaktirajte nas!</a></p>
+                                    <select name="search_category" class="chosen-select-search">
+                                        <option value="0">Telefoni</option>
+                                        <option value="1">Oprema</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
                 </div>
                 <div id="search-button">
-                    <input type="submit" value="">
-                    <i class="icons icon-search-1"></i>
+                    <button type="submit"><i class="icons icon-search-1"></i></button>
                 </div>
+                </form>
             </div>
 
         </nav>

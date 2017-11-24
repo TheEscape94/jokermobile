@@ -16,22 +16,23 @@
                     <tr>
                         <th></th>
                         <th>Broj porudžbine</th>
-                        <th>Porudžbina</th>
+                        <th style="text-align: center;">Porudžbina</th>
+                        <th>Popust</th>
                         <th>Cena</th>
-                        <th>Isporučena</th>
+                        <th style="text-align: center;">Rešeno</th>
                         <th>Poručeno</th>
-                        <th>Poručio</th>
-                        <th>Pregled</th>
+                        <th style="text-align: center;">Poručio</th>
+                        <th style="text-align: center;">Pregled</th>
                     </tr>
                 </thead>
                 <tbody>
-                {% for orderCart in orderCarts %}
+                {% for orderCart in orderCarts|reverse %}
                     <tr {% if orderCart.isRead == 0 %}style="background-color: #faebcc;"{% endif %}>
                         <td>{% if orderCart.isRead == 0 %}<span class="badge">NOVO</span> {% endif %}</td>
                         <td>{{ orderCart.orderNum }}</td>
-                        <td>
-                            <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#cart"><i class="fa fa-cart-arrow-down"></i></button>
-                            <div id="cart" class="modal fade" role="dialog">
+                        <td style="text-align: center;">
+                            <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#cart{{ orderCart.id }}"><i class="fa fa-cart-arrow-down"></i></button>
+                            <div id="cart{{ orderCart.id }}" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
                                     <!-- Modal content-->
                                     <div class="modal-content">
@@ -40,23 +41,84 @@
                                             <h4 class="modal-title">Porudžbina <small>No. {{ orderCart.orderNum }}</small></h4>
                                         </div>
                                         <div class="modal-body">
-                                            {{ orderCart.orderTxt }}
+                                            <table class="table table-striped">
+                                                <th style="text-align: center;">Artikal</th>
+                                                <th style="text-align: center;">Kol</th>
+                                                <th style="text-align: center;">Cena</th>
+                                                <th style="text-align: center;">Kol * Cena</th>
+                                                {% set order =  orderCart.orderTxt|split('|') %}
+                                                {% set allP = 0 %}
+                                                {% for o in order %}
+                                                    {% set col =  o|split('-') %}
+                                                        {#[0] - name ; [1] - quantity ; [2] - price ; [3] - quantity * price#}
+                                                        {% if col|length == 4%}
+                                                            <tr>
+                                                                <td>{{ col[0] }}</td>
+                                                                <td>{{ col[1] }}</td>
+                                                                <td>{{ col[2] }} RSD</td>
+                                                                <td>{{ col[3] }} RSD</td>
+                                                                {% set allP = allP + col[3] %}
+                                                            </tr>
+                                                        {% endif %}
+                                                {% endfor %}
+                                                <tr>
+                                                    <td colspan="3" style="text-align: right;"><b>Popust:</b></td>
+                                                    <td colspan="1">
+                                                        {% if orderCart.discount != '' %}
+                                                            {% if orderCart.discount < 100 %}
+                                                                <span class="label label-warning">{{ orderCart.discount }} %</span>
+                                                                {% set allP = allP - (orderCart.discount / 100 * allP) %}
+                                                            {% else %}
+                                                                <span class="label label-warning">{{ orderCart.discount }} RSD</span>
+                                                                {% set allP = allP - orderCart.discount %}
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3" style="text-align: right;"><b>Ukupno:</b></td>
+                                                    <td colspan="1"><h3 class="label label-success" style="font-size: 14px">{{ allP }} RSD</h3></td>
+                                                </tr>
+                                            </table>
                                         </div>
                                         <div class="modal-footer">
-                                            <p>Poruceno: {% if orderCart.createdAt %}{{ orderCart.createdAt|date('d.m. h:m') }}{% endif %}</p>
+                                            <p>Poruceno: {% if orderCart.createdAt %}{{ orderCart.createdAt|date('d-m-Y H:i') }}{% endif %}</p>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
                         </td>
-                        <td>{{ orderCart.orderPrice }} RSD</td>
-                        <td>{% if orderCart.delivered %}<i class="fa fa-check text-success"></i>{% else %}<i class="fa fa-close text-danger"></i>{% endif %}</td>
-                        <td>{% if orderCart.createdAt %}{{ orderCart.createdAt|date('d-m-Y H:i') }}{% endif %}</td>
                         <td>
-                            <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-user"></i></button>
+                            {% if orderCart.discount != '' %}
+                                {% if orderCart.discount < 100 %}
+                                    <span class="label label-warning">{{ orderCart.discount }} %</span>
+                                {% else %}
+                                    <span class="label label-info">{{ orderCart.discount }} RSD</span>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if orderCart.discount != '' %}
+                                {% if orderCart.discount < 100 %}
+                                    <del>{{ orderCart.orderPrice }} RSD</del> {{ orderCart.orderPrice - (orderCart.discount / 100 * orderCart.orderPrice) }} RSD
+                                {% else %}
+                                    <del>{{ orderCart.orderPrice }} RSD</del> {{ orderCart.orderPrice - orderCart.discount }} RSD
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                        <td style="text-align: center;">
+                            {% if orderCart.delivered %}
+                                <i class="fa fa-check text-success"></i>
+                            {% else %}
+                               <input type="checkbox" name="delivered" data-id="{{ orderCart.id }}" class="form-input delivered" />
+                            {% endif %}
+                        </td>
+                        <td>{% if orderCart.createdAt %}{{ orderCart.createdAt|date('d-m-Y H:i') }}{% endif %}</td>
+                        <td style="text-align: center;">
+                            <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal{{ orderCart.id }}"><i class="fa fa-user"></i></button>
                             <!-- Modal -->
-                            <div id="myModal" class="modal fade" role="dialog">
+                            <div id="myModal{{ orderCart.id }}" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
                                     <!-- Modal content-->
                                     <div class="modal-content">
@@ -73,14 +135,14 @@
                                             </ul>
                                         </div>
                                         <div class="modal-footer">
-                                            <p>Poruceno: {% if orderCart.createdAt %}{{ orderCart.createdAt|date('d.m. h:m') }}{% endif %}</p>
+                                            <p>Poruceno: {% if orderCart.createdAt %}{{ orderCart.createdAt|date('d-m-Y H:i') }}{% endif %}</p>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
                         </td>
-                        <td><a class="btn btn-warning btn-xs" href="{{ path('korpa_show', { 'id': orderCart.id }) }}"><i class="fa fa-eye"></i></a></td>
+                        <td style="text-align: center;"><a class="btn btn-success btn-xs" href="{{ path('korpa_show', { 'id': orderCart.id }) }}"><i class="fa fa-eye"></i></a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

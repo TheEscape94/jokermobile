@@ -1,0 +1,18 @@
+AppBundle\Entity\EmailList:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\EmailListRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        email:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+            column: created_at
+    lifecycleCallbacks: {  }

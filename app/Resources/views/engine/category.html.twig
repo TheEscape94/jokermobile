@@ -98,12 +98,22 @@
                                     {% else %}
                                         <img src="{{ asset('bundles/app/upload/equiment/') }}{{ images[0] }}" alt="{{ t.mark }} {{ t.name }}">
                                     {% endif %}
-                                    <a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}" class="product-hover">
-                                        <i class="icons icon-eye-1"></i> Pregled
-                                    </a>
+                                    {% if o == 'p' %}
+                                        <a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}" class="product-hover">
+                                            <i class="icons icon-eye-1"></i> Pregled
+                                        </a>
+                                    {% else %}
+                                        <a href="/oprema/{{ t.mark }}/{{ t.name }}/{{ t.id }}" class="product-hover">
+                                            <i class="icons icon-eye-1"></i> Pregled
+                                        </a>
+                                    {% endif %}
                                 </div>
                                 <div class="product-info">
-                                    <h5><a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}">{% if o == 'p' %}{{ t.mark }} {{ t.model }}{% else %}{{ t.name }}{% endif %}</a></h5>
+                                    {% if o == 'p' %}
+                                        <h5><a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}">{{ t.mark }} {{ t.model }}</a></h5>
+                                    {% else %}
+                                        <h5><a href="/oprema/{{ t.mark }}/{{ t.name }}/{{ t.id }}">{{ t.mark }} {{ t.name }}</a></h5>
+                                    {% endif %}
                                     <span class="price">
                                         {% if t.priceOff > 0 %}
                                             <del>{{ t.price }} RSD</del>
@@ -118,18 +128,26 @@
                                 <span class="add-to-cart">
                                     <span class="action-wrapper">
                                         <i class="icons icon-basket-2"></i>
-                                        <a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}" style="color: #fff;"><span class="action-name">Dodaj u korpu</span></a>
+                                        {% if o == 'p' %}
+                                            <a href="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}" style="color: #fff;"><span class="action-name">Dodaj u korpu</span></a>
+                                            {% else %}
+                                            <a href="/oprema/{{ t.mark }}/{{ t.name }}/{{ t.id }}" style="color: #fff;"><span class="action-name">Dodaj u korpu</span></a>
+                                        {% endif %}
                                     </span >
                                 </span>
                                 <span class="add-to-favorites">
                                     <span class="action-wrapper">
                                         <i class="icons icon-heart-empty"></i>
-                                        <span class="action-name action-wishlist"
-                                              data-img="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}"
-                                              data-price="{% if t.priceOff > 0 %}{{ t.price - (t.priceOff / 100 * t.price) }}{% else %}{{ t.price }}{% endif %}"
-                                              data-link="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}"
-                                              data-name="{{ t.mark }} {{ t.model }}">Dodaj u želje
-                                        </span>
+                                         <span class="action-name action-wishlist"
+                                               data-type = "0"
+                                               data-id = "{{ t.id }}"
+                                                 {% if o == 'p' %}
+                                                     data-link="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}"
+                                                 {% else %}
+                                                     data-link="/oprema/{{ t.mark }}/{{ t.name }}/{{ t.id }}"
+                                                 {% endif %}
+                                         >Dodaj u želje
+                                         </span>
                                     </span>
                                 </span>
                                 {% if o == 'p' %}

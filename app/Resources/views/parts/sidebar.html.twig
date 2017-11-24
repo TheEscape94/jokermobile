@@ -141,11 +141,11 @@
                                     <span class="action-wrapper">
                                         <i class="icons icon-heart-empty"></i>
                                         <span class="action-name action-wishlist"
-                                              data-img="{{ asset('bundles/app/upload/phones/') }}{{ images[0] }}"
-                                              data-price="{% if t.priceOff > 0 %}{{ t.price - (t.priceOff / 100 * t.price) }}{% else %}{{ t.price }}{% endif %}"
+                                              data-type = "0"
+                                              data-id = "{{ t.id }}"
                                               data-link="/telefon/{{ t.mark }}/{{ t.model }}/{{ t.id }}"
-                                              data-name="{{ t.mark }} {{ t.model }}">Dodaj u želje
-                                            </span>
+                                                >Dodaj u želje
+                                         </span>
                                     </span>
                                 </span>
                                 <span class="add-to-compare">
